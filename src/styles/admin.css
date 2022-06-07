@@ -1,0 +1,87 @@
+.lay-config-provider {
+  height: 100%;
+}
+.layui-logo {
+  width: 100%;
+  font-size: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.layui-logo img {
+  width: 50px;
+  height: 50px;
+}
+.layui-body {
+  overflow-x: hidden;
+  background-color: whitesmoke;
+}
+.layui-body > .layui-tab {
+  margin: 0px;
+}
+.layui-body > .layui-tab > .layui-tab-content {
+  padding: 0px;
+}
+.layui-body > .layui-tab > .layui-tab-head {
+  width: 100%;
+}
+.layui-body > .layui-tab > .layui-tab-head > .layui-tab-title {
+  border: 1px solid whitesmoke;
+  background-color: white;
+  border-left: none;
+}
+.layui-body > .layui-tab > .layui-tab-head > .layui-tab-title > li {
+  color: dimgray;
+  font-size: 13.5px;
+  line-height: 40px;
+  border-right: 1px solid whitesmoke;
+}
+.layui-body > .layui-tab > .layui-tab-head > .layui-tab-title > li.layui-this::after {
+  border: none;
+}
+.layui-header {
+  background: white;
+}
+.layui-header .layui-nav {
+  background: transparent;
+}
+.layui-header .layui-nav.layui-layout-left {
+  left: 0 !important ;
+  position: relative !important;
+}
+.layui-header .layui-nav * {
+  color: #393d49;
+}
+.layui-header .layui-nav .layui-nav-item > a {
+  padding: 0px 24px;
+}
+.layui-side {
+  z-index: 9999;
+  width: 230px !important;
+  background: rgb(34, 36, 37, 98%);
+  box-shadow: 2px 0 6px rgb(0 21 41 / 35%);
+}
+.layui-side .layui-nav {
+  width: 100%;
+  background-color: transparent;
+}
+
+.layui-layout.collapse .layui-logo {
+  width: 60px;
+}
+.layui-layout.collapse .layui-side {
+  width: 60px !important;
+}
+.layui-layout.collapse .layui-body {
+  left: 60px;
+}
+.layui-layout.collapse .layui-header .layui-layout-left {
+  left: 60px;
+}
+.layui-layout .layui-logo,
+.layui-layout .layui-side,
+.layui-layout .layui-body,
+.layui-layout .layui-header .layui-layout-left {
+  transition: all 0.3s;
+}
+.layui-layout {
+  height: 100%;
+}
