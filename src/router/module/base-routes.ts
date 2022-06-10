@@ -1,8 +1,13 @@
 import BaseLayout from '../../layouts/BaseLayout.vue';
+import Login from '../../views/Login/index.vue';
 
 
 export default [
   {
+    path: '/login',
+    component: Login,
+    meta: { title: '登录页面' },
+  },{
     path: '/',
     redirect: '/console',
     component: BaseLayout,

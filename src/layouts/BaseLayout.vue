@@ -8,7 +8,8 @@
           <global-menu :collapse="collapseState"></global-menu>
         </lay-scroll>
       </lay-side>
-      <lay-layout>
+      <!-- width:0 解决flex布局下子元素获取不到父元素宽度百分比的问题 -->
+      <lay-layout style="width:0px">
         <!-- header -->
         <lay-header>
           <lay-menu class="layui-layout-left">
