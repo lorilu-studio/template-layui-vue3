@@ -31,7 +31,15 @@ class Http {
         this.service.interceptors.response.use((response: AxiosResponse<any>) => {
             const data = response.data
             // 错误处理 to do
-            return response.data
+            switch (data.code) {
+                case 200:
+                    return response.data;
+                case 500: 
+                    window.LVM.layer.msg(response.data.msg, { icon : 2, time: 1000})
+                    break;
+                default:
+                    break;
+            }
         }, error => {
             return Promise.reject(error)
         })

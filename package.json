@@ -9,6 +9,7 @@
   "dependencies": {
     "@layui/layui-vue": "^1.1.5",
     "axios": "^0.24.0",
+    "mockjs": "^1.1.0",
     "pinia": "^2.0.9",
     "pinia-plugin-persist": "^1.0.0",
     "vue": "^3.2.13",

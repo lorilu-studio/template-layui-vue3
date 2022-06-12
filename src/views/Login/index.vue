@@ -11,15 +11,15 @@
         </div> -->
         <div class="login-container">
           <lay-tab type="brief" v-model="loginMethod">
-            <lay-tab-item title="Username" id="1">
-              <lay-input placeholder="邮箱"></lay-input>
-              <lay-input placeholder="密码" type="password"></lay-input>
+            <lay-tab-item title="用户名" id="1">
+              <lay-input placeholder="用户名" v-model="loginForm.username"></lay-input>
+              <lay-input placeholder="密码" type="password" v-model="loginForm.password"></lay-input>
               <div class="assist">
                 <lay-checkbox name="like" v-model="rememberMe" skin="primary" label="1">记住密码</lay-checkbox>
               </div>
-              <lay-button type="primary" fluid="true">登录</lay-button>
+              <lay-button type="primary" fluid="true" @click="loginSubmit">登录</lay-button>
             </lay-tab-item>
-            <lay-tab-item title="Qrcode" id="2">
+            <lay-tab-item title="二维码" id="2">
               <div>选项二</div>
             </lay-tab-item>
           </lay-tab>
@@ -58,15 +58,38 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import Http from '../../api/http';
+import { useRoute, useRouter } from "vue-router";
+
 
 export default defineComponent({
   setup() {
+    const router = useRouter();
+
+    // 登录方式
     const loginMethod = ref("1");
+    // 记住密码
     const rememberMe = ref(false);
 
+    const loginForm = ref({
+      username: "",
+      password: ""
+    })
+    // 登录提交
+    const loginSubmit = ()=> {
+      console.log(loginForm.value)
+
+      Http.post('/login', loginForm.value).then((res)=> {
+        console.log(res)
+        router.push('console');
+        
+      })
+    }
     return {
       loginMethod,
-      rememberMe
+      rememberMe,
+      loginForm,
+      loginSubmit
     }
   },
 });
