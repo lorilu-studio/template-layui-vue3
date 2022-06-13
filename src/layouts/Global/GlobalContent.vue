@@ -1,6 +1,8 @@
 <template>
     <div class="global-content">
-        <router-view v-if="appStore.routerAlive"></router-view>
+        <lay-transition type="fade">
+            <router-view v-if="appStore.routerAlive"></router-view>
+        </lay-transition>
     </div>
 </template>
 

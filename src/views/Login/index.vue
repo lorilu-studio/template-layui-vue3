@@ -60,30 +60,48 @@
 import { defineComponent, ref } from "vue";
 import Http from '../../api/http';
 import { useRoute, useRouter } from "vue-router";
-
-
+import {Base64} from 'js-base64';
+import { onMounted } from "vue";
 export default defineComponent({
+  name: 'login',
   setup() {
     const router = useRouter();
-
+    onMounted(() => {
+      // 在挂载后执行
+      // 获取记住密码配置
+      let username = window.localStorage.getItem('username');
+      let password = window.localStorage.getItem('password');
+      if(username&&password) {
+        rememberMe.value = true;
+        loginForm.value.username = username;
+        loginForm.value.password = Base64.decode(password);
+      }
+    });
     // 登录方式
     const loginMethod = ref("1");
     // 记住密码
     const rememberMe = ref(false);
-
+    // 登录表单数据
     const loginForm = ref({
       username: "",
       password: ""
     })
     // 登录提交
-    const loginSubmit = ()=> {
-      console.log(loginForm.value)
-
-      Http.post('/login', loginForm.value).then((res)=> {
-        console.log(res)
-        router.push('console');
-        
-      })
+    const  loginSubmit = async ()=> {
+      let res = await Http.post('/login', loginForm.value);
+      if(res.code === 200) {
+        // 记住密码
+        if(rememberMe.value){
+          window.localStorage.setItem('username', loginForm.value.username);
+          window.localStorage.setItem('password', Base64.encode(loginForm.value.password));
+        } else {
+          window.localStorage.removeItem('username');
+          window.localStorage.removeItem('password');
+        }
+        // 存token后跳转
+        window.localStorage.setItem('token', res.data.token);
+        router.push('workbench');
+      }
     }
     return {
       loginMethod,

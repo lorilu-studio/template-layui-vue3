@@ -23,13 +23,20 @@
   </lay-container>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { onMounted,defineComponent, ref } from "vue";
+import Http from '../../../api/http';
 
 export default defineComponent({
   setup() {
+    
+    onMounted(()=> {
+      Http.post('/workSpace/workbench/getDynamicList').then((res)=> {
+        console.log(res)
+      })
+    });
 
     return {
-
+      
     };
   },
 });

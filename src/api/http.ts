@@ -1,4 +1,6 @@
-import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios'
+import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
+import {layer} from '@layui/layui-vue';
+import router from '../router'
 
 type TAxiosOption = {
     timeout: number;
@@ -17,9 +19,15 @@ class Http {
         this.service = axios.create(config)
         /* 请求拦截 */
         this.service.interceptors.request.use((config: AxiosRequestConfig) => {
-            if (localStorage.getItem('token') && localStorage.getItem("tokenKey")) {
-                (config.headers as AxiosRequestHeaders).authorization = localStorage.getItem('token') as string
-                (config.headers as AxiosRequestHeaders).authorizationKey = localStorage.getItem('tokenKey') as string
+            console.log(config)
+            if (localStorage.getItem('token')) {
+                (config.headers as AxiosRequestHeaders).token = localStorage.getItem('token') as string
+            } else {
+                if(router.currentRoute.value.path!=='/login') {
+                    // 没token跳登录页
+                    console.log(router.currentRoute.value.path)
+                    router.push('login');
+                }
             }
             return config
         }, error => {
@@ -35,7 +43,7 @@ class Http {
                 case 200:
                     return response.data;
                 case 500: 
-                    window.LVM.layer.msg(response.data.msg, { icon : 2, time: 1000})
+                    layer.msg(response.data.msg, { icon : 2, time: 1000})
                     break;
                 default:
                     break;

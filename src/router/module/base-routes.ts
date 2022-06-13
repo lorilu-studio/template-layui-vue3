@@ -9,18 +9,18 @@ export default [
     meta: { title: '登录页面' },
   },{
     path: '/',
-    redirect: '/console',
+    redirect: '/workbench',
     component: BaseLayout,
     meta: { title: '工作空间' },
     children: [
       {
-        path: '/analysis',
-        component: () => import('../../views/Analysis/index.vue'),
-        meta: { title: '分析页' },
+        path: '/workbench',
+        component: () => import('../../views/workSpace/workbench/index.vue'),
+        meta: { title: '工作台' },
       },
       {
         path: '/console',
-        component: () => import('../../views/Console/index.vue'),
+        component: () => import('../../views/workSpace/console/index.vue'),
         meta: { title: '控制台' },
       }
     ]
