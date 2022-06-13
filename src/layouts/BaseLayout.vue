@@ -57,7 +57,7 @@
               <template #content>
                 <lay-dropdown-menu>
                   <lay-dropdown-menu-item>用户信息</lay-dropdown-menu-item>
-                  <lay-dropdown-menu-item>注销登录</lay-dropdown-menu-item>
+                  <lay-dropdown-menu-item @click="logOut">注销登录</lay-dropdown-menu-item>
                 </lay-dropdown-menu>
               </template>
             </lay-dropdown>
@@ -89,6 +89,7 @@ import GlobalSetup from "./Global/GlobalSetup.vue";
 import GlobalContent from "./Global/GlobalContent.vue";
 import GlobalTab from "./Global/GlobalTab.vue";
 import GlobalMenu from "./Global/GlobalMenu.vue";
+import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -105,7 +106,7 @@ export default {
     const collapseState = ref(false);
     const visible = ref(false);
     const sideWidth = ref("230px");
-
+    const router = useRouter();
     const changeVisible = function () {
       visible.value = !visible.value;
     };
@@ -123,7 +124,11 @@ export default {
         appStore.routerAlive = true;
       }, 500);
     };
-
+    // 注销登录
+    const logOut = ()=> {
+      window.localStorage.removeItem('token');
+      router.push('/login');
+    }
     // return instance
     return {
       sideWidth, 
@@ -132,7 +137,8 @@ export default {
       collapse,
       appStore,
       refresh,
-      visible
+      visible,
+      logOut
     };
   },
 };

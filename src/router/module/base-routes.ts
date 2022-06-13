@@ -7,19 +7,24 @@ export default [
     path: '/login',
     component: Login,
     meta: { title: '登录页面' },
-  },{
+  },
+  {
     path: '/',
-    redirect: '/workbench',
+    redirect: '/workSpace'
+  },
+  {
+    path: '/workSpace',
+    redirect: '/workSpace/workbench',
     component: BaseLayout,
     meta: { title: '工作空间' },
     children: [
       {
-        path: '/workbench',
+        path: '/workSpace/workbench',
         component: () => import('../../views/workSpace/workbench/index.vue'),
         meta: { title: '工作台' },
       },
       {
-        path: '/console',
+        path: '/workSpace/console',
         component: () => import('../../views/workSpace/console/index.vue'),
         meta: { title: '控制台' },
       }

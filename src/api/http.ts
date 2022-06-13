@@ -26,7 +26,7 @@ class Http {
                 if(router.currentRoute.value.path!=='/login') {
                     // 没token跳登录页
                     console.log(router.currentRoute.value.path)
-                    router.push('login');
+                    router.push('/login');
                 }
             }
             return config

@@ -12,13 +12,13 @@
         <lay-icon type="layui-icon-home"></lay-icon>
       </template>
       <template #title> 工作空间 </template>
-      <lay-menu-item id="/workbench">
+      <lay-menu-item id="/workSpace/workbench">
         <template #icon>
           <lay-icon type="layui-icon-home"></lay-icon>
         </template>
         <template #title> 工作台 </template>
       </lay-menu-item>
-      <lay-menu-item id="/console">
+      <lay-menu-item id="/workSpace/console">
         <template #icon>
           <lay-icon type="layui-icon-home"></lay-icon>
         </template>

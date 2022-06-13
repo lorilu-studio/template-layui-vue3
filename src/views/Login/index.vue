@@ -63,7 +63,6 @@ import { useRoute, useRouter } from "vue-router";
 import {Base64} from 'js-base64';
 import { onMounted } from "vue";
 export default defineComponent({
-  name: 'login',
   setup() {
     const router = useRouter();
     onMounted(() => {
@@ -100,7 +99,7 @@ export default defineComponent({
         }
         // 存token后跳转
         window.localStorage.setItem('token', res.data.token);
-        router.push('workbench');
+        router.push('/workSpace/workbench');
       }
     }
     return {
