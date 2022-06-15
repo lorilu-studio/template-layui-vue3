@@ -81,10 +81,11 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 import DarkIcon from "../components/DarkIcon.vue"
 import LightIcon from "../components/LightIcon.vue"
 import { useAppStore } from "../store/app";
+import { useUserInfoStore } from '../store/userInfo';
 import GlobalSetup from "./Global/GlobalSetup.vue";
 import GlobalContent from "./Global/GlobalContent.vue";
 import GlobalTab from "./Global/GlobalTab.vue";
@@ -103,6 +104,7 @@ export default {
   setup() {
 
     const appStore = useAppStore();
+    const userInfoStore = useUserInfoStore();
     const collapseState = ref(false);
     const visible = ref(false);
     const sideWidth = ref("230px");
@@ -126,7 +128,8 @@ export default {
     };
     // 注销登录
     const logOut = ()=> {
-      window.localStorage.removeItem('token');
+      userInfoStore.token  = '';
+      userInfoStore.userInfo  = {};
       router.push('/login');
     }
     // return instance
@@ -138,7 +141,8 @@ export default {
       appStore,
       refresh,
       visible,
-      logOut
+      logOut,
+      userInfoStore
     };
   },
 };

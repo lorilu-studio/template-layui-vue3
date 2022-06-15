@@ -1,9 +1,9 @@
 
 const getLogin = (req, res)=> {
     let item = JSON.parse(req.body);
-    let username = item.username;
+    let account = item.account;
     let password = item.password;
-    if(username === 'admin' && password === '123456'){
+    if(account === 'admin' && password === '123456'){
       return {
         'code': 200,
         'msg':'登陆成功',

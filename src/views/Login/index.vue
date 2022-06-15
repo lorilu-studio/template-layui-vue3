@@ -12,7 +12,7 @@
         <div class="login-container">
           <lay-tab type="brief" v-model="loginMethod">
             <lay-tab-item title="用户名" id="1">
-              <lay-input placeholder="用户名" v-model="loginForm.username"></lay-input>
+              <lay-input placeholder="用户名" v-model="loginForm.account"></lay-input>
               <lay-input placeholder="密码" type="password" v-model="loginForm.password"></lay-input>
               <div class="assist">
                 <lay-checkbox name="like" v-model="rememberMe" skin="primary" label="1">记住密码</lay-checkbox>
@@ -57,22 +57,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, nextTick, ref } from "vue";
 import Http from '../../api/http';
 import { useRoute, useRouter } from "vue-router";
 import {Base64} from 'js-base64';
 import { onMounted } from "vue";
+import {useUserInfoStore} from '../../store/userInfo';
 export default defineComponent({
   setup() {
     const router = useRouter();
+    const userInfoStore = useUserInfoStore();
     onMounted(() => {
       // 在挂载后执行
       // 获取记住密码配置
-      let username = window.localStorage.getItem('username');
-      let password = window.localStorage.getItem('password');
-      if(username&&password) {
+      let account = userInfoStore.account;
+      let password = userInfoStore.password;
+      if(account&&password) {
         rememberMe.value = true;
-        loginForm.value.username = username;
+        loginForm.value.account = account;
         loginForm.value.password = Base64.decode(password);
       }
     });
@@ -82,7 +84,7 @@ export default defineComponent({
     const rememberMe = ref(false);
     // 登录表单数据
     const loginForm = ref({
-      username: "",
+      account: "",
       password: ""
     })
     // 登录提交
@@ -91,14 +93,22 @@ export default defineComponent({
       if(res.code === 200) {
         // 记住密码
         if(rememberMe.value){
-          window.localStorage.setItem('username', loginForm.value.username);
-          window.localStorage.setItem('password', Base64.encode(loginForm.value.password));
+          userInfoStore.account = loginForm.value.account;
+          userInfoStore.password = Base64.encode(loginForm.value.password);
         } else {
-          window.localStorage.removeItem('username');
-          window.localStorage.removeItem('password');
+          userInfoStore.account = '';
+          userInfoStore.password = '';
         }
-        // 存token后跳转
-        window.localStorage.setItem('token', res.data.token);
+        // 存token
+        userInfoStore.token = res.data.token;
+        console.log(userInfoStore.token )
+
+        let userInfo = await Http.post('/userInfo/getUserInfo', {token: res.data.token});
+        // 存用户信息
+        userInfoStore.userInfo = userInfo.data;
+        console.log(userInfoStore.userInfo )
+
+        // 跳转
         router.push('/workSpace/workbench');
       }
     }
@@ -106,7 +116,8 @@ export default defineComponent({
       loginMethod,
       rememberMe,
       loginForm,
-      loginSubmit
+      loginSubmit,
+      userInfoStore
     }
   },
 });
@@ -260,7 +271,7 @@ export default defineComponent({
   font-size: 12px;
   color: #8592a6;
 }
->>>.layui-tab-title .layui-this {
+:deep(.layui-tab-title .layui-this) {
   background-color: transparent;
 }
 </style>

@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     DarkIcon: typeof import('./src/components/DarkIcon.vue')['default']
+    LayAvatar: typeof import('@layui/layui-vue')['LayAvatar']
     LayBody: typeof import('@layui/layui-vue')['LayBody']
     LayButton: typeof import('@layui/layui-vue')['LayButton']
     LayCard: typeof import('@layui/layui-vue')['LayCard']
@@ -28,6 +29,7 @@ declare module '@vue/runtime-core' {
     LayLogo: typeof import('@layui/layui-vue')['LayLogo']
     LayMenu: typeof import('@layui/layui-vue')['LayMenu']
     LayMenuItem: typeof import('@layui/layui-vue')['LayMenuItem']
+    LayPanel: typeof import('@layui/layui-vue')['LayPanel']
     LayResult: typeof import('@layui/layui-vue')['LayResult']
     LayRow: typeof import('@layui/layui-vue')['LayRow']
     LayScroll: typeof import('@layui/layui-vue')['LayScroll']

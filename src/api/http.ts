@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
 import {layer} from '@layui/layui-vue';
 import router from '../router'
-
+import { useUserInfoStore } from "../store/userInfo";
 type TAxiosOption = {
     timeout: number;
     baseURL: string;
@@ -19,19 +19,17 @@ class Http {
         this.service = axios.create(config)
         /* 请求拦截 */
         this.service.interceptors.request.use((config: AxiosRequestConfig) => {
-            console.log(config)
-            if (localStorage.getItem('token')) {
-                (config.headers as AxiosRequestHeaders).token = localStorage.getItem('token') as string
+            const userInfoStore = useUserInfoStore();
+            if (userInfoStore.token) {
+                (config.headers as AxiosRequestHeaders).token = userInfoStore.token as string
             } else {
                 if(router.currentRoute.value.path!=='/login') {
                     // 没token跳登录页
-                    console.log(router.currentRoute.value.path)
                     router.push('/login');
                 }
             }
             return config
         }, error => {
-            console.log("error");
             return Promise.reject(error);
         })
 
@@ -44,7 +42,15 @@ class Http {
                     return response.data;
                 case 500: 
                     layer.msg(response.data.msg, { icon : 2, time: 1000})
-                    break;
+                    return Promise.reject(response.data.message);
+                case 99998:
+                    layer.confirm(
+                    '请重新登录', 
+                    { icon : 2, yes: function(){
+                        router.push('/login');
+                        layer.closeAll()
+                    }});
+                    return Promise.reject(response.data.message);
                 default:
                     break;
             }

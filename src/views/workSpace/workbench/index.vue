@@ -1,5 +1,8 @@
 <template>
   <lay-container fluid="true" style="padding:10px">
+    <lay-panel lay-panel>
+      <lay-avatar :src="userInfoStore.userInfo.avatar" radius></lay-avatar>
+    </lay-panel>
     <lay-row space="10">
       <lay-col md="6" sm="6" xs="12">
         <lay-card>1</lay-card>
@@ -25,9 +28,11 @@
 <script lang="ts">
 import { onMounted,defineComponent, ref } from "vue";
 import Http from '../../../api/http';
+import { useUserInfoStore } from "../../../store/userInfo";
 
 export default defineComponent({
   setup() {
+    const userInfoStore = useUserInfoStore();
     
     onMounted(()=> {
       Http.post('/workSpace/workbench/getDynamicList').then((res)=> {
@@ -36,7 +41,7 @@ export default defineComponent({
     });
 
     return {
-      
+      userInfoStore
     };
   },
 });
