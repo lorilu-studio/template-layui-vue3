@@ -6,7 +6,12 @@ export const useUserInfoStore = defineStore({
   state: () => {
     return {
       token: '',
-      userInfo: {},
+      userInfo: {
+        'username': '',
+        'mail': '',
+        'remark': '',
+        'avatar': ''
+      },
       account: '',
       password: ''
     }

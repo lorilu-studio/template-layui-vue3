@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     LayColorPicker: typeof import('@layui/layui-vue')['LayColorPicker']
     LayConfigProvider: typeof import('@layui/layui-vue')['LayConfigProvider']
     LayContainer: typeof import('@layui/layui-vue')['LayContainer']
+    LayCountUp: typeof import('@layui/layui-vue')['LayCountUp']
     LayDropdown: typeof import('@layui/layui-vue')['LayDropdown']
     LayDropdownMenu: typeof import('@layui/layui-vue')['LayDropdownMenu']
     LayDropdownMenuItem: typeof import('@layui/layui-vue')['LayDropdownMenuItem']

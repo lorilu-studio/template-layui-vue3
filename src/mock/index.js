@@ -16,6 +16,10 @@ Mock.mock(/\/userInfo\/getUserInfo/,'post',(req,res) =>{
 });
 
 // 工作空间接口---------------------------------------------------------
+// 获取统计信息
+Mock.mock(/\/workSpace\/workbench\/getStatisticsInfo/,'post',(req,res) =>{
+    return workbench.getStatisticsInfo(req,res)
+});
 // 获取动态列表
 Mock.mock(/\/workSpace\/workbench\/getDynamicList/,'post',(req,res) =>{
     return workbench.getDynamicList(req,res)

@@ -101,13 +101,6 @@ export default defineComponent({
         }
         // 存token
         userInfoStore.token = res.data.token;
-        console.log(userInfoStore.token )
-
-        let userInfo = await Http.post('/userInfo/getUserInfo', {token: res.data.token});
-        // 存用户信息
-        userInfoStore.userInfo = userInfo.data;
-        console.log(userInfoStore.userInfo )
-
         // 跳转
         router.push('/workSpace/workbench');
       }
