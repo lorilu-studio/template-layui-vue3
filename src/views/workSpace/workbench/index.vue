@@ -1,5 +1,6 @@
 <template>
   <lay-container fluid="true" style="padding:10px">
+    <!-- 顶部个人信息 -->
     <lay-panel lay-panel>
       <div class="info-panel">
         <lay-avatar :src="userInfoStore.userInfo.avatar"  size="lg" radius class="avatar"></lay-avatar>
@@ -38,26 +39,18 @@
         </div>
       </div>
     </lay-panel>
-    <lay-row space="10">
-      <lay-col md="6" sm="6" xs="12">
-        <lay-card>1</lay-card>
-      </lay-col>
-      <lay-col md="6" sm="6" xs="12">
-        <lay-card>2</lay-card>
-      </lay-col>
-      <lay-col md="6" sm="6" xs="12">
-        <lay-card>3</lay-card>
-      </lay-col>
-      <lay-col md="6" sm="6" xs="12">
-        <lay-card>4</lay-card>
-      </lay-col>
-      <lay-col md="18" sm="18" xs="24">
-        <lay-card>5</lay-card>
-      </lay-col>
-      <lay-col md="6" sm="6" xs="24">
-        <lay-card>6</lay-card>
+    <!-- 菜单按钮行 -->
+    <lay-row space="20" style="margin-top: 10px;">
+      <lay-col md="3" sm="6" xs="12" v-for="(item,index) in menuList" :key="index">
+        <lay-card  shadow="hover" style="min-width: 0; text-align: center;padding: 12px;">
+          <lay-icon  style="font-size:32px;" :type="item.icon" :color="item.iconColor"></lay-icon>
+          <h4 style="margin-top: 10px; line-height: normal;">{{item.name}}</h4>
+        </lay-card>
       </lay-col>
     </lay-row>
+
+    
+
   </lay-container>
 </template>
 <script lang="ts">
@@ -67,28 +60,81 @@ import { useUserInfoStore } from "../../../store/userInfo";
 
 export default defineComponent({
   setup() {
-    const userInfoStore = useUserInfoStore();
-    
-    const statisticsInfo = ref({
-      'projectCount': 0,
-      'toDoCount': 0,
-      'finishCount': 0,
-      'msgCount': 0
-    });
 
+    // 用户信息store
+    const userInfoStore = useUserInfoStore();
     // 获取用户信息
     const getUserInfo = async ()=> {
       let userInfo = await Http.post('/userInfo/getUserInfo', {token: userInfoStore.token});
       // 存用户信息
       userInfoStore.userInfo = userInfo.data;
     }
+
+
+     // 统计信息
+    const statisticsInfo = ref({
+      'projectCount': 0,
+      'toDoCount': 0,
+      'finishCount': 0,
+      'msgCount': 0
+    });
     // 获取统计信息
     const getStatisticsInfo = async ()=> {
       let res = await Http.post('/workSpace/workbench/getStatisticsInfo');
       statisticsInfo.value = res.data;
     };
 
-    
+    // 菜单按钮列表
+    const menuList = [
+      {
+        name: '用户',
+        icon: 'layui-icon-username',
+        iconColor: '#69c0ff',
+        url: '',
+      },
+      {
+        name: '分析',
+        icon: 'layui-icon-chart',
+        iconColor: 'rgb(149, 222, 100)',
+        url: '',
+      },
+      {
+        name: '商品',
+        icon: 'layui-icon-cart-simple',
+        iconColor: 'rgb(255, 156, 110)',
+        url: '',
+      },
+      {
+        name: '订单',
+        icon: 'layui-icon-form',
+        iconColor: 'rgb(179, 127, 235)',
+        url: '',
+      },
+      {
+        name: '票据',
+        icon: 'layui-icon-layer',
+        iconColor: 'rgb(255, 214, 102)',
+        url: '',
+      },
+      {
+        name: '消息',
+        icon: 'layui-icon-email',
+        iconColor: 'rgb(92, 219, 211)',
+        url: '',
+      },
+      {
+        name: '标签',
+        icon: 'layui-icon-note',
+        iconColor: 'rgb(255, 133, 192)',
+        url: '',
+      },
+      {
+        name: '配置',
+        icon: 'layui-icon-slider',
+        iconColor: 'rgb(255, 192, 105)',
+        url: '',
+      }
+    ];
     onMounted(()=> {
       getUserInfo();
       getStatisticsInfo();
@@ -96,7 +142,8 @@ export default defineComponent({
 
     return {
       userInfoStore,
-      statisticsInfo
+      statisticsInfo,
+      menuList
     };
   },
 });
