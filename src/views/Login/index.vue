@@ -89,21 +89,19 @@ export default defineComponent({
     })
     // 登录提交
     const  loginSubmit = async ()=> {
-      let res = await Http.post('/login', loginForm.value);
-      if(res.code === 200) {
-        // 记住密码
-        if(rememberMe.value){
-          userInfoStore.account = loginForm.value.account;
-          userInfoStore.password = Base64.encode(loginForm.value.password);
-        } else {
-          userInfoStore.account = '';
-          userInfoStore.password = '';
-        }
-        // 存token
-        userInfoStore.token = res.data.token;
-        // 跳转
-        router.push('/workSpace/workbench');
+      let { data } = await Http.post('/login', loginForm.value);
+      // 记住密码
+      if(rememberMe.value){
+        userInfoStore.account = loginForm.value.account;
+        userInfoStore.password = Base64.encode(loginForm.value.password);
+      } else {
+        userInfoStore.account = '';
+        userInfoStore.password = '';
       }
+      // 存token
+      userInfoStore.token = data.token;
+      // 跳转
+      router.push('/workSpace/workbench');
     }
     return {
       loginMethod,

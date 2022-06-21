@@ -40,7 +40,7 @@
       </div>
     </lay-panel>
     <!-- 菜单按钮行 -->
-    <lay-row space="20" style="margin-top: 10px;">
+    <lay-row space="20" style="margin-top: 10px;margin-bottom: 10px;">
       <lay-col md="3" sm="6" xs="12" v-for="(item,index) in menuList" :key="index">
         <lay-card  shadow="hover" style="min-width: 0; text-align: center;padding: 12px;">
           <lay-icon  style="font-size:32px;" :type="item.icon" :color="item.iconColor"></lay-icon>
@@ -48,7 +48,29 @@
         </lay-card>
       </lay-col>
     </lay-row>
-
+    
+    <lay-row space="20">
+      <lay-col md="8" sm="12" xs="24" >
+        <lay-card  shadow="hover" style="min-width: 0;">
+          <template v-slot:title>
+            最近动态
+          </template>
+          <template v-slot:body>
+            <lay-scroll height="300px">
+              <lay-timeline>
+                  <lay-timeline-item v-for="(item,index) in dynamicList" :key="index" 
+                  :title="`${item.time}&nbsp;&nbsp;&nbsp;${item.name}&nbsp;&nbsp;${item.status===1?'解决':'指派'}了${item.type===1?'bug':'任务'}&nbsp;${item.title}`" simple >
+                      <template #dot>
+                          <lay-icon type="layui-icon-circle" :color="item.status===1?'red':'green'"></lay-icon>
+                      </template>
+                  </lay-timeline-item>
+              </lay-timeline>
+            </lay-scroll>
+          </template>
+        </lay-card>
+        
+      </lay-col>
+    </lay-row>
     
 
   </lay-container>
@@ -65,14 +87,14 @@ export default defineComponent({
     const userInfoStore = useUserInfoStore();
     // 获取用户信息
     const getUserInfo = async ()=> {
-      let userInfo = await Http.post('/userInfo/getUserInfo', {token: userInfoStore.token});
+      let {data} = await Http.post('/userInfo/getUserInfo', {token: userInfoStore.token});
       // 存用户信息
-      userInfoStore.userInfo = userInfo.data;
+      userInfoStore.userInfo = data;
     }
 
 
      // 统计信息
-    const statisticsInfo = ref({
+    let statisticsInfo = ref({
       'projectCount': 0,
       'toDoCount': 0,
       'finishCount': 0,
@@ -80,8 +102,8 @@ export default defineComponent({
     });
     // 获取统计信息
     const getStatisticsInfo = async ()=> {
-      let res = await Http.post('/workSpace/workbench/getStatisticsInfo');
-      statisticsInfo.value = res.data;
+      let {data} = await Http.post('/workSpace/workbench/getStatisticsInfo');
+      statisticsInfo.value = data;
     };
 
     // 菜单按钮列表
@@ -135,15 +157,26 @@ export default defineComponent({
         url: '',
       }
     ];
+    // 动态列表
+    let dynamicList = ref([]);
+    // 获取动态列表
+    const getDynamicList = async ()=> {
+      let {data} = await Http.post('/workSpace/workbench/getDynamicList');
+      console.log(data, '12321321321')
+      // 存用户信息
+      dynamicList.value = data;
+    }
     onMounted(()=> {
       getUserInfo();
       getStatisticsInfo();
+      getDynamicList();
     });
 
     return {
       userInfoStore,
       statisticsInfo,
-      menuList
+      menuList,
+      dynamicList
     };
   },
 });

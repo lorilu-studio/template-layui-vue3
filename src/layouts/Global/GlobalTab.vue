@@ -31,7 +31,7 @@ const router = useRouter();
 const route = useRoute();
 const appStore = useAppStore();
 const allowClose = ref(true);
-const tabs = ref([{ title: "首页", id: "/console", closable: false }]);
+const tabs = ref([{ title: "首页", id: "/workSpace/workbench", closable: false }]);
 
 const change = function (id: string) {
   router.push(id);
