@@ -1,5 +1,6 @@
 <template>
   <lay-tab
+    class="global-tab"
     v-if="appStore.tab"
     :modelValue="route.path"
     :allowClose="allowClose"
@@ -54,3 +55,10 @@ watch(route, function () {
   }
 });
 </script>
+
+<style>
+.layui-tab .layui-tab-close:hover {
+    background: transparent!important;
+    color: #e2e2e2!important;
+}
+</style>
