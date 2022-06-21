@@ -20,7 +20,7 @@ const appStore = useAppStore();
 
 <style scoped>
 .global-content {
-    height: calc(100% - 42px);
+    height: calc(100% - 46px);
     overflow: auto;
 }
 </style>
