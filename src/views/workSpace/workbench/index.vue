@@ -198,6 +198,7 @@ export default defineComponent({
         title:"优先级",
         key:"priority",
         customSlot:"priority",
+        width: '10px',
         align: 'center'
       },{
         title:"任务名称",
@@ -206,6 +207,7 @@ export default defineComponent({
         title:"状态",
         key:"status",
         customSlot:"status",
+        width: '10px',
         align: 'center'
       }
     ]
