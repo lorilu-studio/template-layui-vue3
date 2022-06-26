@@ -50,6 +50,7 @@
     </lay-row>
     
     <lay-row space="20">
+      <!-- 最近动态模块 -->
       <lay-col md="8" sm="12" xs="24" >
         <lay-card  shadow="hover" style="min-width: 0;">
           <template v-slot:title>
@@ -66,6 +67,29 @@
                   </lay-timeline-item>
               </lay-timeline>
             </lay-scroll>
+          </template>
+        </lay-card>
+      </lay-col>
+
+      <!-- 我的任务模块 -->
+      <lay-col md="8" sm="12" xs="24" >
+        <lay-card  shadow="hover" style="min-width: 0;">
+          <template v-slot:title>
+            我的任务
+          </template>
+          <template v-slot:body>
+            <lay-table :columns="taskColumns" :dataSource="taskList" height="258px">
+               <template v-slot:priority="{ data }">
+                 <span :class="`num-tag ${data.priority === 1 ? 'red' : data.priority === 2 ? 'orange' : data.priority === 3 ? 'blue' : ''}`">
+                   {{data.priority}} 
+                 </span>
+               </template>
+               <template v-slot:status="{ data }">
+                 <span class="task-status" :style="`color: ${data.status === 1 ? 'orange' : data.status === 2 ? 'green' : data.status === 3 ? 'gray' : ''}`">
+                   {{data.status === 1 ? '未开始' : data.status === 2 ? '进行中' : data.status === 3 ? '已完成' : ''}} 
+                 </span>
+               </template>
+            </lay-table>
           </template>
         </lay-card>
         
@@ -166,17 +190,45 @@ export default defineComponent({
       // 存用户信息
       dynamicList.value = data;
     }
+
+    //任务列表
+    let taskList = ref([]);
+    let taskColumns=[
+      {
+        title:"优先级",
+        key:"priority",
+        customSlot:"priority",
+        align: 'center'
+      },{
+        title:"任务名称",
+        key:"name",
+      },{
+        title:"状态",
+        key:"status",
+        customSlot:"status",
+        align: 'center'
+      }
+    ]
+    // 获取任务列表
+    const getMyTask = async () => {
+      let {data} = await Http.post('/workSpace/workbench/getMyTask');
+      taskList.value = data;
+    }
+
     onMounted(()=> {
       getUserInfo();
       getStatisticsInfo();
       getDynamicList();
+      getMyTask();
     });
 
     return {
       userInfoStore,
       statisticsInfo,
       menuList,
-      dynamicList
+      dynamicList,
+      taskList,
+      taskColumns
     };
   },
 });
@@ -225,4 +277,35 @@ export default defineComponent({
     box-sizing: border-box;
     margin-top: 5px;
    }
+   
+  :deep(.layui-table-view) {
+    background-color: transparent;
+    margin: 0;
+  }
+  .num-tag {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    border: 1px solid #aaaaaa;
+    font-size: 12px;
+    box-sizing: content-box;
+  }
+  .num-tag.red {
+    color: #cf1322;
+    background: #fff1f0;
+    border-color: #ffa39e;
+  }
+  .num-tag.orange {
+    color: #d46b08;
+    background: #fff7e6;
+    border-color: #ffd591;
+  }
+  .num-tag.blue {
+    color: #096dd9;
+    background: #e6f7ff;
+    border-color: #91d5ff;
+  }
 </style>

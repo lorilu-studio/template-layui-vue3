@@ -14,28 +14,121 @@ const getStatisticsInfo =  (req, res)=> {
     }
 }
 
-let dynamicList = [];
-for(let i = 0; i < 20; i++) {
-    dynamicList.push(Mock.mock({
-        id: '@increment',
-        name: '@cname',
-        title: '@ctitle(5)',
-        status: '@integer(1, 3)',
-        type: '@integer(1, 2)',
-        time: '@time("HH:mm")'
-    }))
-}
+
 // 获取动态列表
 const getDynamicList = (req, res)=> {
     
     console.log(req)
     return {
         code: 200,
-        data: dynamicList
+        data: [
+            {
+                name: '张三',
+                title: '点击登录报错',
+                status: 1,
+                type: 1,
+                time: "18:30"
+            },
+            {
+                name: '李四',
+                title: '解决项目六的BUG',
+                status: 2,
+                type: 2,
+                time: "17:10"
+            },
+            {
+                name: '王五',
+                title: '用户名显示undefined',
+                status: 1,
+                type: 1,
+                time: "17:00"
+            },
+            {
+                name: 'boss',
+                title: '解决项目五的BUG',
+                status: 2,
+                type: 2,
+                time: "16:50"
+            },
+            {
+                name: 'boss',
+                title: '解决项目四的BUG',
+                status: 2,
+                type: 2,
+                time: "15:30"
+            },
+            {
+                name: 'boss',
+                title: '解决项目三的BUG',
+                status: 2,
+                type: 2,
+                time: "14:50"
+            },
+            {
+                name: 'boss',
+                title: '解决项目二的BUG',
+                status: 2,
+                type: 2,
+                time: "14:30"
+            },
+            {
+                name: 'boss',
+                title: '解决项目一的BUG',
+                status: 2,
+                type: 2,
+                time: "13:33"
+            },
+        ]
+    }
+}
+
+
+const getMyTask = (req, res) => {
+    return {
+        code: 200,
+        data: [
+            {
+                'priority': 1,
+                'name': '解决项目一的BUG',
+                'status': 3,
+            },
+            {
+                'priority': 2,
+                'name': '解决项目二的BUG',
+                'status': 3,
+            },
+            {
+                'priority': 2,
+                'name': '解决项目三的BUG',
+                'status': 2,
+            },
+            {
+                'priority': 3,
+                'name': '解决项目四的BUG',
+                'status': 1,
+            },
+            {
+                'priority': 3,
+                'name': '解决项目五的BUG',
+                'status': 1,
+            },
+            {
+                'priority': 3,
+                'name': '解决项目六的BUG',
+                'status': 1,
+            },
+            {
+                'priority': 3,
+                'name': '解决项目七的BUG',
+                'status': 1,
+            }
+            
+        ]
     }
 }
 
 export default{
     getDynamicList,
-    getStatisticsInfo
+    getStatisticsInfo,
+    getMyTask
 }

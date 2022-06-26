@@ -25,4 +25,9 @@ Mock.mock(/\/workSpace\/workbench\/getDynamicList/,'post',(req,res) =>{
     return workbench.getDynamicList(req,res)
 });
 
+// 获取任务列表
+Mock.mock(/\/workSpace\/workbench\/getMyTask/,'post',(req,res) =>{
+    return workbench.getMyTask(req,res)
+});
+
 export default Mock;
