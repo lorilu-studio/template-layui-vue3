@@ -128,6 +128,7 @@ export default {
     };
     // 注销登录
     const logOut = ()=> {
+      const userInfoStore = useUserInfoStore();
       userInfoStore.token  = '';
       // 因为类型问题，这里会报错, 严格模式下不可以直接赋 {}
       userInfoStore.userInfo = { username: "" ,mail: "", remark: "", avatar: ""};

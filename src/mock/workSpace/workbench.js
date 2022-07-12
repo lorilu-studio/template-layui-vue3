@@ -83,6 +83,8 @@ const getDynamicList = (req, res)=> {
 }
 
 
+
+
 const getMyTask = (req, res) => {
     return {
         code: 200,
@@ -127,8 +129,22 @@ const getMyTask = (req, res) => {
     }
 }
 
+// 获取本月目标完成数据
+const getTargetInfo =  (req, res)=> {
+    return {
+        code: 200,
+        data: Mock.mock(
+            {
+                'all': 1000,
+                'finish|700-1000': 1000
+            }
+        )
+    }
+}
+
 export default{
     getDynamicList,
     getStatisticsInfo,
-    getMyTask
+    getMyTask,
+    getTargetInfo
 }

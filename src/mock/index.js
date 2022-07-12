@@ -30,4 +30,9 @@ Mock.mock(/\/workSpace\/workbench\/getMyTask/,'post',(req,res) =>{
     return workbench.getMyTask(req,res)
 });
 
+// 获取本月目标完成
+Mock.mock(/\/workSpace\/workbench\/getTargetInfo/,'post',(req,res) =>{
+    return workbench.getTargetInfo(req,res)
+});
+
 export default Mock;

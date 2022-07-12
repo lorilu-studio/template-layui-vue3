@@ -92,7 +92,30 @@
             </lay-table>
           </template>
         </lay-card>
-        
+      </lay-col>
+      <!-- 最近动态模块 -->
+      <lay-col md="8" sm="12" xs="24" >
+        <lay-card  shadow="hover" style="min-width: 0;">
+          <template v-slot:title>
+            本月目标
+          </template>
+          <template v-slot:body>
+            <div style="height: 300px;lin width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+              <lay-progress
+                :percent="(targetInfo.finish/targetInfo.all)*100"
+                circle
+                :circleWidth="15"
+                :show-text="true"
+                :text="targetInfo.finish"
+              >
+                <template v-slot:text="{  }">
+                  <span>asdsadasdasd</span>
+                </template>
+              </lay-progress>
+              <p>{{(targetInfo.finish/targetInfo.all)*100 > 70 ? '恭喜，本月目标已达标！' : '加油， 就快达标了！'}}</p>
+            </div>
+          </template>
+        </lay-card>
       </lay-col>
     </lay-row>
     
@@ -186,10 +209,9 @@ export default defineComponent({
     // 获取动态列表
     const getDynamicList = async ()=> {
       let {data} = await Http.post('/workSpace/workbench/getDynamicList');
-      console.log(data, '12321321321')
       // 存用户信息
       dynamicList.value = data;
-    }
+    };
 
     //任务列表
     let taskList = ref([]);
@@ -210,18 +232,33 @@ export default defineComponent({
         width: '10px',
         align: 'center'
       }
-    ]
+    ];
     // 获取任务列表
     const getMyTask = async () => {
       let {data} = await Http.post('/workSpace/workbench/getMyTask');
       taskList.value = data;
-    }
+    };
+
+
+    // 目标完成信息
+    let targetInfo = ref({
+      all: 0,
+      finish: 0
+    });
+    // 获取目标完成信息
+    const getTargetInfo = async () => {
+      let {data: {all, finish}} = await Http.post('/workSpace/workbench/getTargetInfo');
+      targetInfo.value.all = all;
+      targetInfo.value.finish = finish;
+
+    };
 
     onMounted(()=> {
       getUserInfo();
       getStatisticsInfo();
       getDynamicList();
       getMyTask();
+      getTargetInfo();
     });
 
     return {
@@ -230,7 +267,8 @@ export default defineComponent({
       menuList,
       dynamicList,
       taskList,
-      taskColumns
+      taskColumns,
+      targetInfo
     };
   },
 });
