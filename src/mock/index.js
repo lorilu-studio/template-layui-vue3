@@ -35,4 +35,9 @@ Mock.mock(/\/workSpace\/workbench\/getTargetInfo/,'post',(req,res) =>{
     return workbench.getTargetInfo(req,res)
 });
 
+// 获取项目列表
+Mock.mock(/\/workSpace\/workbench\/getMyProject/,'post',(req,res) =>{
+    return workbench.getMyProject(req,res)
+});
+
 export default Mock;

@@ -84,7 +84,7 @@ const getDynamicList = (req, res)=> {
 
 
 
-
+// 获取任务列表
 const getMyTask = (req, res) => {
     return {
         code: 200,
@@ -142,9 +142,30 @@ const getTargetInfo =  (req, res)=> {
     }
 }
 
+//获取项目列表
+const getMyProject = (req, res) => {
+    return {
+        code: 200,
+        data: [
+            {name: '项目1', startTime: '2022-01-01', endTime: '2022-02-01', status: 1, progress: 100},
+            {name: '项目2', startTime: '2022-02-01', endTime: '2022-02-10', status: 2, progress: 0},
+            {name: '项目3', startTime: '2022-02-10', endTime: '2022-02-20', status: 3, progress: 20},
+            {name: '项目4', startTime: '2022-02-20', endTime: '2022-02-28', status: 4, progress: 33},
+            {name: '项目5', startTime: '2022-03-01', endTime: '2022-03-05', status: 2, progress: 48},
+            {name: '项目6', startTime: '2022-03-05', endTime: '2022-03-15', status: 2, progress: 69},
+            {name: '项目7', startTime: '2022-03-15', endTime: '2022-04-01', status: 3, progress: 19},
+            {name: '项目8', startTime: '2022-04-01', endTime: '2022-04-15', status: 1, progress: 100},
+            {name: '项目9', startTime: '2022-04-15', endTime: '2022-05-01', status: 4, progress: 15},
+            {name: '项目10', startTime: '2022-05-07', endTime: '2022-06-01', status: 1, progress: 100},
+    
+        ]
+    };
+}
+
 export default{
     getDynamicList,
     getStatisticsInfo,
     getMyTask,
-    getTargetInfo
+    getTargetInfo,
+    getMyProject
 }

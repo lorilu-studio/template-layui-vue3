@@ -51,7 +51,7 @@
     
     <lay-row space="20">
       <!-- 最近动态模块 -->
-      <lay-col md="8" sm="12" xs="24" >
+      <lay-col md="8" sm="24" xs="24" >
         <lay-card  shadow="hover" style="min-width: 0;">
           <template v-slot:title>
             最近动态
@@ -72,7 +72,7 @@
       </lay-col>
 
       <!-- 我的任务模块 -->
-      <lay-col md="8" sm="12" xs="24" >
+      <lay-col md="8" sm="24" xs="24" >
         <lay-card  shadow="hover" style="min-width: 0;">
           <template v-slot:title>
             我的任务
@@ -94,7 +94,7 @@
         </lay-card>
       </lay-col>
       <!-- 最近动态模块 -->
-      <lay-col md="8" sm="12" xs="24" >
+      <lay-col md="8" sm="24" xs="24" >
         <lay-card  shadow="hover" style="min-width: 0;">
           <template v-slot:title>
             本月目标
@@ -114,6 +114,40 @@
               </lay-progress>
               <p>{{(targetInfo.finish/targetInfo.all)*100 > 70 ? '恭喜，本月目标已达标！' : '加油， 就快达标了！'}}</p>
             </div>
+          </template>
+        </lay-card>
+      </lay-col>
+
+      <!-- 项目进度模块 -->
+      <lay-col md="16" sm="24" xs="24" >
+        <lay-card  shadow="hover" style="min-width: 0;">
+          <template v-slot:title>
+            项目进度
+          </template>
+          <template v-slot:body>
+            <lay-table :columns="projectColumns" :dataSource="projectList" height="258px">
+               <template v-slot:name="{ data }">
+                 <span style="color:cornflowerblue">
+                   {{data.name}} 
+                 </span>
+               </template>
+               <template v-slot:status="{ data }">
+                 <span :style="`color: ${data.status === 1 ? 'green' : data.status === 2 ? 'red' : data.status === 3 ? 'orange' : data.status === 4 ? 'gray' : ''}`">
+                   {{data.status === 1 ? '进行中' : data.status === 2 ? '已延期' : data.status === 3 ? '未开始' : data.status === 4 ? '已结束' : ''}} 
+                 </span>
+               </template>
+               <template v-slot:progress="{ data }">
+                <span>
+                  <span style="display: inline-block;  width: 70%;">
+                    <lay-progress size="small" :percent="data.progress" ></lay-progress>
+                  </span>
+                  <span style="display: inline-block;  width: 30%; box-sizing: border-box;padding-left: 5px;">
+                    {{data.progress}}%
+                  </span>
+                </span>
+
+               </template>
+            </lay-table>
           </template>
         </lay-card>
       </lay-col>
@@ -222,7 +256,7 @@ export default defineComponent({
         title:"优先级",
         key:"priority",
         customSlot:"priority",
-        width: '10px',
+        width: '100px',
         align: 'center'
       },{
         title:"任务名称",
@@ -231,7 +265,7 @@ export default defineComponent({
         title:"状态",
         key:"status",
         customSlot:"status",
-        width: '10px',
+        width: '100px',
         align: 'center'
       }
     ];
@@ -255,12 +289,52 @@ export default defineComponent({
 
     };
 
+
+    //项目列表
+    let projectList = ref([]);
+    let projectColumns=[
+      {
+        type: 'number'
+      },{
+        title:"项目名称",
+        key:"name",
+        align: 'center',
+        customSlot:"name",
+        ellipsisTooltip: true
+      },{
+        title:"开始时间",
+        key:"startTime",
+        align: 'center',
+      },{
+        title:"结束时间",
+        key:"endTime",
+        align: 'center',
+      },{
+        title:"状态",
+        key:"status",
+        customSlot:"status",
+        align: 'center',
+      },{
+        title:"进度",
+        key:"progress",
+        customSlot:"progress",
+        align: 'center',
+      },
+    ];
+    // 获取项目列表
+    const getMyProject = async () => {
+      let {data} = await Http.post('/workSpace/workbench/getMyProject');
+      projectList.value = data;
+      console.log(projectList.value,'projectList.value')
+    };
+
     onMounted(()=> {
       getUserInfo();
       getStatisticsInfo();
       getDynamicList();
       getMyTask();
       getTargetInfo();
+      getMyProject();
     });
 
     return {
@@ -270,7 +344,9 @@ export default defineComponent({
       dynamicList,
       taskList,
       taskColumns,
-      targetInfo
+      targetInfo,
+      projectList,
+      projectColumns
     };
   },
 });
