@@ -13,6 +13,7 @@
     "mockjs": "^1.1.0",
     "pinia": "^2.0.9",
     "pinia-plugin-persist": "^1.0.0",
+    "pinia-plugin-persist-uni": "^1.1.4",
     "vue": "^3.2.13",
     "vue-router": "^4.0.12"
   },

@@ -137,6 +137,8 @@ export default defineComponent({
       let {data} = await Http.post('/userInfo/getUserInfo', {token: userInfoStore.token});
       // 存用户信息
       userInfoStore.userInfo = data;
+      console.log(userInfoStore);
+
     }
 
 

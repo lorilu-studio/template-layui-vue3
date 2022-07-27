@@ -18,8 +18,8 @@ export const useUserInfoStore = defineStore({
   },
   persist: {
       enabled: true,
+      detached:true,
       strategies: [
-        
         {key: 'userInfo', storage: localStorage,  }
       ]
   }

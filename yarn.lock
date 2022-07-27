@@ -918,6 +918,13 @@
   "resolved" "https://registry.npmjs.org/pify/-/pify-4.0.1.tgz"
   "version" "4.0.1"
 
+"pinia-plugin-persist-uni@^1.1.4":
+  "integrity" "sha512-wkqZx+Akz75DyH6C/txUShTnh+lME+SMNCkH/V3KvSzXLunh8u0pnmuehGJSpjJ888PdNcFq66AGKXNlOCwcZg=="
+  "resolved" "https://registry.npmjs.org/pinia-plugin-persist-uni/-/pinia-plugin-persist-uni-1.1.4.tgz"
+  "version" "1.1.4"
+  dependencies:
+    "vue-demi" "^0.12.1"
+
 "pinia-plugin-persist@^1.0.0":
   "integrity" "sha512-M4hBBd8fz/GgNmUPaaUsC29y1M09lqbXrMAHcusVoU8xlQi1TqgkWnnhvMikZwr7Le/hVyMx8KUcumGGrR6GVw=="
   "resolved" "https://registry.npmjs.org/pinia-plugin-persist/-/pinia-plugin-persist-1.0.0.tgz"

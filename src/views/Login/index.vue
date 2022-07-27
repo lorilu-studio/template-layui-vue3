@@ -100,6 +100,7 @@ export default defineComponent({
       }
       // 存token
       userInfoStore.token = data.token;
+      console.log(userInfoStore);
       // 跳转
       router.push('/workSpace/workbench');
     }
