@@ -1,6 +1,9 @@
 <template>
   <lay-layer :title="false" :closeBtn="false" type="drawer" area="300px" v-model="visible">
     <div class="global-setup">    
+      <global-color v-model="appStore.themeVariable['--global-primary-color']"></global-color>
+      <br>
+      <br> 
       <global-setup-item label="多选项卡">
         <lay-switch v-model="appStore.tab" size="xs"></lay-switch>
       </global-setup-item>
@@ -31,6 +34,7 @@ export default {
 
 <script lang="ts" setup>
 import globalSetupItem from "./GlobalSetupItem.vue";
+import globalColor from "./GlobalColor.vue";
 import { useAppStore } from "../../store/app";
 import { ref, watch } from "vue";
 
@@ -58,14 +62,6 @@ watch(
     visible.value = val;
   }
 );
-
-const themeVariableNames = [
-  "--global-primary-color",
-  "--global-normal-color",
-  "--global-warm-color",
-  "--global-danger-color",
-  "--global-checked-color",
-];
 </script>
 
 <style>
