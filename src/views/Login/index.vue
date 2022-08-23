@@ -6,18 +6,21 @@
           src="https://assets.codehub.cn/micro-frontend/login/fca1d5960ccf0dfc8e32719d8a1d80d2.png" />
         <img class="login-two-ball"
           src="https://assets.codehub.cn/micro-frontend/login/4bcf705dad662b33a4fc24aaa67f6234.png" />
-        <!-- <div class="logo-container">
-          <div class="logo"></div>
-        </div> -->
         <div class="login-container">
           <lay-tab type="brief" v-model="loginMethod">
             <lay-tab-item title="用户名" id="1">
-              <lay-input placeholder="用户名" v-model="loginForm.account"></lay-input>
-              <lay-input placeholder="密码" type="password" v-model="loginForm.password"></lay-input>
-              <div class="assist">
+              <lay-form-item :label-width="0">
+                <lay-input placeholder="用户名" v-model="loginForm.account"></lay-input>
+              </lay-form-item>
+              <lay-form-item :label-width="0">
+                <lay-input placeholder="密码" password type="password" v-model="loginForm.password"></lay-input>
+              </lay-form-item>
+              <lay-form-item :label-width="0">
                 <lay-checkbox name="like" v-model="rememberMe" skin="primary" label="1">记住密码</lay-checkbox>
-              </div>
-              <lay-button type="primary" fluid="true" @click="loginSubmit">登录</lay-button>
+              </lay-form-item>
+              <lay-form-item :label-width="0">
+                <lay-button type="primary" fluid="true" @click="loginSubmit">登录</lay-button>
+              </lay-form-item>
             </lay-tab-item>
             <lay-tab-item title="二维码" id="2">
               <div>选项二</div>
@@ -27,25 +30,25 @@
           <ul class="other-ways">
             <li>
               <div class="line-container">
-                <img class="icon" src="../../assets/w.svg" />
+                <img class="icon" src="../../assets/login/w.svg" />
                 <p class="text">微信</p>
               </div>
             </li>
             <li>
               <div class="line-container">
-                <img class="icon" src="../../assets/q.svg"/>
+                <img class="icon" src="../../assets/login/q.svg" />
                 <p class="text">钉钉</p>
               </div>
             </li>
             <li>
               <div class="line-container">
-                <img class="icon" src="../../assets/a.svg"/>
+                <img class="icon" src="../../assets/login/a.svg" />
                 <p class="text">Gitee</p>
               </div>
             </li>
             <li>
               <div class="line-container">
-                <img class="icon" src="../../assets/f.svg"/>
+                <img class="icon" src="../../assets/login/f.svg" />
                 <p class="text">Github</p>
               </div>
             </li>
@@ -57,59 +60,43 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from "vue";
 import Http from '../../api/http';
-import { useRoute, useRouter } from "vue-router";
-import {Base64} from 'js-base64';
-import { onMounted } from "vue";
-import {useUserInfoStore} from '../../store/userInfo';
+import { defineComponent, reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import { useUserInfoStore } from '../../store/userInfo';
+import { layer } from "@layui/layer-vue";
+
 export default defineComponent({
   setup() {
     const router = useRouter();
     const userInfoStore = useUserInfoStore();
-    onMounted(() => {
-      // 在挂载后执行
-      // 获取记住密码配置
-      let account = userInfoStore.account;
-      let password = userInfoStore.password;
-      if(account&&password) {
-        rememberMe.value = true;
-        loginForm.value.account = account;
-        loginForm.value.password = Base64.decode(password);
-      }
-    });
     // 登录方式
     const loginMethod = ref("1");
     // 记住密码
     const rememberMe = ref(false);
     // 登录表单数据
-    const loginForm = ref({
-      account: "",
-      password: ""
+    const loginForm = reactive({
+      account: "admin",
+      password: "123456"
     })
     // 登录提交
-    const  loginSubmit = async ()=> {
-      let { data } = await Http.post('/login', loginForm.value);
-      // 记住密码
-      if(rememberMe.value){
-        userInfoStore.account = loginForm.value.account;
-        userInfoStore.password = Base64.encode(loginForm.value.password);
+    const loginSubmit = async () => {
+      let { data, code, msg } = await Http.post('/login', loginForm);
+      if (code == 200) {
+        layer.msg(msg, { icon: 1, time: 2000 }, () => {
+          userInfoStore.token = data.token;
+          router.push('/');
+        })
       } else {
-        userInfoStore.account = '';
-        userInfoStore.password = '';
+        layer.msg(msg, { icon: 2, time: 2000 })
       }
-      // 存token
-      userInfoStore.token = data.token;
-      console.log(userInfoStore);
-      // 跳转
-      router.push('/workSpace/workbench');
     }
     return {
+      userInfoStore,
+      loginSubmit,
       loginMethod,
       rememberMe,
       loginForm,
-      loginSubmit,
-      userInfoStore
     }
   },
 });
@@ -140,7 +127,7 @@ export default defineComponent({
   right: 0;
   overflow: auto;
   z-index: 9;
-  background-image:url(https://assets.codehub.cn/micro-frontend/login/f7eeecbeccefe963298c23b54741d473.png);
+  background-image: url(https://assets.codehub.cn/micro-frontend/login/f7eeecbeccefe963298c23b54741d473.png);
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
@@ -263,6 +250,7 @@ export default defineComponent({
   font-size: 12px;
   color: #8592a6;
 }
+
 :deep(.layui-tab-title .layui-this) {
   background-color: transparent;
 }

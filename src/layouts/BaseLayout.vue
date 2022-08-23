@@ -1,71 +1,60 @@
 <template>
   <lay-config-provider :themeVariable="appStore.themeVariable" :theme="appStore.theme">
-    <lay-layout :class="[collapseState ? 'collapse' : '']">
+    <lay-layout :class="[collapseState ? 'collapse' : '', appStore.greyMode ? 'grey-mode' : '']">
       <!-- side -->
       <lay-side :width="sideWidth">
-        <lay-logo></lay-logo>
+        <lay-logo v-if="appStore.logo"></lay-logo>
         <lay-scroll style="height: calc(100% - 62px)">
           <global-menu :collapse="collapseState"></global-menu>
         </lay-scroll>
       </lay-side>
-      <!-- width:0 解决flex布局下子元素获取不到父元素宽度百分比的问题 -->
       <lay-layout style="width:0px">
         <!-- header -->
         <lay-header>
           <lay-menu class="layui-layout-left">
             <lay-menu-item @click="collapse">
-              <lay-icon
-                v-if="collapseState"
-                type="layui-icon-spread-left"
-              ></lay-icon>
+              <lay-icon v-if="collapseState" type="layui-icon-spread-left"></lay-icon>
               <lay-icon v-else type="layui-icon-shrink-right"></lay-icon>
+            </lay-menu-item>
+            <lay-menu-item>
+              <lay-icon type="layui-icon-website"></lay-icon>
             </lay-menu-item>
             <lay-menu-item @click="refresh">
               <lay-icon type="layui-icon-refresh-one"></lay-icon>
             </lay-menu-item>
           </lay-menu>
           <lay-menu class="layui-layout-right">
-            <li class="layui-nav-item">
-              <a href="javascript:void(0)">
-                <lay-switch
-                  class="switch"
-                  v-model="appStore.theme"
-                  onswitch-value = "dark"
-                  unswitch-value = "light"
-                  onswitch-color="rgba(255, 255, 255, 0.05)"
-                  unswitch-color="rgba(255, 255, 255, 0.05)"
-                >
-                  <template #onswitch-icon>
-                    <light-icon></light-icon>
-                  </template>
-                  <template #unswitch-icon>
-                    <dark-icon></dark-icon>
-                  </template>
-                </lay-switch>
-              </a>
-            </li>
-            <lay-dropdown>
-              <lay-menu-item>
+            <lay-menu-item>
+              <lay-fullscreen v-slot="{ toggle, isFullscreen }">
+                <lay-icon @click="toggle()" :type="isFullscreen ? 'layui-icon-screen-restore' : 'layui-icon-screen-full'"></lay-icon>
+              </lay-fullscreen>
+            </lay-menu-item>
+            <lay-menu-item>
+              <lay-dropdown>
                 <lay-icon type="layui-icon-notice"></lay-icon>
-              </lay-menu-item>
-              <template #content> 内容 </template>
-            </lay-dropdown>
-            <lay-dropdown>
-              <lay-menu-item>
+                <template #content> 
+                    <lay-tab type="brief" style="margin:5px" v-model="currentIndex">
+                      <lay-tab-item title="选项一" id="1"><div style="padding:20px">选项一</div></lay-tab-item>
+                      <lay-tab-item title="选项二" id="2"><div style="padding:20px">选项二</div></lay-tab-item>
+                      <lay-tab-item title="选项三" id="3"><div style="padding:20px">选项三</div></lay-tab-item>
+                    </lay-tab>
+                </template>
+              </lay-dropdown>
+            </lay-menu-item>
+            <lay-menu-item>
+              <lay-dropdown>
                 <lay-icon type="layui-icon-username"></lay-icon>
-              </lay-menu-item>
-              <template #content>
-                <lay-dropdown-menu>
-                  <lay-dropdown-menu-item>用户信息</lay-dropdown-menu-item>
-                  <lay-dropdown-menu-item @click="logOut">注销登录</lay-dropdown-menu-item>
-                </lay-dropdown-menu>
-              </template>
-            </lay-dropdown>
-            <div style="position: relative; display: inline-block">
-              <lay-menu-item @click="changeVisible">
-                <lay-icon type="layui-icon-more-vertical"></lay-icon>
-              </lay-menu-item>
-            </div>
+                <template #content>
+                  <lay-dropdown-menu>
+                    <lay-dropdown-menu-item>用户信息</lay-dropdown-menu-item>
+                    <lay-dropdown-menu-item @click="logOut">注销登录</lay-dropdown-menu-item>
+                  </lay-dropdown-menu>
+                </template>
+              </lay-dropdown>
+            </lay-menu-item>
+            <lay-menu-item @click="changeVisible">
+              <lay-icon type="layui-icon-more-vertical"></lay-icon>
+            </lay-menu-item>
           </lay-menu>
         </lay-header>
         <!-- content -->
@@ -81,9 +70,7 @@
 </template>
 
 <script lang="ts">
-import { nextTick, ref } from "vue";
-import DarkIcon from "../components/DarkIcon.vue"
-import LightIcon from "../components/LightIcon.vue"
+import { ref } from "vue";
 import { useAppStore } from "../store/app";
 import { useUserInfoStore } from '../store/userInfo';
 import GlobalSetup from "./Global/GlobalSetup.vue";
@@ -97,26 +84,29 @@ export default {
     GlobalSetup,
     GlobalContent,
     GlobalTab,
-    GlobalMenu,
-    DarkIcon,
-    LightIcon
+    GlobalMenu
   },
   setup() {
 
+    const fullscreenRef = ref(null);
     const appStore = useAppStore();
     const userInfoStore = useUserInfoStore();
     const collapseState = ref(false);
     const visible = ref(false);
-    const sideWidth = ref("230px");
+    const sideWidth = ref("220px");
     const router = useRouter();
+
+    // 配置显隐
     const changeVisible = function () {
       visible.value = !visible.value;
     };
 
+    const currentIndex = ref("1")
+
     // 侧边状态
     const collapse = function () {
       collapseState.value = !collapseState.value;
-      sideWidth.value = collapseState.value ? "60px": "230px";
+      sideWidth.value = collapseState.value ? "60px" : "220px";
     };
 
     // 路由刷新
@@ -127,41 +117,38 @@ export default {
       }, 500);
     };
     // 注销登录
-    const logOut = ()=> {
+    const logOut = () => {
       const userInfoStore = useUserInfoStore();
-      userInfoStore.token  = '';
+      userInfoStore.token = '';
       // 因为类型问题，这里会报错, 严格模式下不可以直接赋 {}
-      userInfoStore.userInfo = { username: "" ,mail: "", remark: "", avatar: ""};
-      console.log(userInfoStore);
+      userInfoStore.userInfo = { username: "", mail: "", remark: "", avatar: "" };
       router.push('/login');
     }
     // return instance
     return {
-      sideWidth, 
+      sideWidth,
       changeVisible,
       collapseState,
+      fullscreenRef,
       collapse,
       appStore,
       refresh,
       visible,
       logOut,
-      userInfoStore
+      userInfoStore,
+      currentIndex
     };
   },
 };
 </script>
 
-<style>
-.layui-layout .layui-header .layui-form-switch {
-  border: 1px solid rgba(60, 60, 60, 0.29);
-  background-color: #f1f1f1 !important;
-  margin-top: -8px;
+<style scoped>
+.layui-layout-left .layui-nav-item:hover,
+.layui-layout-right .layui-nav-item:hover {
+  background: whitesmoke;
 }
-.layui-layout .layui-header .layui-form-switch svg {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  top: 3px;
-  left: 3px;
+
+.grey-mode {
+  filter: grayscale(1);
 }
 </style>

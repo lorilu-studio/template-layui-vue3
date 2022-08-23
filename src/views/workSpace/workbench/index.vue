@@ -1,429 +1,339 @@
 <template>
-  <lay-container fluid="true" style="padding:10px">
-    <!-- 顶部个人信息 -->
-    <lay-panel lay-panel>
-      <div class="info-panel">
-        <lay-avatar :src="userInfoStore.userInfo.avatar"  size="lg" radius class="avatar"></lay-avatar>
-        <div class="welcome">
-          <h3>早安,{{userInfoStore.userInfo.username}}。</h3>
-        </div>
-        <div class="statistics">
-          <div>
-            <div>
-              <lay-icon class="icon"  type="layui-icon-app" color="#40a9ff"></lay-icon>
-              项目数
-            </div>
-            <div class="num">
-              <lay-count-up :startVal="0" :endVal="statisticsInfo.projectCount" :decimalPlaces="0" :useGrouping="false"></lay-count-up>
-            </div>
-          </div>
-          <div>
-            <div>
-              <lay-icon class="icon" type="layui-icon-app" color="#ffa940"></lay-icon>
-              待办项
-            </div>
-            <div class="num">
-              <lay-count-up :startVal="0" :endVal="statisticsInfo.finishCount" :decimalPlaces="0" :useGrouping="false"></lay-count-up>/
-              <lay-count-up :startVal="0" :endVal="statisticsInfo.toDoCount" :decimalPlaces="0" :useGrouping="false"></lay-count-up>
-            </div>
-          </div>
-          <div>
-            <div>
-              <lay-icon class="icon" type="layui-icon-app" color="#73d13d"></lay-icon>
-              消息
-            </div>
-            <div class="num">
-              <lay-count-up :startVal="0" :endVal="statisticsInfo.msgCount" :decimalPlaces="0" :useGrouping="false"></lay-count-up>
-            </div>
-          </div>
-        </div>
-      </div>
-    </lay-panel>
-    <!-- 菜单按钮行 -->
-    <lay-row space="20" style="margin-top: 10px;margin-bottom: 10px;">
-      <lay-col md="3" sm="6" xs="12" v-for="(item,index) in menuList" :key="index">
-        <lay-card  shadow="hover" style="min-width: 0; text-align: center;padding: 12px;">
-          <lay-icon  style="font-size:32px;" :type="item.icon" :color="item.iconColor"></lay-icon>
-          <h4 style="margin-top: 10px; line-height: normal;">{{item.name}}</h4>
+  <lay-container fluid="true" style="padding: 10px">
+    <lay-row space="10">
+      <lay-col :md="24" :sm="24" :xs="24">
+        <lay-card>
+          <lay-notice-bar leftIcon="layui-icon-speaker"
+            text="以一颗冷静思辨的态度去看待这个物质浮躁的新时代，大环境，恰当处理自身与外界环境的矛盾，如何身心健康，自在的成为自己。" mode="link" background="whitesmoke">
+          </lay-notice-bar>
         </lay-card>
+      </lay-col>
+      <lay-col md="18" sm="18" xs="24">
+        <lay-row :space="10">
+          <lay-col :md="24">
+            <lay-card class="project-grids">
+              <template v-slot:title>
+                最近更新
+              </template>
+              <template v-slot:extra>
+                全部更新
+              </template>
+              <template v-slot:body>
+                <lay-row>
+                  <lay-col :md="8">
+                    <div class="project-grid">
+                      <div class="project-grid-title">
+                        <lay-icon type="layui-icon-home"></lay-icon>
+                        <a>upload</a>
+                      </div>
+                      <p class="project-grid-center">修复开启 isLazyimg:true 后, 图片懒加载但是图片不存在的报错问题</p>
+                      <p class="project-grid-footer">
+                        <a>文件上传</a>
+                        <span>7天前</span>
+                      </p>
+                    </div>
+                  </lay-col>
+                  <lay-col :md="8">
+                    <div class="project-grid">
+                      <div class="project-grid-title">
+                        <lay-icon type="layui-icon-home"></lay-icon>
+                        <a>upload</a>
+                      </div>
+                      <p class="project-grid-center">修复开启 isLazyimg:true 后, 图片懒加载但是图片不存在的报错问题</p>
+                      <p class="project-grid-footer">
+                        <a>文件上传</a>
+                        <span>7天前</span>
+                      </p>
+                    </div>
+                  </lay-col>
+                  <lay-col :md="8">
+                    <div class="project-grid">
+                      <div class="project-grid-title">
+                        <lay-icon type="layui-icon-home"></lay-icon>
+                        <a>upload</a>
+                      </div>
+                      <p class="project-grid-center">修复开启 isLazyimg:true 后, 图片懒加载但是图片不存在的报错问题</p>
+                      <p class="project-grid-footer">
+                        <a>文件上传</a>
+                        <span>7天前</span>
+                      </p>
+                    </div>
+                  </lay-col>
+                  <lay-col :md="8">
+                    <div class="project-grid">
+                      <div class="project-grid-title">
+                        <lay-icon type="layui-icon-home"></lay-icon>
+                        <a>upload</a>
+                      </div>
+                      <p class="project-grid-center">修复开启 isLazyimg:true 后, 图片懒加载但是图片不存在的报错问题</p>
+                      <p class="project-grid-footer">
+                        <a>文件上传</a>
+                        <span>7天前</span>
+                      </p>
+                    </div>
+                  </lay-col>
+                  <lay-col :md="8">
+                    <div class="project-grid">
+                      <div class="project-grid-title">
+                        <lay-icon type="layui-icon-home"></lay-icon>
+                        <a>upload</a>
+                      </div>
+                      <p class="project-grid-center">修复开启 isLazyimg:true 后, 图片懒加载但是图片不存在的报错问题</p>
+                      <p class="project-grid-footer">
+                        <a>文件上传</a>
+                        <span>7天前</span>
+                      </p>
+                    </div>
+                  </lay-col>
+                  <lay-col :md="8">
+                    <div class="project-grid">
+                      <div class="project-grid-title">
+                        <lay-icon type="layui-icon-home"></lay-icon>
+                        <a>upload</a>
+                      </div>
+                      <p class="project-grid-center">修复开启 isLazyimg:true 后, 图片懒加载但是图片不存在的报错问题</p>
+                      <p class="project-grid-footer">
+                        <a>文件上传</a>
+                        <span>7天前</span>
+                      </p>
+                    </div>
+                  </lay-col>
+                </lay-row>
+              </template>
+            </lay-card>
+          </lay-col>
+          <lay-col :md="24">
+            <lay-card>
+              <template v-slot:title>
+                最近动态
+              </template>
+              <dl>
+                <dd class="dynamic">
+                  <div class="layui-status-img"><a href="javascript:;"><img></a></div>
+                  <div>
+                    <p>张三 在 <a href="javascript:;/vipclub/list/layuiadmin/">讨论区</a> 回答问题</p>
+                    <span>几秒前</span>
+                  </div>
+                </dd>
+                <dd class="dynamic">
+                  <div class="layui-status-img"><a href="javascript:;"><img></a></div>
+                  <div>
+                    <p>张三 在 <a href="javascript:;/vipclub/list/layuiadmin/">讨论区</a> 回答问题</p>
+                    <span>几秒前</span>
+                  </div>
+                </dd>
+                <dd class="dynamic">
+                  <div class="layui-status-img"><a href="javascript:;"><img></a></div>
+                  <div>
+                    <p>张三 在 <a href="javascript:;/vipclub/list/layuiadmin/">讨论区</a> 回答问题</p>
+                    <span>几秒前</span>
+                  </div>
+                </dd>
+                <dd class="dynamic">
+                  <div class="layui-status-img"><a href="javascript:;"><img></a></div>
+                  <div>
+                    <p>张三 在 <a href="javascript:;/vipclub/list/layuiadmin/">讨论区</a> 回答问题</p>
+                    <span>几秒前</span>
+                  </div>
+                </dd>
+              </dl>
+            </lay-card>
+          </lay-col>
+        </lay-row>
+      </lay-col>
+      <lay-col md="6" sm="6" xs="24">
+        <lay-row :space="10">
+          <lay-col :md="24">
+            <lay-card>
+              <template v-slot:title>
+                便捷导航
+              </template>
+              <div class="links">
+                <a>操作一</a>
+                <a>操作二</a>
+                <a>操作三</a>
+                <a>操作四</a>
+                <a>操作五</a>
+                <a>操作六</a>
+                <a>操作七</a>
+                <a>操作八</a>
+              </div>
+            </lay-card>
+          </lay-col>
+          <lay-col :md="24">
+            <lay-card>
+              <template v-slot:title>
+                八卦新闻
+              </template>
+              <div id="main"></div>
+            </lay-card>
+          </lay-col>
+          <lay-col :md="24">
+            <lay-card>
+              <template #title>
+                产品动态
+              </template>
+              <a class="news">layui vue admin</a>
+            </lay-card>
+          </lay-col>
+        </lay-row>
       </lay-col>
     </lay-row>
-    
-    <lay-row space="20">
-      <!-- 最近动态模块 -->
-      <lay-col md="8" sm="24" xs="24" >
-        <lay-card  shadow="hover" style="min-width: 0;">
-          <template v-slot:title>
-            最近动态
-          </template>
-          <template v-slot:body>
-            <lay-scroll height="300px">
-              <lay-timeline>
-                  <lay-timeline-item v-for="(item,index) in dynamicList" :key="index" 
-                  :title="`${item.time}&nbsp;&nbsp;&nbsp;${item.name}&nbsp;&nbsp;${item.status===1?'解决':'指派'}了${item.type===1?'bug':'任务'}&nbsp;${item.title}`" simple >
-                      <template #dot>
-                          <lay-icon type="layui-icon-circle" :color="item.status===1?'red':'green'"></lay-icon>
-                      </template>
-                  </lay-timeline-item>
-              </lay-timeline>
-            </lay-scroll>
-          </template>
-        </lay-card>
-      </lay-col>
-
-      <!-- 我的任务模块 -->
-      <lay-col md="8" sm="24" xs="24" >
-        <lay-card  shadow="hover" style="min-width: 0;">
-          <template v-slot:title>
-            我的任务
-          </template>
-          <template v-slot:body>
-            <lay-table :columns="taskColumns" :dataSource="taskList" height="258px">
-               <template v-slot:priority="{ data }">
-                 <span :class="`num-tag ${data.priority === 1 ? 'red' : data.priority === 2 ? 'orange' : data.priority === 3 ? 'blue' : ''}`">
-                   {{data.priority}} 
-                 </span>
-               </template>
-               <template v-slot:status="{ data }">
-                 <span class="task-status" :style="`color: ${data.status === 1 ? 'orange' : data.status === 2 ? 'green' : data.status === 3 ? 'gray' : ''}`">
-                   {{data.status === 1 ? '未开始' : data.status === 2 ? '进行中' : data.status === 3 ? '已完成' : ''}} 
-                 </span>
-               </template>
-            </lay-table>
-          </template>
-        </lay-card>
-      </lay-col>
-      <!-- 最近动态模块 -->
-      <lay-col md="8" sm="24" xs="24" >
-        <lay-card  shadow="hover" style="min-width: 0;">
-          <template v-slot:title>
-            本月目标
-          </template>
-          <template v-slot:body>
-            <div style="height: 300px;lin width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-              <lay-progress
-                :percent="(targetInfo.finish/targetInfo.all)*100"
-                circle
-                :circleWidth="15"
-                :show-text="true"
-                :text="targetInfo.finish"
-              >
-                <template v-slot:text="{  }">
-                  <span>asdsadasdasd</span>
-                </template>
-              </lay-progress>
-              <p>{{(targetInfo.finish/targetInfo.all)*100 > 70 ? '恭喜，本月目标已达标！' : '加油， 就快达标了！'}}</p>
-            </div>
-          </template>
-        </lay-card>
-      </lay-col>
-
-      <!-- 项目进度模块 -->
-      <lay-col md="16" sm="24" xs="24" >
-        <lay-card  shadow="hover" style="min-width: 0;">
-          <template v-slot:title>
-            项目进度
-          </template>
-          <template v-slot:body>
-            <lay-table :columns="projectColumns" :dataSource="projectList" height="258px">
-               <template v-slot:name="{ data }">
-                 <span style="color:cornflowerblue">
-                   {{data.name}} 
-                 </span>
-               </template>
-               <template v-slot:status="{ data }">
-                 <span :style="`color: ${data.status === 1 ? 'green' : data.status === 2 ? 'red' : data.status === 3 ? 'orange' : data.status === 4 ? 'gray' : ''}`">
-                   {{data.status === 1 ? '进行中' : data.status === 2 ? '已延期' : data.status === 3 ? '未开始' : data.status === 4 ? '已结束' : ''}} 
-                 </span>
-               </template>
-               <template v-slot:progress="{ data }">
-                <span>
-                  <span style="display: inline-block;  width: 70%;">
-                    <lay-progress size="small" :percent="data.progress" ></lay-progress>
-                  </span>
-                  <span style="display: inline-block;  width: 30%; box-sizing: border-box;padding-left: 5px;">
-                    {{data.progress}}%
-                  </span>
-                </span>
-
-               </template>
-            </lay-table>
-          </template>
-        </lay-card>
-      </lay-col>
-    </lay-row>
-    
-
   </lay-container>
 </template>
 <script lang="ts">
-import { onMounted,defineComponent, ref } from "vue";
-import Http from '../../../api/http';
-import { useUserInfoStore } from "../../../store/userInfo";
+import { defineComponent, nextTick, ref } from "vue";
+import * as echarts from 'echarts';
 
 export default defineComponent({
   setup() {
 
-    // 用户信息store
-    const userInfoStore = useUserInfoStore();
-    // 获取用户信息
-    const getUserInfo = async ()=> {
-      let {data} = await Http.post('/userInfo/getUserInfo', {token: userInfoStore.token});
-      // 存用户信息
-      userInfoStore.userInfo = data;
-      console.log(userInfoStore);
+    nextTick(() => {
+      var chartDom = document.getElementById('main');
+      // @ts-ignore
+      var myChart = echarts.init(chartDom);
+      var option;
 
-    }
+      option = {
+        legend: {
+          data: ['Allocated Budget', 'Actual Spending']
+        },
+        radar: {
+          indicator: [
+            { name: '进攻', max: 6500 },
+            { name: '技巧', max: 16000 },
+            { name: '力量', max: 30000 },
+            { name: '速度', max: 38000 },
+            { name: '体能', max: 52000 },
+            { name: '防守', max: 25000 }
+          ]
+        },
+        series: [
+          {
+            name: 'Budget vs spending',
+            type: 'radar',
+            data: [
+              {
+                value: [4200, 3000, 20000, 35000, 50000, 18000],
+              },
+              {
+                value: [5000, 14000, 28000, 26000, 42000, 21000],
+              }
+            ]
+          }
+        ]
+      };
 
+      option && myChart.setOption(option);
+    })
 
-     // 统计信息
-    let statisticsInfo = ref({
-      'projectCount': 0,
-      'toDoCount': 0,
-      'finishCount': 0,
-      'msgCount': 0
-    });
-    // 获取统计信息
-    const getStatisticsInfo = async ()=> {
-      let {data} = await Http.post('/workSpace/workbench/getStatisticsInfo');
-      statisticsInfo.value = data;
-    };
-
-    // 菜单按钮列表
-    const menuList = [
-      {
-        name: '用户',
-        icon: 'layui-icon-username',
-        iconColor: '#69c0ff',
-        url: '',
-      },
-      {
-        name: '分析',
-        icon: 'layui-icon-chart',
-        iconColor: 'rgb(149, 222, 100)',
-        url: '',
-      },
-      {
-        name: '商品',
-        icon: 'layui-icon-cart-simple',
-        iconColor: 'rgb(255, 156, 110)',
-        url: '',
-      },
-      {
-        name: '订单',
-        icon: 'layui-icon-form',
-        iconColor: 'rgb(179, 127, 235)',
-        url: '',
-      },
-      {
-        name: '票据',
-        icon: 'layui-icon-layer',
-        iconColor: 'rgb(255, 214, 102)',
-        url: '',
-      },
-      {
-        name: '消息',
-        icon: 'layui-icon-email',
-        iconColor: 'rgb(92, 219, 211)',
-        url: '',
-      },
-      {
-        name: '标签',
-        icon: 'layui-icon-note',
-        iconColor: 'rgb(255, 133, 192)',
-        url: '',
-      },
-      {
-        name: '配置',
-        icon: 'layui-icon-slider',
-        iconColor: 'rgb(255, 192, 105)',
-        url: '',
-      }
-    ];
-    // 动态列表
-    let dynamicList = ref([]);
-    // 获取动态列表
-    const getDynamicList = async ()=> {
-      let {data} = await Http.post('/workSpace/workbench/getDynamicList');
-      // 存用户信息
-      dynamicList.value = data;
-    };
-
-    //任务列表
-    let taskList = ref([]);
-    let taskColumns=[
-      {
-        title:"优先级",
-        key:"priority",
-        customSlot:"priority",
-        width: '100px',
-        align: 'center'
-      },{
-        title:"任务名称",
-        key:"name",
-      },{
-        title:"状态",
-        key:"status",
-        customSlot:"status",
-        width: '100px',
-        align: 'center'
-      }
-    ];
-    // 获取任务列表
-    const getMyTask = async () => {
-      let {data} = await Http.post('/workSpace/workbench/getMyTask');
-      taskList.value = data;
-    };
-
-
-    // 目标完成信息
-    let targetInfo = ref({
-      all: 0,
-      finish: 0
-    });
-    // 获取目标完成信息
-    const getTargetInfo = async () => {
-      let {data: {all, finish}} = await Http.post('/workSpace/workbench/getTargetInfo');
-      targetInfo.value.all = all;
-      targetInfo.value.finish = finish;
-
-    };
-
-
-    //项目列表
-    let projectList = ref([]);
-    let projectColumns=[
-      {
-        type: 'number'
-      },{
-        title:"项目名称",
-        key:"name",
-        align: 'center',
-        customSlot:"name",
-        ellipsisTooltip: true
-      },{
-        title:"开始时间",
-        key:"startTime",
-        align: 'center',
-      },{
-        title:"结束时间",
-        key:"endTime",
-        align: 'center',
-      },{
-        title:"状态",
-        key:"status",
-        customSlot:"status",
-        align: 'center',
-      },{
-        title:"进度",
-        key:"progress",
-        customSlot:"progress",
-        align: 'center',
-      },
-    ];
-    // 获取项目列表
-    const getMyProject = async () => {
-      let {data} = await Http.post('/workSpace/workbench/getMyProject');
-      projectList.value = data;
-      console.log(projectList.value,'projectList.value')
-    };
-
-    onMounted(()=> {
-      getUserInfo();
-      getStatisticsInfo();
-      getDynamicList();
-      getMyTask();
-      getTargetInfo();
-      getMyProject();
-    });
-
-    return {
-      userInfoStore,
-      statisticsInfo,
-      menuList,
-      dynamicList,
-      taskList,
-      taskColumns,
-      targetInfo,
-      projectList,
-      projectColumns
-    };
+    return {};
   },
 });
 </script>
 
-<style  scoped>
-   .info-panel{
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-   }
-   .info-panel>.avatar {
-    height: 60px;
-    width: 60px;
-    flex-shrink: 0;
-   }
-   .info-panel>.welcome {
-    flex-grow: 1;
-    box-sizing: border-box;
-    padding: 0 20px;
-    overflow: hidden;
-   }
-    .info-panel>.welcome>h3 {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      font-size: 20px;
+<style lang="less" scoped>
+.project-grids {
+  :deep(.layui-card-body) {
+    padding: 0;
+  }
+}
+
+.project-grid {
+  padding: 24px;
+  background-color: #f8f8f8;
+  margin: 10px;
+  color: #777;
+
+  .project-grid-title {
+    padding-bottom: 10px;
+
+    i {
+      margin-right: 10px;
+      font-size: 24px;
+      color: #009688;
     }
-   .info-panel>.statistics {
-    flex-shrink: 0;
-    display: flex;
-   }
-   .info-panel>.statistics>div {
-    flex-shrink: 0;
-    margin: 0 10px;
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-   }
-   .info-panel>.statistics>div .icon {
-    margin-right: 8px;
-   }
-   .info-panel>.statistics>div>.num {
-    font-size: 24px;
-    box-sizing: border-box;
-    margin-top: 5px;
-   }
-   
-  :deep(.layui-table-view) {
-    background-color: transparent;
-    margin: 0;
+
+    a {
+      line-height: 24px;
+      font-size: 16px;
+      vertical-align: top;
+    }
   }
-  .num-tag {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    text-align: center;
-    line-height: 20px;
+
+  .project-grid-center {
+    height: 44px;
+    line-height: 22px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .project-grid-footer {
+    position: relative;
+
+    a {
+      color: #777;
+      font-size: 12px;
+      text-overflow: ellipsis;
+      word-break: break-all;
+    }
+
+    span {
+      color: #ccc;
+      font-size: 12px;
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+
+.dynamic {
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  display: -webkit-flex;
+  display: flex;
+
+  .layui-status-img {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    border: 1px solid #aaaaaa;
-    font-size: 12px;
-    box-sizing: content-box;
+    background-color: #009688;
+    margin-right: 15px;
   }
-  .num-tag.red {
-    color: #cf1322;
-    background: #fff1f0;
-    border-color: #ffa39e;
+
+  a {
+    color: #01aaed;
   }
-  .num-tag.orange {
-    color: #d46b08;
-    background: #fff7e6;
-    border-color: #ffd591;
+
+  span {
+    color: #bbb;
   }
-  .num-tag.blue {
-    color: #096dd9;
-    background: #e6f7ff;
-    border-color: #91d5ff;
-  }
+}
+
+.links {
+  padding: 10px
+}
+
+.links a {
+  width: 25%;
+  font-size: 14px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  display: inline-block;
+  color: #666;
+}
+
+.news {
+  display: block;
+  line-height: 60px;
+  text-align: center;
+  background-color: #009688 !important;
+  color: #fff !important;
+}
+
+#main {
+  height: 300px;
+  width: 100%;
+}
 </style>

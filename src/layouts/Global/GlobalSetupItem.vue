@@ -28,12 +28,13 @@ const props = withDefaults(defineProps<SetupItemProps>(), {
 
 <style scoped>
 .global-setup-item {
-    height: 60px;
-    line-height: 60px;
-    padding: 0px 10px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 15px;
 }
 .global-setup-item-label {
     float: left;
+    font-size: 14px;
 }
 .global-setup-item-extra {
     float: right;

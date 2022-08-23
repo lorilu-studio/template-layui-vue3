@@ -1,8 +1,8 @@
 <template>
     <div class="global-content">
-        <lay-transition type="fade">
-            <router-view v-if="appStore.routerAlive"></router-view>
-        </lay-transition>
+      <lay-transition type="fade">
+        <router-view v-if="appStore.routerAlive"></router-view>
+      </lay-transition>
     </div>
 </template>
 
@@ -13,8 +13,8 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import Vue from 'vue'
 import { useAppStore } from "../../store/app";
+
 const appStore = useAppStore();
 </script>
 

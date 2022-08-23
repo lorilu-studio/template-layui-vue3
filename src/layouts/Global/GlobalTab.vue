@@ -12,7 +12,12 @@
         :id="tab.id"
         :title="tab.title"
         :closable="tab.closable"
-      ></lay-tab-item>
+      >
+        <template #title>
+          <span class="dot"></span>
+          {{ tab.title }}
+        </template>
+      </lay-tab-item>
     </template>
   </lay-tab>
 </template>
@@ -32,7 +37,7 @@ const router = useRouter();
 const route = useRoute();
 const appStore = useAppStore();
 const allowClose = ref(true);
-const tabs = ref([{ title: "首页", id: "/workSpace/workbench", closable: false }]);
+const tabs = ref([{ title: "工作台", id: "/workspace/workbench", closable: false }]);
 
 const change = function (id: string) {
   router.push(id);
@@ -57,6 +62,17 @@ watch(route, function () {
 </script>
 
 <style>
+.layui-tab .dot {
+  display: inline-block;
+  background-color: whitesmoke;
+  margin-right: 8px;
+  border-radius: 50px;
+  height: 8px;
+  width: 8px;
+}
+.layui-tab .layui-this .dot {
+  background-color: var(--global-primary-color);
+}
 .layui-tab .layui-tab-close:hover {
     background: transparent!important;
     color: #e2e2e2!important;

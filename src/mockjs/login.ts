@@ -1,5 +1,5 @@
 
-const getLogin = (req, res)=> {
+const getLogin = (req: any, res: any)=> {
     let item = JSON.parse(req.body);
     let account = item.account;
     let password = item.password;

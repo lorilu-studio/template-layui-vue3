@@ -5,10 +5,12 @@ export const useAppStore = defineStore({
   state: () => {
     return {
       tab: true,
+      logo: true,
       level: true,
-      inverted: true,
+      inverted: false,
       routerAlive: true,
       theme: 'light',
+      greyMode: false,
       themeVariable: {
         "--global-checked-color": "#5fb878",
         "--global-primary-color": "#009688",

@@ -1,24 +1,23 @@
 <template>
-  <lay-layer title="更多设置" type="drawer" area="360px" v-model="visible">
-    <div class="global-setup">
-      <!-- 颜色 -->
-      <template
-        v-for="(themeVariableName, index) in themeVariableNames"
-        :key="index"
-      >
-        <lay-color-picker
-          v-model="appStore.themeVariable[themeVariableName]"
-        ></lay-color-picker>
-      </template>
-      <!-- 其他 -->
+  <lay-layer :title="false" :closeBtn="false" type="drawer" area="300px" v-model="visible">
+    <div class="global-setup">    
       <global-setup-item label="多选项卡">
-        <lay-switch v-model="appStore.tab"></lay-switch>
+        <lay-switch v-model="appStore.tab" size="xs"></lay-switch>
       </global-setup-item>
       <global-setup-item label="菜单层级">
-        <lay-switch v-model="appStore.level"></lay-switch>
+        <lay-switch v-model="appStore.level" size="xs"></lay-switch>
       </global-setup-item>
       <global-setup-item label="菜单反选">
-        <lay-switch v-model="appStore.inverted"></lay-switch>
+        <lay-switch v-model="appStore.inverted" size="xs"></lay-switch>
+      </global-setup-item>
+      <global-setup-item label="夜间模式">
+        <lay-switch v-model="appStore.theme" onswitch-value="dark" unswitch-value="light" size="xs"></lay-switch>
+      </global-setup-item>
+      <global-setup-item label="侧边标题">
+        <lay-switch v-model="appStore.logo" size="xs"></lay-switch>
+      </global-setup-item>
+      <global-setup-item label="灰色模式">
+        <lay-switch v-model="appStore.greyMode" size="xs"></lay-switch>
       </global-setup-item>
     </div>
   </lay-layer>
@@ -31,9 +30,9 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import globalSetupItem from "./GlobalSetupItem.vue";
 import { useAppStore } from "../../store/app";
 import { ref, watch } from "vue";
-import globalSetupItem from "./GlobalSetupItem.vue";
 
 const appStore = useAppStore();
 

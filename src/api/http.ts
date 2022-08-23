@@ -1,22 +1,23 @@
 import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
-import {layer} from '@layui/layui-vue';
-import router from '../router'
 import { useUserInfoStore } from "../store/userInfo";
+import { layer } from '@layui/layui-vue';
+import router from '../router'
+
 type TAxiosOption = {
     timeout: number;
     baseURL: string;
 }
  
-const config = {
+const config: TAxiosOption = {
     timeout: 5000,
     baseURL: "http://localhost:8080"
 }
  
 class Http {
-
     service;
     constructor(config: TAxiosOption) {
         this.service = axios.create(config)
+
         /* 请求拦截 */
         this.service.interceptors.request.use((config: AxiosRequestConfig) => {
             const userInfoStore = useUserInfoStore();
@@ -24,7 +25,6 @@ class Http {
                 (config.headers as AxiosRequestHeaders).token = userInfoStore.token as string
             } else {
                 if(router.currentRoute.value.path!=='/login') {
-                    // 没token跳登录页
                     router.push('/login');
                 }
             }
@@ -35,14 +35,11 @@ class Http {
 
         /* 响应拦截 */
         this.service.interceptors.response.use((response: AxiosResponse<any>) => {
-            const data = response.data
-            // 错误处理 to do
-            switch (data.code) {
+            switch (response.data.code) {
                 case 200:
                     return response.data;
-                case 500: 
-                    layer.msg(response.data.msg, { icon : 2, time: 1000})
-                    return Promise.reject(response.data.message);
+                case 500:
+                    return response.data;
                 case 99998:
                     layer.confirm(
                     '请重新登录', 
@@ -50,7 +47,7 @@ class Http {
                         router.push('/login');
                         layer.closeAll()
                     }});
-                    return Promise.reject(response.data.message);
+                    return response.data;
                 default:
                     break;
             }

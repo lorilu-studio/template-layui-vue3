@@ -1,2 +1,6 @@
 @import url(./admin.css);
 @import url(./reset.css);
+
+.global-css {
+    font-family: 'Courier New', Courier, monospace;
+}
