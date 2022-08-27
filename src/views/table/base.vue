@@ -3,16 +3,16 @@
     <lay-row :space="10">
       <lay-col :md="24">
         <lay-card>
-          <lay-form style="margin-top:20px;">
+          <lay-form style="margin-top: 20px">
             <lay-row>
               <lay-col :md="6">
                 <lay-form-item label="账号：" label-width="50">
-                  <lay-input style="width:90%"></lay-input>
+                  <lay-input style="width: 90%"></lay-input>
                 </lay-form-item>
               </lay-col>
               <lay-col :md="6">
                 <lay-form-item label="邮箱：" label-width="50">
-                  <lay-input style="width:90%"></lay-input>
+                  <lay-input style="width: 90%"></lay-input>
                 </lay-form-item>
               </lay-col>
               <lay-col :md="6">
@@ -21,9 +21,9 @@
                   <lay-button>重置</lay-button>
                 </lay-form-item>
               </lay-col>
-            </lay-row> 
+            </lay-row>
           </lay-form>
-        </lay-card> 
+        </lay-card>
       </lay-col>
       <lay-col :md="24">
         <lay-card>
@@ -46,7 +46,7 @@
             <template v-slot:password="{ data }">
               {{ data.password }}
             </template>
-            <template v-slot:operator="{ }">
+            <template v-slot:operator="{}">
               <lay-button size="xs" type="primary">修改</lay-button>
               <lay-button size="xs">删除</lay-button>
             </template>
@@ -69,14 +69,14 @@ export default {
     const selectedKeys = ref(["1"]);
     const checkbox = ref(true);
     const defaultToolbar = ref(true);
-    const page = ref({ total: 100, limit: 10, current: 2});
+    const page = ref({ total: 100, limit: 10, current: 2 });
 
     const columns = [
       {
         title: "复选",
         width: "50px",
         type: "checkbox",
-        fixed: "left"
+        fixed: "left",
       },
       {
         title: "账户",
@@ -98,25 +98,95 @@ export default {
       {
         title: "描述",
         key: "remark",
-        ellipsisTooltip: true
+        ellipsisTooltip: true,
       },
       {
         title: "操作",
         width: "180px",
         customSlot: "operator",
         key: "operator",
-        fixed: "right"
+        fixed: "right",
       },
     ];
 
     const dataSource = [
-      { id: "1", username: "shana", password: "夏娜",remark: "花开堪折直须折,莫待无花空折枝", age: "22" },
-      { id: "2", username: "shana", password: "夏娜",remark: "花开堪折直须折,莫待无花空折枝", age: "22" },
-      { id: "3", username: "shana", password: "夏娜",remark: "花开堪折直须折,莫待无花空折枝", age: "22" },
-      { id: "4", username: "shana", password: "夏娜",remark: "花开堪折直须折,莫待无花空折枝", age: "22" },
-      { id: "5", username: "shana", password: "夏娜",remark: "花开堪折直须折,莫待无花空折枝", age: "22" },
-      { id: "6", username: "shana", password: "夏娜",remark: "花开堪折直须折,莫待无花空折枝", age: "22" },
-      { id: "7", username: "shana", password: "夏娜",remark: "花开堪折直须折,莫待无花空折枝", age: "22" },
+      {
+        id: "1",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "2",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "3",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "4",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "5",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "6",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "7",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "8",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "9",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "10",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
+      {
+        id: "11",
+        username: "shana",
+        password: "夏娜",
+        remark: "花开堪折直须折,莫待无花空折枝",
+        age: "22",
+      },
     ];
 
     const rowClick = function (data: any) {
@@ -127,9 +197,9 @@ export default {
       console.log(JSON.stringify(data));
     };
 
-    const change = function({current, limit}:any) {
+    const change = function ({ current, limit }: any) {
       layer.msg("current:" + current + " limit:" + limit);
-    }
+    };
 
     return {
       columns,
@@ -140,7 +210,7 @@ export default {
       page,
       rowClick,
       rowDoubleClick,
-      change
+      change,
     };
   },
 };

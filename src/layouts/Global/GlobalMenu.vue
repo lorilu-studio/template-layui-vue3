@@ -44,9 +44,12 @@ watch(selectKey, (val) => {
 const changeOpenKeys = (val: string[]) => {
   const addArr = diff(openKeys.value, val);
   if(val.length > openKeys.value.length) {
+    // TODO 向上递归, 增加父节点
     openKeys.value = addArr;
+  } else {
+    // TODO 向下递归, 删除子节点
+    openKeys.value = val;
   }
-  openKeys.value = val;
 }
 
 const menus = [
@@ -97,7 +100,7 @@ const menus = [
       {
         id: "/table/base",
         icon: "layui-icon-home",
-        title: "查询列表"
+        title: "查询表格"
       },
       {
         id: "/table/card",

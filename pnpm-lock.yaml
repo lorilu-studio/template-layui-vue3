@@ -1,12 +1,13 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@layui/layui-vue': ^1.4.5
+  '@layui/layui-vue': ^1.4.6
   '@types/node': ^18.7.8
   '@types/nprogress': ^0.2.0
   '@vitejs/plugin-vue': ^2.2.0
   '@vue/compiler-sfc': ^3.2.33
   axios: ^0.27.2
+  c-scrollbar: ^1.0.2
   echarts: ^5.3.3
   js-base64: ^3.7.2
   less: ^4.1.2
@@ -25,8 +26,9 @@ specifiers:
   vue-tsc: ^0.29.8
 
 dependencies:
-  '@layui/layui-vue': 1.4.5_vue@3.2.37
+  '@layui/layui-vue': 1.4.6_vue@3.2.37
   axios: 0.27.2
+  c-scrollbar: 1.0.2
   echarts: 5.3.3
   js-base64: 3.7.2
   mockjs: 1.1.0
@@ -151,8 +153,8 @@ packages:
     resolution: {integrity: sha512-db46XsSY/XLEE3JvI9QL7nEoHL0+FHoQRT9pyQ1+a01D0rgegycyQ1OAIBpaJ0/vqoNGlQFRjX0YYPGds9nB+A==}
     dev: false
 
-  /@layui/layui-vue/1.4.5_vue@3.2.37:
-    resolution: {integrity: sha512-HIkkJm6bOIPZg1kbUlTzjgXHD3RHs2vQnKWcz2zl45wRLsRISgFq3DL58yk0cfwKA8KSkXIQh24tPvPfTGbEpA==}
+  /@layui/layui-vue/1.4.6_vue@3.2.37:
+    resolution: {integrity: sha512-m4e/zW613OdE36vFk4a40iUI/IuC6EecEQ7klkzkukbwFt4nL9OlmZhP9j/goSpe/DGaeyjgFvkFn1X9bSz9SA==}
     dependencies:
       '@layui/icons-vue': 1.0.9
       '@layui/layer-vue': 1.4.2
@@ -476,6 +478,12 @@ packages:
     dependencies:
       fill-range: 7.0.1
     dev: true
+
+  /c-scrollbar/1.0.2:
+    resolution: {integrity: sha512-aqY6O8XzOQ+pSFgVTciqUt+kUt2usJxNwGbmH7WhdgH6gQVjgkyunPqjrhNdBta41UvU5y84x45KHUugb9uAxQ==}
+    dependencies:
+      vue: 3.2.37
+    dev: false
 
   /call-bind/1.0.2:
     resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==}

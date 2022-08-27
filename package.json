@@ -7,8 +7,9 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@layui/layui-vue": "^1.4.5",
+    "@layui/layui-vue": "^1.4.6",
     "axios": "^0.27.2",
+    "c-scrollbar": "^1.0.2",
     "echarts": "^5.3.3",
     "js-base64": "^3.7.2",
     "mockjs": "^1.1.0",
