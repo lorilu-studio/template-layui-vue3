@@ -1,6 +1,6 @@
 <template>
   <lay-config-provider :themeVariable="appStore.themeVariable" :theme="appStore.theme">
-    <lay-layout :class="[collapseState ? 'collapse' : '', appStore.greyMode ? 'grey-mode' : '']">
+    <lay-layout :class="[appStore.tab ? 'has-tab' : '',collapseState ? 'collapse' : '', appStore.greyMode ? 'grey-mode' : '']">
       <!-- side -->
       <lay-side :width="sideWidth">
         <lay-logo v-if="appStore.logo"></lay-logo>

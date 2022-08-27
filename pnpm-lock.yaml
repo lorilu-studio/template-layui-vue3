@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@layui/layui-vue': ^1.4.4
+  '@layui/layui-vue': ^1.4.5
   '@types/node': ^18.7.8
   '@types/nprogress': ^0.2.0
   '@vitejs/plugin-vue': ^2.2.0
@@ -25,7 +25,7 @@ specifiers:
   vue-tsc: ^0.29.8
 
 dependencies:
-  '@layui/layui-vue': 1.4.4_vue@3.2.37
+  '@layui/layui-vue': 1.4.5_vue@3.2.37
   axios: 0.27.2
   echarts: 5.3.3
   js-base64: 3.7.2
@@ -151,8 +151,8 @@ packages:
     resolution: {integrity: sha512-db46XsSY/XLEE3JvI9QL7nEoHL0+FHoQRT9pyQ1+a01D0rgegycyQ1OAIBpaJ0/vqoNGlQFRjX0YYPGds9nB+A==}
     dev: false
 
-  /@layui/layui-vue/1.4.4_vue@3.2.37:
-    resolution: {integrity: sha512-Cni59xWXKDf99mWYvxP9+cULInulpOmB9LZ2UMhDEN0cTa+oQ9Q/6vwXdtUUZaYhVhVxRJkVMXzZ3SmfqKY4aQ==}
+  /@layui/layui-vue/1.4.5_vue@3.2.37:
+    resolution: {integrity: sha512-HIkkJm6bOIPZg1kbUlTzjgXHD3RHs2vQnKWcz2zl45wRLsRISgFq3DL58yk0cfwKA8KSkXIQh24tPvPfTGbEpA==}
     dependencies:
       '@layui/icons-vue': 1.0.9
       '@layui/layer-vue': 1.4.2

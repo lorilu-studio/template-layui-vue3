@@ -16,11 +16,14 @@
   padding: 0px;
 }
 .layui-body > .layui-tab > .layui-tab-head {
+  z-index: 999;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
   display: block;
   width: 100%;
 }
 .layui-body > .layui-tab > .layui-tab-head > .layui-tab-title {
   border: 1px solid whitesmoke;
+  border-bottom: none;
   background-color: white;
   border-left: none;
 }
@@ -29,16 +32,27 @@
   font-size: 14px;
   line-height: 40px;
   border-right: 1px solid whitesmoke;
+  border-bottom: none;
 }
 .layui-body > .layui-tab > .layui-tab-head > .layui-tab-title > li.layui-this::after {
   border: none;
 }
+
+.layui-header {
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+}
+
+.layui-layout.has-tab .layui-header {
+  box-shadow: none;
+}
+
 .layui-header,
 .layui-header .layui-nav,
 .layui-header .layui-nav .layui-nav-item {
   height: 50px;
   line-height: 50px;
   background: transparent;
+  z-index: 9999;
 }
 .layui-header .layui-nav {
   padding: 0 15px;

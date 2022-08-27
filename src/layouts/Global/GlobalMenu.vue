@@ -1,6 +1,6 @@
 <template>
   <lay-menu :tree="true" :collapse="collapse" :level="appStore.level" :inverted="appStore.inverted"
-    v-model:selectedKey="selectKey" v-model:openKeys="openKeys">
+    v-model:selectedKey="selectKey" :openKeys="openKeys" @changeOpenKeys="changeOpenKeys">
     <GlobalMenuItem :menus="menus"></GlobalMenuItem>
   </lay-menu>
 </template>
@@ -40,6 +40,14 @@ watch(route, (val) => {
 watch(selectKey, (val) => {
   router.push(val);
 });
+
+const changeOpenKeys = (val: string[]) => {
+  const addArr = diff(openKeys.value, val);
+  if(val.length > openKeys.value.length) {
+    openKeys.value = addArr;
+  }
+  openKeys.value = val;
+}
 
 const menus = [
   {

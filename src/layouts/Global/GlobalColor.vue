@@ -29,6 +29,9 @@ const handlerChange = function(color: string) {
 </script>
 
 <style>
+.color-list {
+    margin: 20px 0px 40px 0px;
+}
 .color-list li {
     float: left;
     text-align: center;
