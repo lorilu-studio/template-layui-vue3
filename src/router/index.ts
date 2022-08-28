@@ -22,8 +22,12 @@ NProgress.configure({ showSpinner: false })
  */
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   // 待完成
-  NProgress.start();
-  next();
+  if(to.matched.length == 0) {
+    next({path: '/error/404'})
+  } else {
+    NProgress.start();
+    next();
+  }
 })
 
 router.afterEach(() => {
