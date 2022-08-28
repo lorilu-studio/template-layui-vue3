@@ -1,5 +1,11 @@
 const getDepth = function () {};
 
+/**
+ * 获取当前节点
+ *  
+ * @param list 集合
+ * @param id 节点编号
+ */
 export const getNode = function(list: any[], id: string): any {
   for (let i in list) {
     let item = list[i];
@@ -16,6 +22,12 @@ export const getNode = function(list: any[], id: string): any {
   }
 }
 
+/**
+ * 获取所有父节点 ( 包含当前节点 )
+ * 
+ * @param list 集合
+ * @param id 节点编号
+ */
 export const getParents = function(list:any[], id: string) : any{
   for (let i in list) {
       if (list[i].id === id) {

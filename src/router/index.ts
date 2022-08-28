@@ -22,7 +22,11 @@ NProgress.configure({ showSpinner: false })
  */
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   // 待完成
-  if(to.matched.length == 0) {
+  if(to.meta.requireAuth) {
+    console.log("验证 token 是否存在且有效")
+    next();
+  }
+  else if(to.matched.length == 0) {
     next({path: '/error/404'})
   } else {
     NProgress.start();

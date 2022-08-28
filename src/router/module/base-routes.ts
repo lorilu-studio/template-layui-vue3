@@ -2,15 +2,15 @@ import BaseLayout from '../../layouts/BaseLayout.vue';
 import Login from '../../views/login/index.vue';
 
 
-export default [
+export default [    
+  {
+    path: '/',
+    redirect: '/workSpace'
+  },
   {
     path: '/login',
     component: Login,
     meta: { title: '登录页面' },
-  },
-  {
-    path: '/',
-    redirect: '/workSpace'
   },
   {
     path: '/workspace',
@@ -21,17 +21,17 @@ export default [
       {
         path: '/workspace/workbench',
         component: () => import('../../views/workSpace/workbench/index.vue'),
-        meta: { title: '工作台' },
+        meta: { title: '工作台', requireAuth: true },
       },
       {
         path: '/workspace/console',
         component: () => import('../../views/workSpace/console/index.vue'),
-        meta: { title: '控制台' },
+        meta: { title: '控制台', requireAuth: true },
       },
       {
         path: '/workspace/analysis',
         component: () => import('../../views/workSpace/analysis/index.vue'),
-        meta: { title: '分析页' },
+        meta: { title: '分析页', requireAuth: true },
       }
     ]
   },{
@@ -68,12 +68,12 @@ export default [
       {
         path: '/system/user',
         component: () => import('../../views/system/user/index.vue'),
-        meta: { title: '用户管理' },
+        meta: { title: '用户管理', requireAuth: true },
       },
       {
         path: '/system/role',
         component: () => import('../../views/system/role/index.vue'),
-        meta: { title: '角色管理' },
+        meta: { title: '角色管理', requireAuth: true },
       }
     ]
   },{
@@ -84,12 +84,12 @@ export default [
       {
         path: '/result/success',
         component: () => import('../../views/result/success.vue'),
-        meta: { title: '成功页面' },
+        meta: { title: '成功页面', requireAuth: true },
       },
       {
         path: '/result/failure',
         component: () => import('../../views/result/failure.vue'),
-        meta: { title: '失败页面' },
+        meta: { title: '失败页面', requireAuth: true },
       },
     ]
   },{
@@ -100,12 +100,12 @@ export default [
       {
         path: '/table/base',
         component: () => import('../../views/table/base.vue'),
-        meta: { title: '查询列表' },
+        meta: { title: '查询列表', requireAuth: true },
       },
       {
         path: '/table/card',
         component: () => import('../../views/table/card.vue'),
-        meta: { title: '卡片列表' },
+        meta: { title: '卡片列表', requireAuth: true },
       }
     ]
   },{
@@ -116,12 +116,12 @@ export default [
       {
         path: '/form/base',
         component: () => import('../../views/form/base.vue'),
-        meta: { title: '基础表单' },
+        meta: { title: '基础表单', requireAuth: true },
       },      
       {
         path: '/form/step',
         component: () => import('../../views/form/step.vue'),
-        meta: { title: '分步表单' },
+        meta: { title: '分步表单', requireAuth: true },
       },
     ]
   },{
@@ -132,7 +132,7 @@ export default [
       {
         path: '/directive/permission',
         component: () => import('../../views/directive/permission.vue'),
-        meta: { title: '权限指令' },
+        meta: { title: '权限指令', requireAuth: true },
       },
     ]
   }

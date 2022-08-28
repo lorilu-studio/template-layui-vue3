@@ -1,13 +1,6 @@
 <template>
   <lay-container fluid="true" style="padding: 10px">
     <lay-row space="10">
-      <lay-col :md="24" :sm="24" :xs="24">
-        <lay-card>
-          <lay-notice-bar leftIcon="layui-icon-speaker"
-            text="以一颗冷静思辨的态度去看待这个物质浮躁的新时代，大环境，恰当处理自身与外界环境的矛盾，如何身心健康，自在的成为自己。" mode="link" background="whitesmoke">
-          </lay-notice-bar>
-        </lay-card>
-      </lay-col>
       <lay-col md="18" sm="18" xs="24">
         <lay-row :space="10">
           <lay-col :md="24">
@@ -173,7 +166,7 @@
               <template #title>
                 产品动态
               </template>
-              <a class="news">layui vue admin</a>
+              <a class="news">官网文档</a>
             </lay-card>
           </lay-col>
         </lay-row>
@@ -330,6 +323,7 @@ export default defineComponent({
   text-align: center;
   background-color: #009688 !important;
   color: #fff !important;
+  margin-bottom: 10px;
 }
 
 #main {
