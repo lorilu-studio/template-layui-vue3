@@ -31,6 +31,9 @@
             <lay-menu-item @click="refresh">
               <lay-icon type="layui-icon-refresh-one"></lay-icon>
             </lay-menu-item>
+            <lay-menu-item>
+              <GlobalBreadcrumb></GlobalBreadcrumb>
+            </lay-menu-item>
           </lay-menu>
           <lay-menu class="layui-layout-right">
             <lay-menu-item class="menu-search">
@@ -115,6 +118,7 @@ import { useAppStore } from "../store/app";
 import { useUserStore } from "../store/user";
 import GlobalSetup from "./Global/GlobalSetup.vue";
 import GlobalContent from "./Global/GlobalContent.vue";
+import GlobalBreadcrumb from "./Global/GlobalBreadcrumb.vue";
 import GlobalTab from "./Global/GlobalTab.vue";
 import GlobalMenu from "./Global/GlobalMenu.vue";
 import GlobalMenuSearch from "./Global/GlobalMenuSearch.vue";
@@ -127,6 +131,7 @@ export default {
     GlobalTab,
     GlobalMenu,
     GlobalMenuSearch,
+    GlobalBreadcrumb
   },
   setup() {
     const fullscreenRef = ref(null);
