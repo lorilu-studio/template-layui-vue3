@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
-import { useUserInfoStore } from "../store/userInfo";
+import { useUserStore } from "../store/user";
 import { layer } from '@layui/layui-vue';
 import router from '../router'
 
@@ -20,7 +20,7 @@ class Http {
 
         /* 请求拦截 */
         this.service.interceptors.request.use((config: AxiosRequestConfig) => {
-            const userInfoStore = useUserInfoStore();
+            const userInfoStore = useUserStore();
             if (userInfoStore.token) {
                 (config.headers as AxiosRequestHeaders).token = userInfoStore.token as string
             } else {

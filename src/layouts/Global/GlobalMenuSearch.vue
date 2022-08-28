@@ -1,7 +1,8 @@
 <template>
     <lay-dropdown class="global-menu-search">
         <lay-input prefix-icon="layui-icon-search"></lay-input>
-        <template #content></template>
+        <template #content>
+        </template>
     </lay-dropdown>
 </template>
 
@@ -11,7 +12,6 @@
 
 
 <script setup lang="ts">
-
 </script>
 
 <style lang="less">

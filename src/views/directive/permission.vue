@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-import { useUserInfoStore } from "../../store/userInfo";
+import { useUserStore } from "../../store/user";
 
 export default {
     setup() {
-        const userInfoStore = useUserInfoStore();
+        const userInfoStore = useUserStore();
         const permissions = userInfoStore.permissions;
         return {
             permissions

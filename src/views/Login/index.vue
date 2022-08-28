@@ -60,16 +60,16 @@
 </template>
 
 <script lang="ts">
-import { login, menu } from '../../api/module/user';
+import { login } from '../../api/module/user';
 import { defineComponent, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-import { useUserInfoStore } from '../../store/userInfo';
+import { useUserStore } from '../../store/user';
 import { layer } from "@layui/layer-vue";
 
 export default defineComponent({
   setup() {
     const router = useRouter();
-    const userInfoStore = useUserInfoStore();
+    const userStore = useUserStore();
     const method = ref("1");
     const remember = ref(false);
     const loginForm = reactive({account:"admin",password:"123456"})
@@ -77,9 +77,10 @@ export default defineComponent({
     const loginSubmit = async () => {
       let { data, code, msg } = await login(loginForm);
       if (code == 200) {
-        layer.msg(msg, { icon: 1 }, () => {
-          // 存储 token 缓存
-          userInfoStore.token = data.token;
+        layer.msg(msg, { icon: 1 }, async () => {
+          userStore.token = data.token;
+          await userStore.loadMenus();
+          await userStore.loadPermissions();
           router.push('/');
         })
       } else {
@@ -87,7 +88,6 @@ export default defineComponent({
       }
     }
     return {
-      userInfoStore,
       loginSubmit,
       loginForm,
       remember,

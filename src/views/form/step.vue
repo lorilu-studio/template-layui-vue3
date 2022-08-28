@@ -6,7 +6,7 @@
         </lay-card>
         <lay-container :fluid="true" style="padding: 10px;padding-top: 0px;">
             <lay-card style="padding:40px;">
-           
+                
             </lay-card>
         </lay-container>
     </div>

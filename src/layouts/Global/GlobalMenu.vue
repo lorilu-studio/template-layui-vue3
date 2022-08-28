@@ -9,7 +9,7 @@
     v-model:selectedKey="selectKey"
     @changeOpenKeys="changeOpenKeys"
   >
-    <GlobalMenuItem :menus="menus"></GlobalMenuItem>
+    <GlobalMenuItem :menus="userStore.menus"></GlobalMenuItem>
   </lay-menu>
 </template>
 
@@ -21,13 +21,15 @@ export default {
 
 <script lang="ts" setup>
 import { useRoute, useRouter } from "vue-router";
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { useAppStore } from "../../store/app";
+import { useUserStore } from "../../store/user";
 import GlobalMenuItem from "./GlobalMenuItem.vue";
 import { diff } from "../../library/arrayUtil";
 import { getNode, getParents } from "../../library/treeUtil";
 
 const appStore = useAppStore();
+const userStore = useUserStore();
 
 interface MenuProps {
   collapse: boolean;
@@ -50,180 +52,10 @@ watch(selectKey, (val) => {
   router.push(val);
 });
 
-const menu = ref([]);
-
-const menus = [
-  {
-    id: "/workspace",
-    icon: "layui-icon-home",
-    title: "工作空间",
-    children: [
-      {
-        id: "/workspace/workbench",
-        icon: "layui-icon-home",
-        title: "工作台",
-      },
-      {
-        id: "/workspace/console",
-        icon: "layui-icon-home",
-        title: "控制台",
-      },
-      {
-        id: "/workspace/analysis",
-        icon: "layui-icon-home",
-        title: "分析页",
-      },
-    ],
-  },
-  {
-    id: "/form",
-    icon: "layui-icon-home",
-    title: "表单页面",
-    children: [
-      {
-        id: "/form/base",
-        icon: "layui-icon-home",
-        title: "基础表单",
-      },
-      {
-        id: "/form/step",
-        icon: "layui-icon-home",
-        title: "分步表单",
-      },
-    ],
-  },
-  {
-    id: "/table",
-    icon: "layui-icon-home",
-    title: "列表页面",
-    children: [
-      {
-        id: "/table/base",
-        icon: "layui-icon-home",
-        title: "查询表格",
-      },
-      {
-        id: "/table/card",
-        icon: "layui-icon-home",
-        title: "卡片列表",
-      },
-    ],
-  },
-  {
-    id: "/result",
-    icon: "layui-icon-home",
-    title: "结果页面",
-    children: [
-      {
-        id: "/result/success",
-        icon: "layui-icon-home",
-        title: "成功页面",
-      },
-      {
-        id: "/result/failure",
-        icon: "layui-icon-home",
-        title: "失败页面",
-      },
-    ],
-  },
-  {
-    id: "/error",
-    icon: "layui-icon-home",
-    title: "异常页面",
-    children: [
-      {
-        id: "/error/403",
-        icon: "layui-icon-home",
-        title: "403",
-      },
-      {
-        id: "/error/404",
-        icon: "layui-icon-home",
-        title: "404",
-      },
-      {
-        id: "/error/500",
-        icon: "layui-icon-home",
-        title: "500",
-      },
-    ],
-  },
-  {
-    id: "/menu",
-    icon: "layui-icon-home",
-    title: "菜单嵌套",
-    children: [
-      {
-        id: "/menu/menu1",
-        icon: "layui-icon-home",
-        title: "二级菜单",
-        children: [
-          {
-            id: "/menu/menu1/menu1",
-            icon: "layui-icon-home",
-            title: "三级菜单",
-          },
-          {
-            id: "/menu/menu1/menu2",
-            icon: "layui-icon-home",
-            title: "三级菜单",
-          },
-        ],
-      },
-      {
-        id: "/menu/menu2",
-        icon: "layui-icon-home",
-        title: "二级菜单",
-        children: [
-          {
-            id: "/menu/menu2/menu1",
-            icon: "layui-icon-home",
-            title: "三级菜单",
-          },
-          {
-            id: "/menu/menu2/menu2",
-            icon: "layui-icon-home",
-            title: "三级菜单",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "/extends",
-    icon: "layui-icon-home",
-    title: "扩展组件",
-    children: [
-      {
-        id: "/result/success",
-        icon: "layui-icon-home",
-        title: "成功页面",
-      },
-      {
-        id: "/result/failure",
-        icon: "layui-icon-home",
-        title: "失败页面",
-      },
-    ],
-  },
-  {
-    id: "/directive",
-    icon: "layui-icon-home",
-    title: "内置指令",
-    children: [
-      {
-        id: "/directive/permission",
-        icon: "layui-icon-home",
-        title: "权限指令",
-      },
-    ],
-  },
-];
-
 const changeOpenKeys = (val: string[]) => {
   const addArr = diff(openKeys.value, val);
   if (val.length > openKeys.value.length && appStore.accordion) {
-    var arr = getParents(menus, addArr[0]);
+    var arr = getParents(userStore.menus, addArr[0]);
     openKeys.value = arr.map((item: any) =>{
       return item.id;
     })

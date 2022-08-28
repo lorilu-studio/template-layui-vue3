@@ -7,3 +7,7 @@ export const login = function(loginForm: any) {
 export const menu = function() {
     return Http.get('/user/menu') 
 }
+
+export const permission = function() {
+    return Http.get('/user/permission') 
+}

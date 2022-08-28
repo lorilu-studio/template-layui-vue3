@@ -1,5 +1,5 @@
 import { Directive } from 'vue';
-import { useUserInfoStore } from '../store/userInfo';
+import { useUserStore } from '../store/user';
 
 export const permission: Directive = {
     mounted(el, binding) {
@@ -12,7 +12,7 @@ export const permission: Directive = {
 
 const toolPermission = (el:any, binding:any) => {
     const { value } = binding;
-    const userInfoStore = useUserInfoStore();
+    const userInfoStore = useUserStore();
     const permissions = userInfoStore.permissions;
     if (value && value instanceof Array && value.length > 0) {
         const hasPermission = permissions.some((permission) => {

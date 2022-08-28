@@ -110,9 +110,9 @@
 </template>
 
 <script lang="ts">
-import { computed, nextTick, ref } from "vue";
+import { computed, ref } from "vue";
 import { useAppStore } from "../store/app";
-import { useUserInfoStore } from "../store/userInfo";
+import { useUserStore } from "../store/user";
 import GlobalSetup from "./Global/GlobalSetup.vue";
 import GlobalContent from "./Global/GlobalContent.vue";
 import GlobalTab from "./Global/GlobalTab.vue";
@@ -131,7 +131,7 @@ export default {
   setup() {
     const fullscreenRef = ref(null);
     const appStore = useAppStore();
-    const userInfoStore = useUserInfoStore();
+    const userInfoStore = useUserStore();
     const visible = ref(false);
     const router = useRouter();
     const sideWidth = computed(() => appStore.collapse ? "60px" : "220px")
@@ -153,7 +153,7 @@ export default {
       }, 500);
     };
     const logOut = () => {
-      const userInfoStore = useUserInfoStore();
+      const userInfoStore = useUserStore();
       userInfoStore.token = "";
       // 因为类型问题，这里会报错, 严格模式下不可以直接赋 {}
       userInfoStore.userInfo = {

@@ -14,5 +14,8 @@ Mock.mock(/\/user\/menu/,'get',(req: any,res: any) =>{
     return user.getMenu(req,res)
 });
 
+Mock.mock(/\/user\/permission/,'get',(req: any,res: any) =>{
+    return user.getPermission(req,res)
+});
 
 export default Mock;

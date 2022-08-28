@@ -188,6 +188,23 @@ const getInfo = (req: any, res: any)=> {
     return result;
 }
 
+const getPermission = (req: any, res: any)=> {
+  let item = JSON.parse(req.body);
+  let token = item ? item.token : null;
+  let result:Result = {
+    code: 200,
+    msg: "操作成功",
+    data: ['sys:user:add','sys:user:edit','sys:user:delete','sys:user:import','sys:user:export'],
+    success: true
+  }
+  if(item || token){
+    result.code = 99998;
+    result.msg = "请重新登录";
+    result.success = false;
+  }
+  return result;
+}
+
 const getMenu = (req: any, res: any)=> {
   let item = JSON.parse(req.body);
   let token = item ? item.token : null;
@@ -227,5 +244,5 @@ const getLogin = (req: any, res: any)=> {
 }
 
 export default{
-  getInfo, getMenu, getLogin
+  getInfo, getMenu, getLogin, getPermission
 }

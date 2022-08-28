@@ -41,7 +41,6 @@ const handlerChange = function(color: string) {
     margin-left: 14px;
     border-radius: 2px;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 15%);
-
     color: white;
 }
 </style>
