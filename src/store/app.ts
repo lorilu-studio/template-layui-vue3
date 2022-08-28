@@ -13,6 +13,7 @@ export const useAppStore = defineStore({
       theme: 'light',
       sideTheme: true,
       greyMode: false,
+      accordion: false,
       themeVariable: {
         "--global-checked-color": "#5fb878",
         "--global-primary-color": "#009688",

@@ -50,6 +50,8 @@ watch(selectKey, (val) => {
   router.push(val);
 });
 
+const menu = ref([]);
+
 const menus = [
   {
     id: "/workspace",
@@ -220,7 +222,7 @@ const menus = [
 
 const changeOpenKeys = (val: string[]) => {
   const addArr = diff(openKeys.value, val);
-  if (val.length > openKeys.value.length) {
+  if (val.length > openKeys.value.length && appStore.accordion) {
     var arr = getParents(menus, addArr[0]);
     openKeys.value = arr.map((item: any) =>{
       return item.id;

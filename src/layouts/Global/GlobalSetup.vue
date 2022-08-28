@@ -16,6 +16,9 @@
       <global-setup-item label="菜单折叠">
         <lay-switch v-model="appStore.collapse" size="xs"></lay-switch>
       </global-setup-item>
+      <global-setup-item label="手风琴">
+        <lay-switch v-model="appStore.accordion" size="xs"></lay-switch>
+      </global-setup-item>
       <global-setup-item label="夜间模式">
         <lay-switch v-model="appStore.theme" onswitch-value="dark" unswitch-value="light" size="xs"></lay-switch>
       </global-setup-item>

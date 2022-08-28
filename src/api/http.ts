@@ -42,7 +42,7 @@ class Http {
                     return response.data;
                 case 99998:
                     layer.confirm(
-                    '请重新登录', 
+                    '会话超时, 请重新登录', 
                     { icon : 2, yes: function(){
                         router.push('/login');
                         layer.closeAll()

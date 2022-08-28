@@ -7,7 +7,7 @@
         <img class="login-two-ball"
           src="https://assets.codehub.cn/micro-frontend/login/4bcf705dad662b33a4fc24aaa67f6234.png" />
         <div class="login-container">
-          <lay-tab type="brief" v-model="loginMethod">
+          <lay-tab type="brief" v-model="method">
             <lay-tab-item title="用户名" id="1">
               <lay-form-item :label-width="0">
                 <lay-input placeholder="用户名" v-model="loginForm.account"></lay-input>
@@ -16,7 +16,7 @@
                 <lay-input placeholder="密码" password type="password" v-model="loginForm.password"></lay-input>
               </lay-form-item>
               <lay-form-item :label-width="0">
-                <lay-checkbox name="like" v-model="rememberMe" skin="primary" label="1">记住密码</lay-checkbox>
+                <lay-checkbox name="like" v-model="remember" skin="primary" label="1">记住密码</lay-checkbox>
               </lay-form-item>
               <lay-form-item :label-width="0">
                 <lay-button type="primary" fluid="true" @click="loginSubmit">登录</lay-button>
@@ -60,7 +60,7 @@
 </template>
 
 <script lang="ts">
-import Http from '../../api/http';
+import { login, menu } from '../../api/module/user';
 import { defineComponent, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserInfoStore } from '../../store/userInfo';
@@ -70,33 +70,28 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const userInfoStore = useUserInfoStore();
-    // 登录方式
-    const loginMethod = ref("1");
-    // 记住密码
-    const rememberMe = ref(false);
-    // 登录表单数据
-    const loginForm = reactive({
-      account: "admin",
-      password: "123456"
-    })
-    // 登录提交
+    const method = ref("1");
+    const remember = ref(false);
+    const loginForm = reactive({account:"admin",password:"123456"})
+
     const loginSubmit = async () => {
-      let { data, code, msg } = await Http.post('/login', loginForm);
+      let { data, code, msg } = await login(loginForm);
       if (code == 200) {
-        layer.msg(msg, { icon: 1, time: 2000 }, () => {
+        layer.msg(msg, { icon: 1 }, () => {
+          // 存储 token 缓存
           userInfoStore.token = data.token;
           router.push('/');
         })
       } else {
-        layer.msg(msg, { icon: 2, time: 2000 })
+        layer.msg(msg, { icon: 2 })
       }
     }
     return {
       userInfoStore,
       loginSubmit,
-      loginMethod,
-      rememberMe,
       loginForm,
+      remember,
+      method,
     }
   },
 });
