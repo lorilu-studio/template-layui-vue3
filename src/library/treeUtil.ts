@@ -1,23 +1,31 @@
-const getDepth = function () {
-    
-}
+const getDepth = function () {};
 
-const familyTree = function (arr1: any[], id: string) {
-    var temp: any[] = []
-    var forFn = function (arr: any[], id: string) {
-      for (var i = 0; i < arr.length; i++) {
-        var item = arr[i]
-        if (item.id === id) {
-          temp.push(item)
-          forFn(arr1, item.parentId)
-          break
-        } else {
-          if (item.children) {
-            forFn(item.children, id)
-          }
+export const getNode = function(list: any[], id: string): any {
+  for (let i in list) {
+    let item = list[i];
+    if (item.id === id) {
+      return item;
+    } else {
+      if (item.children) {
+        let value = getNode(item.children, id);
+        if (value) {
+          return value;
         }
       }
     }
-    forFn(arr1, id)
-    return temp
+  }
+}
+
+export const getParents = function(list:any[], id: string) : any{
+  for (let i in list) {
+      if (list[i].id === id) {
+         return [list[i]]
+      }
+      if (list[i].children) {
+        let node = getParents(list[i].children, id)
+        if (node !== undefined) {
+          return node.concat(list[i])
+        }
+      }
+   }    
 }

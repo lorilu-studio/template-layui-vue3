@@ -6,7 +6,7 @@
     <lay-layout
       :class="[
         appStore.tab ? 'has-tab' : '',
-        collapseState ? 'collapse' : '',
+        appStore.collapse ? 'collapse' : '',
         appStore.greyMode ? 'grey-mode' : '',
       ]"
     >
@@ -14,7 +14,7 @@
       <lay-side :width="sideWidth">
         <lay-logo v-if="appStore.logo"></lay-logo>
         <lay-scroll style="height: calc(100% - 62px)">
-          <global-menu :collapse="collapseState"></global-menu>
+          <global-menu :collapse="appStore.collapse"></global-menu>
         </lay-scroll>
       </lay-side>
       <lay-layout style="width: 0px">
@@ -110,7 +110,7 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { computed, nextTick, ref } from "vue";
 import { useAppStore } from "../store/app";
 import { useUserInfoStore } from "../store/userInfo";
 import GlobalSetup from "./Global/GlobalSetup.vue";
@@ -132,32 +132,26 @@ export default {
     const fullscreenRef = ref(null);
     const appStore = useAppStore();
     const userInfoStore = useUserInfoStore();
-    const collapseState = ref(false);
     const visible = ref(false);
-    const sideWidth = ref("220px");
     const router = useRouter();
+    const sideWidth = computed(() => appStore.collapse ? "60px" : "220px")
 
-    // 配置显隐
     const changeVisible = function () {
       visible.value = !visible.value;
     };
 
     const currentIndex = ref("1");
 
-    // 侧边状态
     const collapse = function () {
-      collapseState.value = !collapseState.value;
-      sideWidth.value = collapseState.value ? "60px" : "220px";
+      appStore.collapse = !appStore.collapse;
     };
 
-    // 路由刷新
     const refresh = function () {
       appStore.routerAlive = false;
       setTimeout(function () {
         appStore.routerAlive = true;
       }, 500);
     };
-    // 注销登录
     const logOut = () => {
       const userInfoStore = useUserInfoStore();
       userInfoStore.token = "";
@@ -174,7 +168,6 @@ export default {
     return {
       sideWidth,
       changeVisible,
-      collapseState,
       fullscreenRef,
       collapse,
       appStore,

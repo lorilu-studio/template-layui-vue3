@@ -30,17 +30,18 @@ const handlerChange = function(color: string) {
 
 <style>
 .color-list {
-    margin: 20px 0px 40px 0px;
+    margin: 20px 0px 30px 0px;
 }
 .color-list li {
     float: left;
     text-align: center;
-    height: 30px;
-    line-height: 30px;
-    width: 30px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
     margin-left: 14px;
     border-radius: 2px;
-    color: white;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 15%);
+
+    color: white;
 }
 </style>

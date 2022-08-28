@@ -9,7 +9,9 @@ export const useAppStore = defineStore({
       level: true,
       inverted: false,
       routerAlive: true,
+      collapse: false,
       theme: 'light',
+      sideTheme: true,
       greyMode: false,
       themeVariable: {
         "--global-checked-color": "#5fb878",

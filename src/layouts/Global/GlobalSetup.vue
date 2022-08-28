@@ -13,6 +13,9 @@
       <global-setup-item label="菜单反选">
         <lay-switch v-model="appStore.inverted" size="xs"></lay-switch>
       </global-setup-item>
+      <global-setup-item label="菜单折叠">
+        <lay-switch v-model="appStore.collapse" size="xs"></lay-switch>
+      </global-setup-item>
       <global-setup-item label="夜间模式">
         <lay-switch v-model="appStore.theme" onswitch-value="dark" unswitch-value="light" size="xs"></lay-switch>
       </global-setup-item>
@@ -21,6 +24,9 @@
       </global-setup-item>
       <global-setup-item label="灰色模式">
         <lay-switch v-model="appStore.greyMode" size="xs"></lay-switch>
+      </global-setup-item>
+      <global-setup-item label="菜单主题">
+        <lay-switch v-model="appStore.sideTheme" onswitch-value="dark" unswitch-value="light" size="xs"></lay-switch>
       </global-setup-item>
     </div>
   </lay-layer>
