@@ -31,14 +31,11 @@
             <lay-menu-item @click="refresh">
               <lay-icon type="layui-icon-refresh-one"></lay-icon>
             </lay-menu-item>
-            <lay-menu-item>
+            <lay-menu-item v-if="appStore.breadcrumb">
               <GlobalBreadcrumb></GlobalBreadcrumb>
             </lay-menu-item>
           </lay-menu>
           <lay-menu class="layui-layout-right">
-            <lay-menu-item class="menu-search">
-              <GlobalMenuSearch></GlobalMenuSearch>
-            </lay-menu-item>
             <lay-menu-item>
               <lay-fullscreen v-slot="{ toggle, isFullscreen }">
                 <lay-icon
@@ -121,7 +118,6 @@ import GlobalContent from "./Global/GlobalContent.vue";
 import GlobalBreadcrumb from "./Global/GlobalBreadcrumb.vue";
 import GlobalTab from "./Global/GlobalTab.vue";
 import GlobalMenu from "./Global/GlobalMenu.vue";
-import GlobalMenuSearch from "./Global/GlobalMenuSearch.vue";
 import { useRouter } from "vue-router";
 
 export default {
@@ -130,7 +126,6 @@ export default {
     GlobalContent,
     GlobalTab,
     GlobalMenu,
-    GlobalMenuSearch,
     GlobalBreadcrumb
   },
   setup() {

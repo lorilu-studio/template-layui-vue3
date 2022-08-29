@@ -11,6 +11,7 @@ export const useAppStore = defineStore({
       routerAlive: true,
       collapse: false,
       theme: 'light',
+      breadcrumb: true,
       sideTheme: true,
       greyMode: false,
       accordion: false,

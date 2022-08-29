@@ -6,6 +6,19 @@
     </lay-breadcrumb>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    name: "GlobalBreadcrumb",
+    setup() {
+        
+
+    },
+})
+</script>
+
+
 <script lang="ts" setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";

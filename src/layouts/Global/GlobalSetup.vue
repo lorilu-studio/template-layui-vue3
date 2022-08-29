@@ -31,6 +31,9 @@
       <global-setup-item label="菜单主题">
         <lay-switch v-model="appStore.sideTheme" onswitch-value="dark" unswitch-value="light" size="xs"></lay-switch>
       </global-setup-item>
+      <global-setup-item label="面包屑">
+        <lay-switch v-model="appStore.breadcrumb" size="xs"></lay-switch>
+      </global-setup-item>
     </div>
   </lay-layer>
 </template>
