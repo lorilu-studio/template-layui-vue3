@@ -33,6 +33,33 @@ export const useAppStore = defineStore({
         },{
           key: 'theme',
           storage: localStorage
+        },{
+          key: 'logo',
+          storage: localStorage
+        },{
+          key: 'level',
+          storage: localStorage
+        },{
+          key: 'inverted',
+          storage: localStorage
+        },{
+          key: 'theme',
+          storage: localStorage
+        },{
+          key: 'breadcrumb',
+          storage: localStorage
+        },{
+          key: 'sideTheme',
+          storage: localStorage
+        },{
+          key: 'greyMode',
+          storage: localStorage
+        },{
+          key: 'accordion',
+          storage: localStorage
+        },{
+          key: 'themeVariable',
+          storage: localStorage
         }
       ]
   }

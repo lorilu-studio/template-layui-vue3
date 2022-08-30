@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@layui/layui-vue': ^1.4.6
+  '@layui/layui-vue': ^1.4.7-alpha.1
   '@types/node': ^18.7.8
   '@types/nprogress': ^0.2.0
   '@vitejs/plugin-vue': ^2.2.0
@@ -15,7 +15,6 @@ specifiers:
   nprogress: ^0.2.0
   pinia: ^2.0.20
   pinia-plugin-persist: ^1.0.0
-  pinia-plugin-persist-uni: ^1.1.4
   typescript: ^4.5.4
   unplugin-auto-import: ^0.7.1
   unplugin-layui-vue-resolver: ^0.0.12
@@ -26,7 +25,7 @@ specifiers:
   vue-tsc: ^0.29.8
 
 dependencies:
-  '@layui/layui-vue': 1.4.6_vue@3.2.37
+  '@layui/layui-vue': 1.4.7-alpha.1_vue@3.2.37
   axios: 0.27.2
   c-scrollbar: 1.0.2
   echarts: 5.3.3
@@ -35,7 +34,6 @@ dependencies:
   nprogress: 0.2.0
   pinia: 2.0.20_typescript@4.7.4+vue@3.2.37
   pinia-plugin-persist: 1.0.0_pinia@2.0.20+vue@3.2.37
-  pinia-plugin-persist-uni: 1.1.5_pinia@2.0.20+vue@3.2.37
   vue: 3.2.37
   vue-router: 4.1.3_vue@3.2.37
 
@@ -153,8 +151,8 @@ packages:
     resolution: {integrity: sha512-db46XsSY/XLEE3JvI9QL7nEoHL0+FHoQRT9pyQ1+a01D0rgegycyQ1OAIBpaJ0/vqoNGlQFRjX0YYPGds9nB+A==}
     dev: false
 
-  /@layui/layui-vue/1.4.6_vue@3.2.37:
-    resolution: {integrity: sha512-m4e/zW613OdE36vFk4a40iUI/IuC6EecEQ7klkzkukbwFt4nL9OlmZhP9j/goSpe/DGaeyjgFvkFn1X9bSz9SA==}
+  /@layui/layui-vue/1.4.7-alpha.1_vue@3.2.37:
+    resolution: {integrity: sha512-b1dcfDggcrJdIQb3K4hpg6OZFXSzAAkVfPF5ZDVIQUnQw8WD7UqwAJ8nxCs1rrDemcBn6/nYzDuEsqFEjfQDRg==}
     dependencies:
       '@layui/icons-vue': 1.0.9
       '@layui/layer-vue': 1.4.2
@@ -1210,21 +1208,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
     optional: true
-
-  /pinia-plugin-persist-uni/1.1.5_pinia@2.0.20+vue@3.2.37:
-    resolution: {integrity: sha512-FSyRlWQJOdvj9qdfxB9bVtJTb0grrg1POjupBvpFICtzHzRAziOxBLBZD6LcWl4ZjiA8COVbMbwZyR0fxTPsKQ==}
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0
-      pinia: ^2.0.0
-      vue: ^2.0.0 || >=3.0.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      pinia: 2.0.20_typescript@4.7.4+vue@3.2.37
-      vue: 3.2.37
-      vue-demi: 0.12.5_vue@3.2.37
-    dev: false
 
   /pinia-plugin-persist/1.0.0_pinia@2.0.20+vue@3.2.37:
     resolution: {integrity: sha512-M4hBBd8fz/GgNmUPaaUsC29y1M09lqbXrMAHcusVoU8xlQi1TqgkWnnhvMikZwr7Le/hVyMx8KUcumGGrR6GVw==}

@@ -7,15 +7,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-    name: "GlobalBreadcrumb",
-    setup() {
-        
-
-    },
-})
+export default {
+    name: "GlobalBreadcrumb"
+}
 </script>
 
 
@@ -27,5 +21,5 @@ import { useUserStore } from "../../store/user";
 
 const userStore = useUserStore();
 const route = useRoute();
-const breadcrumbs = computed(() => getParents(userStore.menus, route.path).reverse());
+const breadcrumbs = computed(() => getParents(userStore.menus, route.path)?.reverse());
 </script>

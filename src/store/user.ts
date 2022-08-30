@@ -26,10 +26,21 @@ export const useUserStore = defineStore({
     }
   },
   persist: {
-      enabled: true,
-      detached: true,
-      strategies: [
-        {key: 'userInfo', storage: localStorage,  }
-      ]
+    enabled: true,
+    strategies: [
+      {
+        key: 'token',
+        storage: localStorage
+      },{
+        key: 'userInfo',
+        storage: localStorage
+      },{
+        key: 'permissions',
+        storage: localStorage
+      },{
+        key: 'menus',
+        storage: localStorage
+      }
+    ]
   }
 })
