@@ -11,7 +11,7 @@
       ]"
     >
       <!-- side -->
-      <lay-side :width="sideWidth">
+      <lay-side :width="sideWidth" :class="appStore.sideTheme == 'dark' ? 'dark':'light'">
         <lay-logo v-if="appStore.logo"></lay-logo>
         <lay-scroll style="height: calc(100% - 62px)">
           <global-menu :collapse="appStore.collapse"></global-menu>
@@ -23,7 +23,7 @@
           <lay-menu class="layui-layout-left">
             <lay-menu-item @click="collapse">
               <lay-icon
-                v-if="collapseState"
+                v-if="appStore.collapse"
                 type="layui-icon-spread-left"
               ></lay-icon>
               <lay-icon v-else type="layui-icon-shrink-right"></lay-icon>

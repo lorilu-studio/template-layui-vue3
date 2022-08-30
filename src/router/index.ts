@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory, NavigationGuardNext, RouteLocationN
 import routes from './module/base-routes'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { useUserStore } from "../store/user";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -24,10 +25,9 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, n
   NProgress.start();
   if(to.meta.requireAuth) {
     next();
-  }
-  else if(to.matched.length == 0) {
+  } else if(to.matched.length == 0) {
     next({path: '/error/404'})
-  } else {
+  }  else {
     next();
   }
 })
