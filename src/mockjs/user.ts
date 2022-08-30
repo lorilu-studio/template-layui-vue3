@@ -43,6 +43,11 @@ const menus = [
         id: "/form/step",
         icon: "layui-icon-home",
         title: "分步表单"
+      },
+      {
+        id: "/form/intricate",
+        icon: "layui-icon-home",
+        title: "复杂表单"
       }
     ]
   },

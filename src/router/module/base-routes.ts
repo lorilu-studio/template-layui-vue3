@@ -123,6 +123,11 @@ export default [
         component: () => import('../../views/form/step.vue'),
         meta: { title: '分步表单', requireAuth: true },
       },
+      {
+        path: '/form/intricate',
+        component: () => import('../../views/form/intricate.vue'),
+        meta: { title: '复杂表单', requireAuth: true },
+      },
     ]
   },{
     path: '/directive',
