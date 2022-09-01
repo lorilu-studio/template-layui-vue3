@@ -7,14 +7,12 @@ specifiers:
   '@vitejs/plugin-vue': ^2.2.0
   '@vue/compiler-sfc': ^3.2.33
   axios: ^0.27.2
-  c-scrollbar: ^1.0.2
   echarts: ^5.3.3
   js-base64: ^3.7.2
   less: ^4.1.2
   mockjs: ^1.1.0
   nprogress: ^0.2.0
   pinia: ^2.0.20
-  pinia-plugin-persist: ^1.0.0
   pinia-plugin-persistedstate: ^2.1.1
   typescript: ^4.5.4
   unplugin-auto-import: ^0.7.1
@@ -28,13 +26,11 @@ specifiers:
 dependencies:
   '@layui/layui-vue': 1.4.8-alpha.1_vue@3.2.37
   axios: 0.27.2
-  c-scrollbar: 1.0.2
   echarts: 5.3.3
   js-base64: 3.7.2
   mockjs: 1.1.0
   nprogress: 0.2.0
   pinia: 2.0.20_typescript@4.7.4+vue@3.2.37
-  pinia-plugin-persist: 1.0.0_pinia@2.0.20+vue@3.2.37
   pinia-plugin-persistedstate: 2.1.1_pinia@2.0.20
   vue: 3.2.37
   vue-router: 4.1.3_vue@3.2.37
@@ -478,12 +474,6 @@ packages:
     dependencies:
       fill-range: 7.0.1
     dev: true
-
-  /c-scrollbar/1.0.2:
-    resolution: {integrity: sha512-aqY6O8XzOQ+pSFgVTciqUt+kUt2usJxNwGbmH7WhdgH6gQVjgkyunPqjrhNdBta41UvU5y84x45KHUugb9uAxQ==}
-    dependencies:
-      vue: 3.2.37
-    dev: false
 
   /call-bind/1.0.2:
     resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==}
@@ -1211,21 +1201,6 @@ packages:
     dev: true
     optional: true
 
-  /pinia-plugin-persist/1.0.0_pinia@2.0.20+vue@3.2.37:
-    resolution: {integrity: sha512-M4hBBd8fz/GgNmUPaaUsC29y1M09lqbXrMAHcusVoU8xlQi1TqgkWnnhvMikZwr7Le/hVyMx8KUcumGGrR6GVw==}
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0
-      pinia: ^2.0.0
-      vue: ^2.0.0 || >=3.0.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      pinia: 2.0.20_typescript@4.7.4+vue@3.2.37
-      vue: 3.2.37
-      vue-demi: 0.12.5_vue@3.2.37
-    dev: false
-
   /pinia-plugin-persistedstate/2.1.1_pinia@2.0.20:
     resolution: {integrity: sha512-HUgsU5IRtM75eAQiIqzT3p1oPEuYH1/B2ipTMU++yE+FV0LkHaBswdKXs0RMWYCmugO8s62oxLTh/N1dLNp+5A==}
     peerDependencies:
@@ -1737,21 +1712,6 @@ packages:
       vscode-pug-languageservice: 0.29.8
       vscode-typescript-languageservice: 0.29.8
     dev: true
-
-  /vue-demi/0.12.5_vue@3.2.37:
-    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      vue: 3.2.37
-    dev: false
 
   /vue-demi/0.13.8_vue@3.2.37:
     resolution: {integrity: sha512-Vy1zbZhCOdsmvGR6tJhAvO5vhP7eiS8xkbYQSoVa7o6KlIy3W8Rc53ED4qI4qpeRDjv3mLfXSEpYU6Yq4pgXRg==}

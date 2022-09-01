@@ -18,6 +18,14 @@ export function useMenu() {
 
     watch(route, () => {
         selectedKey.value = route.path;
+        if(isAccordion) {
+            const parents = getParents(menus.value, route.path);
+            if(parents && parents.length > 0) {
+                openKeys.value = parents.map((item: any) =>{
+                    return item.id;
+                });
+            }
+        }
     }, { immediate: true })
 
     watch(selectedKey, () => {

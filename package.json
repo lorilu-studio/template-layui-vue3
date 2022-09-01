@@ -9,7 +9,6 @@
   "dependencies": {
     "@layui/layui-vue": "^1.4.8-alpha.1",
     "axios": "^0.27.2",
-    "c-scrollbar": "^1.0.2",
     "echarts": "^5.3.3",
     "js-base64": "^3.7.2",
     "mockjs": "^1.1.0",
