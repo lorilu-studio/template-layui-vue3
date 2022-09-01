@@ -11,6 +11,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
+  
 interface ColorProps {
   modelValue: string;
   presetColor?: string[];

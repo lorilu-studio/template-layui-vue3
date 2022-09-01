@@ -1,9 +1,14 @@
 <template>
   <lay-layer :title="false" :closeBtn="false" type="drawer" area="300px" v-model="visible">
     <div class="global-setup">    
+      <div class="global-setup-title">Overall style</div>
+      <global-setup-theme></global-setup-theme>
+      <global-setup-theme></global-setup-theme>
       <global-color v-model="appStore.themeVariable['--global-primary-color']"></global-color>
       <br>
       <br> 
+      <lay-line></lay-line>
+      <div class="global-setup-title">Configure Oth</div>
       <global-setup-item label="多选项卡">
         <lay-switch v-model="appStore.tab" size="xs"></lay-switch>
       </global-setup-item>
@@ -46,12 +51,12 @@ export default {
 
 <script lang="ts" setup>
 import globalSetupItem from "./GlobalSetupItem.vue";
+import globalSetupTheme from "./GlobalSetupTheme.vue";
 import globalColor from "./GlobalColor.vue";
 import { useAppStore } from "../../store/app";
 import { ref, watch } from "vue";
 
 const appStore = useAppStore();
-
 const emits = defineEmits(["update:modelValue"]);
 
 interface SetupProps {
@@ -79,6 +84,12 @@ watch(
 <style>
 .global-setup {
   padding: 10px;
+}
+
+.global-setup-title {
+  font-size: 13px;
+  margin-bottom: 10px;
+  padding: 10px 10px 0px 10px;
 }
 .global-setup .layui-colorpicker {
   margin-right: 10px;

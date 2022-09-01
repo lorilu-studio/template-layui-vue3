@@ -4,12 +4,12 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useUserStore } from "../store/user";
 
+NProgress.configure({ showSpinner: false })
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-
-NProgress.configure({ showSpinner: false })
 
 /**
  * Router 前置拦截

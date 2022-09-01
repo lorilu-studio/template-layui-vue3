@@ -6,10 +6,10 @@
     :inverted="appStore.inverted"
     :theme="appStore.sideTheme"
     :openKeys="openKeys"
-    v-model:selectedKey="selectKey"
+    v-model:selectedKey="selectedKey"
     @changeOpenKeys="changeOpenKeys"
   >
-    <GlobalMenuItem :menus="userStore.menus"></GlobalMenuItem>
+    <GlobalMenuItem :menus="menus"></GlobalMenuItem>
   </lay-menu>
 </template>
 
@@ -20,13 +20,10 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { useRoute, useRouter } from "vue-router";
-import { computed, ref, watch } from "vue";
 import { useAppStore } from "../../store/app";
 import { useUserStore } from "../../store/user";
 import GlobalMenuItem from "./GlobalMenuItem.vue";
-import { diff } from "../../library/arrayUtil";
-import { getNode, getParents } from "../../library/treeUtil";
+import { useMenu } from "../composable/useMenu";
 
 const appStore = useAppStore();
 const userStore = useUserStore();
@@ -39,30 +36,7 @@ const props = withDefaults(defineProps<MenuProps>(), {
   collapse: false,
 });
 
-const route = useRoute();
-const router = useRouter();
-const selectKey = ref(route.path);
-const openKeys = ref(["/workspace"]);
-
-watch(route, (val) => {
-  selectKey.value = route.path;
-});
-
-watch(selectKey, (val) => {
-  router.push(val);
-});
-
-const changeOpenKeys = (val: string[]) => {
-  const addArr = diff(openKeys.value, val);
-  if (val.length > openKeys.value.length && appStore.accordion) {
-    var arr = getParents(userStore.menus, addArr[0]);
-    openKeys.value = arr.map((item: any) =>{
-      return item.id;
-    })
-  } else {
-    openKeys.value = val;
-  }
-};
+const { selectedKey, openKeys, changeOpenKeys, isAccordion, menus} = useMenu();
 </script>
 
 <style>
@@ -84,7 +58,7 @@ const changeOpenKeys = (val: string[]) => {
 }
 
 .layui-nav-tree .layui-nav-item > a .layui-nav-more {
-  font-size: 12px;
+  font-size: 12px!important;
   padding: 3px 0px;
 }
 </style>
