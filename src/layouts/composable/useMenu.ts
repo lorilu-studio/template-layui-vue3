@@ -18,12 +18,13 @@ export function useMenu() {
 
     watch(route, () => {
         selectedKey.value = route.path;
-        if(isAccordion) {
-            const parents = getParents(menus.value, route.path);
-            if(parents && parents.length > 0) {
-                openKeys.value = parents.map((item: any) =>{
-                    return item.id;
-                });
+        const andParents = getParents(menus.value, route.path);
+        if(andParents && andParents.length > 0) {
+            let andParentKeys = andParents.map((item: any) => item.id);
+            if(isAccordion.value) {
+                openKeys.value = andParentKeys;
+            } else {
+                openKeys.value = [...andParentKeys, ...openKeys.value];
             }
         }
     }, { immediate: true })
@@ -38,7 +39,7 @@ export function useMenu() {
 
     function changeOpenKeys(keys: string[]) {
         const addArr = diff(openKeys.value, keys);
-        if (keys.length > openKeys.value.length && isAccordion) {
+        if (keys.length > openKeys.value.length && isAccordion.value) {
           var arr = getParents(menus.value, addArr[0]);
           openKeys.value = arr.map((item: any) =>{
             return item.id;

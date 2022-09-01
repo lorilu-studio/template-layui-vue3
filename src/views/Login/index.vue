@@ -128,6 +128,10 @@ export default defineComponent({
   min-height: 100vh;
 }
 
+.login-wrap :deep(.layui-input-block) {
+  margin-left: 0!important;
+}
+
 .login-root {
   position: absolute;
   top: 50%;
@@ -196,8 +200,7 @@ export default defineComponent({
 }
 
 .login-container .layui-btn {
-  margin-top: 34px;
-  margin-bottom: 12px;
+  margin: 10px 0px 10px 0px;
   letter-spacing: 2px;
   height: 40px;
 }
