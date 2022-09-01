@@ -18,11 +18,15 @@ export function useMenu() {
 
     watch(route, () => {
         selectedKey.value = route.path;
-    })
+    }, { immediate: true })
 
     watch(selectedKey, () => {
-        router.push(selectedKey.value)
+        router.push(selectedKey.value);
     })
+
+    function changeSelectedKey(key: string) {
+        selectedKey.value = key;
+    }
 
     function changeOpenKeys(keys: string[]) {
         const addArr = diff(openKeys.value, keys);
@@ -37,6 +41,6 @@ export function useMenu() {
     }
 
     return {
-        selectedKey, openKeys, changeOpenKeys, isAccordion, menus
+        selectedKey, openKeys, changeOpenKeys, changeSelectedKey, isAccordion, menus
     }
 }

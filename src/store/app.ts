@@ -25,42 +25,7 @@ export const useAppStore = defineStore({
     }
   },
   persist: {
-      enabled: true,
-      strategies: [
-        {
-          key: 'tab',
-          storage: localStorage
-        },{
-          key: 'theme',
-          storage: localStorage
-        },{
-          key: 'logo',
-          storage: localStorage
-        },{
-          key: 'level',
-          storage: localStorage
-        },{
-          key: 'inverted',
-          storage: localStorage
-        },{
-          key: 'theme',
-          storage: localStorage
-        },{
-          key: 'breadcrumb',
-          storage: localStorage
-        },{
-          key: 'sideTheme',
-          storage: localStorage
-        },{
-          key: 'greyMode',
-          storage: localStorage
-        },{
-          key: 'accordion',
-          storage: localStorage
-        },{
-          key: 'themeVariable',
-          storage: localStorage
-        }
-      ]
+    storage: localStorage,
+    paths: ['tab', 'theme', 'logo', 'level', 'inverted', 'breadcrumb', 'sideTheme', 'greyMode', 'accordion' , 'themeVariable'],
   }
 })

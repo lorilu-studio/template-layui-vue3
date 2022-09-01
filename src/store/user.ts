@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { menu, permission } from "../api/module/user";
 
 export const useUserStore = defineStore({
-  id: 'userInfo',
+  id: 'user',
   state: () => {
     return {
       token: '',
@@ -26,21 +26,7 @@ export const useUserStore = defineStore({
     }
   },
   persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: 'token',
-        storage: localStorage
-      },{
-        key: 'userInfo',
-        storage: localStorage
-      },{
-        key: 'permissions',
-        storage: localStorage
-      },{
-        key: 'menus',
-        storage: localStorage
-      }
-    ]
+    storage: localStorage,
+    paths: ['token', 'userInfo', 'permissions', 'menus' ],
   }
 })

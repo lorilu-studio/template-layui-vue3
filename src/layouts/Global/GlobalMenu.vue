@@ -6,8 +6,9 @@
     :inverted="appStore.inverted"
     :theme="appStore.sideTheme"
     :openKeys="openKeys"
-    v-model:selectedKey="selectedKey"
+    :selectedKey="selectedKey"
     @changeOpenKeys="changeOpenKeys"
+    @changeSelectedKey="changeSelectedKey"
   >
     <GlobalMenuItem :menus="menus"></GlobalMenuItem>
   </lay-menu>
@@ -36,7 +37,7 @@ const props = withDefaults(defineProps<MenuProps>(), {
   collapse: false,
 });
 
-const { selectedKey, openKeys, changeOpenKeys, isAccordion, menus} = useMenu();
+const { selectedKey, openKeys, changeOpenKeys, changeSelectedKey, isAccordion, menus} = useMenu();
 </script>
 
 <style>

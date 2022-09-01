@@ -15,6 +15,7 @@ specifiers:
   nprogress: ^0.2.0
   pinia: ^2.0.20
   pinia-plugin-persist: ^1.0.0
+  pinia-plugin-persistedstate: ^2.1.1
   typescript: ^4.5.4
   unplugin-auto-import: ^0.7.1
   unplugin-layui-vue-resolver: ^0.0.12
@@ -34,6 +35,7 @@ dependencies:
   nprogress: 0.2.0
   pinia: 2.0.20_typescript@4.7.4+vue@3.2.37
   pinia-plugin-persist: 1.0.0_pinia@2.0.20+vue@3.2.37
+  pinia-plugin-persistedstate: 2.1.1_pinia@2.0.20
   vue: 3.2.37
   vue-router: 4.1.3_vue@3.2.37
 
@@ -1222,6 +1224,17 @@ packages:
       pinia: 2.0.20_typescript@4.7.4+vue@3.2.37
       vue: 3.2.37
       vue-demi: 0.12.5_vue@3.2.37
+    dev: false
+
+  /pinia-plugin-persistedstate/2.1.1_pinia@2.0.20:
+    resolution: {integrity: sha512-HUgsU5IRtM75eAQiIqzT3p1oPEuYH1/B2ipTMU++yE+FV0LkHaBswdKXs0RMWYCmugO8s62oxLTh/N1dLNp+5A==}
+    peerDependencies:
+      pinia: ^2.0.0
+    peerDependenciesMeta:
+      pinia:
+        optional: true
+    dependencies:
+      pinia: 2.0.20_typescript@4.7.4+vue@3.2.37
     dev: false
 
   /pinia/2.0.20_typescript@4.7.4+vue@3.2.37:
