@@ -23,6 +23,9 @@ const router = createRouter({
  */
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   NProgress.start();
+
+  const userStore = useUserStore();
+
   if(to.meta.requireAuth) {
     next();
   } else if(to.matched.length == 0) {
