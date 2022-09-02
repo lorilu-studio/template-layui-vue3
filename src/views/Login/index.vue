@@ -205,7 +205,7 @@ export default defineComponent({
   height: 40px;
 }
 
-.login-container .layui-line-horizontal {
+.login-container .layui-line-horizontal { 
   letter-spacing: 2px;
   margin-bottom: 34px;
   margin-top: 24px;

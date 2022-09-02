@@ -39,6 +39,9 @@
       <global-setup-item label="面包屑">
         <lay-switch v-model="appStore.breadcrumb" size="xs"></lay-switch>
       </global-setup-item>
+      <div style="padding:15px">
+        <lay-button border="green" border-style="dashed" :fluid="true">重置配置</lay-button>
+      </div>
     </div>
   </lay-layer>
 </template>

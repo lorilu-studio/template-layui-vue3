@@ -65,6 +65,11 @@ const menus = [
         id: "/table/card",
         icon: "layui-icon-home",
         title: "卡片列表"
+      },
+      {
+        id: "/table/text",
+        icon: "layui-icon-home",
+        title: "图文列表"
       }
     ]
   },

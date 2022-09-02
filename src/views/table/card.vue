@@ -27,9 +27,12 @@
                             <lay-card class="card-list-item">
                                 <img src="https://gw.alipayobjects.com/zos/rmsportal/iXjVmWVHbCJAyqvDxdtx.png" />
                                 <template #footer>
-                                    <a>编辑</a>
-                                    <lay-line direction="vertical"></lay-line>
-                                    <a>删除</a>
+                                    <div class="button-list">
+                                        <div><lay-icon type="layui-icon-flag"></lay-icon></div>
+                                        <div><lay-icon type="layui-icon-edit"></lay-icon></div>
+                                        <div><lay-icon type="layui-icon-share"></lay-icon></div>
+                                        <div><lay-icon type="layui-icon-more"></lay-icon></div>    
+                                    </div>
                                 </template>
                             </lay-card>
                         </lay-col>
@@ -77,5 +80,15 @@ export default {
 
 :deep(.card-list-item .layui-card-body){
     padding: 0px !important;
+}
+
+.button-list {
+    display: flex;
+}
+
+.button-list > div {
+    flex: 1;
+    text-align: center;
+    color: #909399;
 }
 </style>

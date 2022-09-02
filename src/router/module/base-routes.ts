@@ -106,6 +106,11 @@ export default [
         path: '/table/card',
         component: () => import('../../views/table/card.vue'),
         meta: { title: '卡片列表', requireAuth: true },
+      },
+      {
+        path: '/table/text',
+        component: () => import('../../views/table/text.vue'),
+        meta: { title: '图文列表', requireAuth: true },
       }
     ]
   },{
