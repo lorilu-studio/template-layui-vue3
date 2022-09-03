@@ -2,13 +2,9 @@
   <lay-layer :title="false" :closeBtn="false" type="drawer" area="300px" v-model="visible">
     <div class="global-setup">    
       <div class="global-setup-title">Overall style</div>
-      <global-setup-theme></global-setup-theme>
-      <global-setup-theme></global-setup-theme>
+      <global-setup-theme v-model="appStore.sideTheme"></global-setup-theme>
       <global-color v-model="appStore.themeVariable['--global-primary-color']"></global-color>
-      <br>
-      <br> 
       <lay-line></lay-line>
-      <div class="global-setup-title">Configure Oth</div>
       <global-setup-item label="多选项卡">
         <lay-switch v-model="appStore.tab" size="xs"></lay-switch>
       </global-setup-item>
@@ -32,9 +28,6 @@
       </global-setup-item>
       <global-setup-item label="灰色模式">
         <lay-switch v-model="appStore.greyMode" size="xs"></lay-switch>
-      </global-setup-item>
-      <global-setup-item label="菜单主题">
-        <lay-switch v-model="appStore.sideTheme" onswitch-value="dark" unswitch-value="light" size="xs"></lay-switch>
       </global-setup-item>
       <global-setup-item label="面包屑">
         <lay-switch v-model="appStore.breadcrumb" size="xs"></lay-switch>

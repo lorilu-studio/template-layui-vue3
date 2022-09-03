@@ -1,7 +1,7 @@
 <template>
     <lay-breadcrumb>
         <lay-breadcrumb-item v-for="(breadcrumb, index) in breadcrumbs" :key="index">
-            <router-link :to="breadcrumb.id">{{ breadcrumb.title }}</router-link>
+            {{ breadcrumb.title }}
         </lay-breadcrumb-item>
     </lay-breadcrumb>
 </template>

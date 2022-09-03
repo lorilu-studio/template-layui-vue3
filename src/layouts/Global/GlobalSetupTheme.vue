@@ -1,17 +1,21 @@
 <template>
   <ul class="global-setup-theme">
-    <li class="global-setup-theme-item">
+    <template v-for="(option, index) in options" :key="index">
+      <li class="global-setup-theme-item" @click="handlerChange(option.value)">
       <a href="javascript:;">
-        <div><span class="logo"></span><span class="head"></span></div>
-        <div><span class="menu"></span><span class="body"></span></div>
+        <div>
+          <span class="logo" :style="[{'background-color': option.logo}]"></span>
+          <span class="head" :style="[{'background-color': option.head}]"></span>
+        </div>
+        <div>
+          <span class="side" :style="[{'background-color': option.side}]"></span>
+          <span class="body" :style="[{'background-color': option.body}]">
+            <lay-icon v-if="option.value == modelValue" type="layui-icon-ok"></lay-icon>
+          </span>
+        </div>
       </a>
     </li>
-    <li class="global-setup-theme-item">
-      <a href="javascript:;">
-        <div><span class="logo"></span><span class="head"></span></div>
-        <div><span class="menu"></span><span class="body"></span></div>
-      </a>
-    </li>
+    </template>
   </ul>
 </template>
 
@@ -22,7 +26,24 @@ export default {
 </script>
 
 <script lang="ts" setup>
+interface ColorProps {
+  modelValue: string;
+  options?: any [];
+}
 
+const props = withDefaults(defineProps<ColorProps>(), {
+  modelValue: "#009688",
+  options: () => [
+    {logo:'#28333e',head:'white',side:'#28333e',body:'#f4f5f7',value: 'dark'},
+    {logo:'white',head:'white',side:'white',body:'#f4f5f7', value: 'light'}
+  ]
+});
+
+const emits = defineEmits(['update:modelValue'])
+
+const handlerChange = function(color: string) {
+    emits('update:modelValue', color);
+}
 </script>
 
 <style lang="less" scoped>
@@ -53,7 +74,7 @@ export default {
     height: 12px;
     background: white;
   }
-  .menu {
+  .side {
     display: block;
     width: 20%;
     float: left;
@@ -66,6 +87,9 @@ export default {
     float: left;
     height: 40px;
     background: #f4f5f7;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 800;
   }
 }
 </style>

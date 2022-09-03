@@ -1,6 +1,6 @@
 <template>
     <ul class="color-list">
-        <li :style="{'background':item}" v-for="(item, index) in presetColor" :key="index" @click="handlerChange(item)"><lay-icon v-if="item == modelValue" type="layui-icon-ok"></lay-icon></li>
+      <li :style="{'background':option}" v-for="(option, index) in options" :key="index" @click="handlerChange(option)"><lay-icon v-if="option == modelValue" type="layui-icon-ok"></lay-icon></li>
     </ul>
 </template>
 
@@ -14,12 +14,12 @@ export default {
   
 interface ColorProps {
   modelValue: string;
-  presetColor?: string[];
+  options?: string[];
 }
 
 const props = withDefaults(defineProps<ColorProps>(), {
   modelValue: "#009688",
-  presetColor: () => ['#009688','#36b368','#2d8cf0','#f6ad55','#f56c6c','#3963bc']
+  options: () => ['#009688','#36b368','#2d8cf0','#f6ad55','#f56c6c','#3963bc']
 });
 
 const emits = defineEmits(['update:modelValue'])
@@ -31,7 +31,8 @@ const handlerChange = function(color: string) {
 
 <style>
 .color-list {
-    margin: 20px 0px 30px 0px;
+    display: inline-block;
+    margin: 20px 0px 15px 0px;
 }
 .color-list li {
     float: left;

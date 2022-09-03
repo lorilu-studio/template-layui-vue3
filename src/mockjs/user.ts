@@ -38,16 +38,6 @@ const menus = [
         id: "/form/base",
         icon: "layui-icon-home",
         title: "基础表单"
-      },
-      {
-        id: "/form/step",
-        icon: "layui-icon-home",
-        title: "分步表单"
-      },
-      {
-        id: "/form/intricate",
-        icon: "layui-icon-home",
-        title: "复杂表单"
       }
     ]
   },
@@ -65,11 +55,6 @@ const menus = [
         id: "/table/card",
         icon: "layui-icon-home",
         title: "卡片列表"
-      },
-      {
-        id: "/table/text",
-        icon: "layui-icon-home",
-        title: "图文列表"
       }
     ]
   },
