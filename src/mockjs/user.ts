@@ -38,6 +38,10 @@ const menus = [
         id: "/form/base",
         icon: "layui-icon-home",
         title: "基础表单"
+      },{
+        id: "/form/intricate",
+        icon: "layui-icon-home",
+        title: "复杂表单"
       }
     ]
   },
