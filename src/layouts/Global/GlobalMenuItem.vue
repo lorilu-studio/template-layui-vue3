@@ -21,19 +21,15 @@
 </template>
 
 <script lang="ts">
-export default {
-    name: "GlobalMenuItem"
-}
-</script>
-
-<script setup lang="ts">
 import GlobalMenuItem from "./GlobalMenuItem.vue"
+import { defineComponent } from "vue";
 
-interface MenuProps {
-  menus: any[];
-}
-
-const props = withDefaults(defineProps<MenuProps>(), {
-
-});
+export default defineComponent({
+    name:  "GlobalMenuItem",
+    props: {
+        menus: {
+            type: Object
+        }
+    }
+})
 </script>
