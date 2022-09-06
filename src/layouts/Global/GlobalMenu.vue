@@ -25,6 +25,7 @@ import { useAppStore } from "../../store/app";
 import { useUserStore } from "../../store/user";
 import GlobalMenuItem from "./GlobalMenuItem.vue";
 import { useMenu } from "../composable/useMenu";
+import { onMounted } from 'vue';
 
 const appStore = useAppStore();
 const userStore = useUserStore();

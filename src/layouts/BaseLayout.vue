@@ -110,7 +110,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useAppStore } from "../store/app";
 import { useUserStore } from "../store/user";
 import GlobalSetup from "./Global/GlobalSetup.vue";
@@ -136,6 +136,12 @@ export default {
     const router = useRouter();
     const sideWidth = computed(() => appStore.collapse ? "60px" : "220px")
 
+    onMounted(() => {
+      // 菜单数据 与 权限数据 加载
+      userInfoStore.loadMenus();
+      userInfoStore.loadPermissions();
+    })
+
     const changeVisible = function () {
       visible.value = !visible.value;
     };
@@ -152,19 +158,14 @@ export default {
         appStore.routerAlive = true;
       }, 500);
     };
+
     const logOut = () => {
       const userInfoStore = useUserStore();
       userInfoStore.token = "";
-      // 因为类型问题，这里会报错, 严格模式下不可以直接赋 {}
-      userInfoStore.userInfo = {
-        username: "",
-        mail: "",
-        remark: "",
-        avatar: "",
-      };
+      userInfoStore.userInfo = {};
       router.push("/login");
     };
-    // return instance
+    
     return {
       sideWidth,
       changeVisible,
