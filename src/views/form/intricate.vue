@@ -1,6 +1,6 @@
 <template>
     <div style="height: 100%; width: 100%">
-        <div style="height: calc(100% - 50px); width: 100%; overflow: auto">
+        <div style="height: calc(100% - 60px); width: 100%; overflow: auto">
             <lay-card>
                 <p class="title">复杂表单</p>
                 <p class="describe">复杂表单常见于一次性输入和提交大批量数据的场景。</p>
@@ -93,6 +93,7 @@
                             </lay-col>
                         </lay-row>
                     </lay-card>
+                    
                     <lay-card title="附加信息">
                         <lay-row>
                             <lay-col md="8">
@@ -177,6 +178,8 @@
                     </lay-card>
                 </lay-form>
 
+                <br/>
+
                 <lay-card title="货品列表">
                     <lay-table :columns="columns" :data-source="tableData">
                         <template #name="{ data }">
@@ -246,7 +249,10 @@
             </lay-container>
         </div>
         <div class="footer">
-            <lay-button type="primary" @click="submitForm">提交</lay-button>
+            <div class="footer-button">
+                <lay-button type="primary" @click="submitForm">提交</lay-button>
+                <lay-button >重置</lay-button>
+            </div> 
         </div>
     </div>
 </template>
@@ -341,22 +347,22 @@ export default {
         ]);
 
         // 编辑表格
-        const editHandle = (data: Object) => {
+        const editHandle = (data: any) => {
             data.isEdit = true;
         };
 
         // 保存表格编辑
-        const saveTable = (data: Object) => {
+        const saveTable = (data: any) => {
             data.isEdit = false;
         };
 
         // 表格编辑的输入事件
-        const changeData = (val: string, data: any, key: string) => {
+        const changeData = (val: any, data: any, key: string) => {
             data[key] = val;
         };
 
         // 删除行逻辑
-        const deleteHandler =  (data: Object) => {
+        const deleteHandler =  (data: any) => {
             layer.confirm('确定删除此条数据？', {
                 btn: [
                     {
@@ -380,6 +386,7 @@ export default {
                 ],
             });
         };
+
         // 新增行逻辑
         const addHandler = ()=> {
           tableData.value.push({
@@ -406,10 +413,11 @@ export default {
             remindTime: '01:01:01',
             taskType: '',
         });
-        const layFormRef = ref(null);
-        // 校验
+
+        // 校验数据
+        const layFormRef = ref();
         const submitForm = () => {
-            layFormRef.value.validate((isValidate, model, errors) => {
+            layFormRef.value.validate((isValidate : boolean, model : any, errors: any) => {
                 if(isValidate) {
                   console.log('校验通过',formData.value, tableData.value)
                   let id = layer.load(1)
@@ -456,12 +464,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .title {
     font-size: 20px;
     font-weight: 500;
-    margin-top: 12px;
     margin-bottom: 20px;
+    margin-top: 12px;
 }
 
 .describe {
@@ -470,14 +478,18 @@ export default {
 }
 .footer {
     width: 100%;
-    height: 45px;
-    background-color: #ffffff;
     display: flex;
     align-items: center;
+    padding: 10px;
     box-sizing: border-box;
-    padding: 0 20px;
-    box-shadow: 0 0 8px 1px #aaaaaa;
-    margin-top: 5px;
+    background-color: #ffffff;
+    border-top: 1px solid whitesmoke;
+    line-height: 60px;
+    height: 60px;
+    .footer-button {
+        right: 10px;
+        position: absolute;
+    }
 }
 
 </style>
