@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@layui/layui-vue': ^1.4.8
+  '@layui/layui-vue': ^1.4.11
   '@types/node': ^18.7.8
   '@types/nprogress': ^0.2.0
   '@vitejs/plugin-vue': ^2.2.0
@@ -24,7 +24,7 @@ specifiers:
   vue-tsc: ^0.29.8
 
 dependencies:
-  '@layui/layui-vue': 1.4.8_vue@3.2.37
+  '@layui/layui-vue': 1.4.11_vue@3.2.37
   axios: 0.27.2
   echarts: 5.3.3
   js-base64: 3.7.2
@@ -149,8 +149,8 @@ packages:
     resolution: {integrity: sha512-db46XsSY/XLEE3JvI9QL7nEoHL0+FHoQRT9pyQ1+a01D0rgegycyQ1OAIBpaJ0/vqoNGlQFRjX0YYPGds9nB+A==}
     dev: false
 
-  /@layui/layui-vue/1.4.8_vue@3.2.37:
-    resolution: {integrity: sha512-I7SGHCzjhN60I1ZGDr4O5lk4lTCxcWgXhPlB7VaLqFVeJun46LSEBspCyXxBKS6w++x8R30wOoPwA7WF/EYZwg==}
+  /@layui/layui-vue/1.4.11_vue@3.2.37:
+    resolution: {integrity: sha512-n1qIyg0qwBldeyQH+fYfdNLKGXuwFsV05ij60/JLMZYfN6A+ICcrUlIpGxEngbpSxU8XlnX9x/xQz8924EYD2g==}
     dependencies:
       '@layui/icons-vue': 1.0.9
       '@layui/layer-vue': 1.4.2
@@ -160,7 +160,6 @@ packages:
       cropperjs: 1.5.12
       dayjs: 1.11.5
       evtd: 0.2.4
-      uuid: 8.3.2
       vue-i18n: 9.2.2_vue@3.2.37
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -1562,11 +1561,6 @@ packages:
     resolution: {integrity: sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==}
     engines: {node: '>=4'}
     dev: true
-
-  /uuid/8.3.2:
-    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
-    hasBin: true
-    dev: false
 
   /vite/2.9.15_less@4.1.3:
     resolution: {integrity: sha512-fzMt2jK4vQ3yK56te3Kqpkaeq9DkcZfBbzHwYpobasvgYmP2SoAr6Aic05CsB4CzCZbsDv4sujX3pkEGhLabVQ==}
