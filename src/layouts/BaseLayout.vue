@@ -182,10 +182,13 @@ export default {
 };
 </script>
 
-<style scoped>
-.layui-layout-left .layui-nav-item:hover,
-.layui-layout-right .layui-nav-item:hover {
+<style>
+.layui-header .layui-nav-item:hover {
   background: whitesmoke;
+}
+
+.layui-header .layui-nav-item * {
+  color: #666 !important;
 }
 
 .grey-mode {
