@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@layui/layui-vue': ^1.4.12
+  '@layui/layui-vue': ^1.4.13
   '@types/node': ^18.7.8
   '@types/nprogress': ^0.2.0
   '@vitejs/plugin-vue': ^2.2.0
@@ -24,7 +24,7 @@ specifiers:
   vue-tsc: ^0.29.8
 
 dependencies:
-  '@layui/layui-vue': 1.4.12_vue@3.2.37
+  '@layui/layui-vue': 1.4.13_vue@3.2.37
   axios: 0.27.2
   echarts: 5.3.3
   js-base64: 3.7.2
@@ -77,6 +77,11 @@ packages:
       '@babel/helper-validator-identifier': 7.18.6
       to-fast-properties: 2.0.0
     dev: true
+
+  /@ctrl/tinycolor/3.4.1:
+    resolution: {integrity: sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==}
+    engines: {node: '>=10'}
+    dev: false
 
   /@emmetio/abbreviation/2.2.3:
     resolution: {integrity: sha512-87pltuCPt99aL+y9xS6GPZ+Wmmyhll2WXH73gG/xpGcQ84DRnptBsI2r0BeIQ0EB/SQTOe2ANPqFqj3Rj5FOGA==}
@@ -149,9 +154,10 @@ packages:
     resolution: {integrity: sha512-db46XsSY/XLEE3JvI9QL7nEoHL0+FHoQRT9pyQ1+a01D0rgegycyQ1OAIBpaJ0/vqoNGlQFRjX0YYPGds9nB+A==}
     dev: false
 
-  /@layui/layui-vue/1.4.12_vue@3.2.37:
-    resolution: {integrity: sha512-VTVgg0PeJ//oY7L5kp3YRLkAortK6w4N1M2Yi7JMwWpkdqprgPvRQShZO4fV5MZKiYfn1wrrx9P6NBr2S7F6Sw==}
+  /@layui/layui-vue/1.4.13_vue@3.2.37:
+    resolution: {integrity: sha512-5701KWd+r2VGjTRsfa+CqcS5mWNTxWChRG3LKrDweojufY/PaBzYep5ttgp8XhqY6GbBqu5XVcEsxLzhX1Td2A==}
     dependencies:
+      '@ctrl/tinycolor': 3.4.1
       '@layui/icons-vue': 1.0.9
       '@layui/layer-vue': 1.4.2
       '@umijs/ssr-darkreader': 4.9.45
