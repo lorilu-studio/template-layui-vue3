@@ -2,8 +2,8 @@
   <lay-tab
     class="global-tab"
     v-if="appStore.tab"
-    :modelValue="route.path"
-    :allowClose="allowClose"
+    :modelValue="currentPath"
+    :allowClose="true"
     @change="change"
     @close="close"
   >
@@ -29,36 +29,13 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue";
 import { useAppStore } from "../../store/app";
+import { useTab } from "../composable/useTab";
 
-const router = useRouter();
-const route = useRoute();
 const appStore = useAppStore();
-const allowClose = ref(true);
-const tabs = ref([{ title: "工作台", id: "/workspace/workbench", closable: false }]);
 
-const change = function (id: string) {
-  router.push(id);
-};
-
-const close = function (path: string) {
-  tabs.value = tabs.value.filter((ele) => ele.id != path);
-};
-
-watch(route, function () {
-  let bool = false;
-  tabs.value.forEach((tab) => {
-    if (tab.id === route.path) {
-      bool = true;
-    }
-  });
-  if (!bool) {
-    // @ts-ignore
-    tabs.value.push({ id: route.fullPath, title: route.meta.title });
-  }
-});
+const {tabs, change, close, currentPath } = useTab();
 </script>
 
 <style>

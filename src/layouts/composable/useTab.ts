@@ -1,16 +1,11 @@
 import { computed, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { diff } from "../../library/arrayUtil";
-import { getParents } from "../../library/treeUtil";
-import { useAppStore } from "../../store/app";
-import { useUserStore } from "../../store/user";
 
-export function useMenu() {
+export function useTab() {
 
-    const router = useRouter();
     const route = useRoute();
-    const appStore = useAppStore();
-    const allowClose = ref(true);
+    const router = useRouter();
+    const currentPath = computed(() => route.path);
     const tabs = ref([{ title: "工作台", id: "/workspace/workbench", closable: false }]);
 
     const change = function (id: string) {
@@ -35,6 +30,6 @@ export function useMenu() {
     });
 
     return {
-        change, close
+        change, close, tabs, currentPath
     }
 }
