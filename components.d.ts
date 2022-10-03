@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     LayContainer: typeof import('@layui/layui-vue')['LayContainer']
     LayCountUp: typeof import('@layui/layui-vue')['LayCountUp']
     LayDatePicker: typeof import('@layui/layui-vue')['LayDatePicker']
+    LayDrapdown: typeof import('@layui/layui-vue')['LayDrapdown']
     LayDropdown: typeof import('@layui/layui-vue')['LayDropdown']
     LayDropdownMenu: typeof import('@layui/layui-vue')['LayDropdownMenu']
     LayDropdownMenuItem: typeof import('@layui/layui-vue')['LayDropdownMenuItem']
