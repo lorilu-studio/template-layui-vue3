@@ -8,15 +8,15 @@ export function useTab() {
     const currentPath = computed(() => route.path);
     const tabs = ref([{ title: "工作台", id: "/workspace/workbench", closable: false }]);
 
-    const change = function (id: string) {
+    const change = (id: string) => {
         router.push(id);
     };
       
-    const close = function (id: string) {
+    const close = (id: string) => {
         tabs.value = tabs.value.filter((ele) => ele.id != id);
     };
       
-    watch(route, function () {
+    watch(route,() => {
         let bool = false;
         tabs.value.forEach((tab) => {
           if (tab.id === route.path) {

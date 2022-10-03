@@ -175,7 +175,7 @@
   </lay-container>
 </template>
 <script lang="ts">
-import { defineComponent, nextTick, ref } from "vue";
+import { defineComponent, nextTick } from "vue";
 import * as echarts from 'echarts';
 
 export default defineComponent({
@@ -183,11 +183,11 @@ export default defineComponent({
 
     nextTick(() => {
       var chartDom = document.getElementById('main');
+
       // @ts-ignore
       var myChart = echarts.init(chartDom);
-      var option;
 
-      option = {
+      var option = {
         legend: {
           data: ['Allocated Budget', 'Actual Spending']
         },
@@ -216,10 +216,8 @@ export default defineComponent({
           }
         ]
       };
-
-      option && myChart.setOption(option);
+      myChart.setOption(option);
     })
-
     return {};
   },
 });
