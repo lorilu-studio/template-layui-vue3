@@ -97,7 +97,6 @@
             </lay-menu-item>
           </lay-menu>
         </lay-header>
-        <!-- content -->
         <lay-body>
           <global-tab></global-tab>
           <global-content></global-content>
@@ -129,6 +128,7 @@ export default {
     GlobalBreadcrumb
   },
   setup() {
+
     const fullscreenRef = ref(null);
     const appStore = useAppStore();
     const userInfoStore = useUserStore();
@@ -137,6 +137,10 @@ export default {
     const sideWidth = computed(() => appStore.collapse ? "60px" : "220px")
 
     onMounted(() => {
+      // mobile
+      if(document.body.clientWidth < 768) {
+        appStore.collapse = true;
+      }
       userInfoStore.loadMenus();
       userInfoStore.loadPermissions();
     })

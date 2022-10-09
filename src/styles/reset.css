@@ -2,7 +2,6 @@
     height: 40px;
 }
 
-
 #nprogress .bar {
     z-index: 9999999;
     background-color: var(--global-primary-color);

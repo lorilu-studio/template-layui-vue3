@@ -9,6 +9,7 @@ export function useTab() {
 
   const tabs: Ref<any> = ref([]);
   const tabsCache: string[] = []
+  
   // 从路由筛出自定义tab
   if (routes) {
     routes.forEach(route => {

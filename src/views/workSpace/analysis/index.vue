@@ -1,7 +1,7 @@
 <template>
   <lay-container :fluid="true" style="padding: 10px">
-    <lay-row space="10">
-      <lay-col md="6" sm="6" xs="12">
+    <lay-row :space="10">
+      <lay-col :md="6" :sm="6" :xs="12">
         <lay-card class="statistics">
           <template #title>今日访问</template>
           <template #extra>
@@ -15,7 +15,7 @@
           </template>
         </lay-card>
       </lay-col>
-      <lay-col md="6" sm="6" xs="12">
+      <lay-col :md="6" :sm="6" :xs="12">
         <lay-card class="statistics">
           <template #title>提交次数</template>
           <template #extra>
@@ -29,7 +29,7 @@
           </template>
         </lay-card>
       </lay-col>
-      <lay-col md="6" sm="6" xs="12">
+      <lay-col :md="6" :sm="6" :xs="12">
         <lay-card class="statistics">
           <template #title>下载数量</template>
           <template #extra>
@@ -43,7 +43,7 @@
           </template>
         </lay-card>
       </lay-col>
-      <lay-col md="6" sm="6" xs="12">
+      <lay-col :md="6" :sm="6" :xs="12">
         <lay-card class="statistics">
           <template #title>流量统计</template>
           <template #extra>
@@ -57,7 +57,7 @@
           </template>
         </lay-card>
       </lay-col>
-      <lay-col md="24" sm="24" xs="24">
+      <lay-col :md="24" :sm="24" :xs="24">
         <lay-card>
           <template #title>我的觉悟</template>
           <template #extra>
@@ -88,7 +88,7 @@
           </lay-row>
         </lay-card>
       </lay-col>
-      <lay-col md="8" sm="8" xs="24">
+      <lay-col :md="8" :sm="8" :xs="24">
         <lay-card>
           <template #title>留言面板</template>
           <ul class="leaving-messages">
@@ -110,7 +110,7 @@
           </ul>
         </lay-card>
       </lay-col>
-      <lay-col md="8" sm="8" xs="24">
+      <lay-col :md="8" :sm="8" :xs="24">
         <lay-card>
           <template #title>签到统计</template>
           <lay-table :columns="columns21" :data-source="dataSource21">
@@ -122,7 +122,7 @@
           </lay-table>
         </lay-card>
       </lay-col>
-      <lay-col md="8" sm="8" xs="24">
+      <lay-col :md="8" :sm="8" :xs="24">
         <lay-card>
           <template #title>本月目标</template>
           <div class="target">
