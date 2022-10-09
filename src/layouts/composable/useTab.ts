@@ -4,10 +4,32 @@ import { useRoute, useRouter } from "vue-router";
 export function useTab() {
   const route = useRoute();
   const router = useRouter();
+  const routes = router.getRoutes()
   const currentPath = computed(() => route.path);
-  const tabs: Ref<any> = ref([
-    { title: "工作台", id: "/workspace/workbench", closable: false },
-  ]);
+
+  const tabs: Ref<any> = ref([]);
+  const tabsCache: string[] = []
+  // 从路由筛出自定义tab
+  if (routes) {
+    routes.forEach(route => {
+      if (route.meta && route.meta.affix) {
+        tabs.value.push({
+          ...route.meta,
+          id: route.path,
+        })
+        tabsCache.push(route.path)
+      }
+    })
+  }
+
+  // 刷新后tabs保留最后一个页面
+  if (route.path && !tabsCache.includes(route.path)) {
+    const path = routes.find(item => item.path === route.path)
+    path && tabs.value.push({
+      ...path.meta,
+      id: route.path,
+    })
+  }
 
   const to = (id: string) => {
     router.push(id);
