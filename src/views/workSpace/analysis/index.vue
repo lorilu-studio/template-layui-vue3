@@ -66,7 +66,7 @@
           </template>
           <lay-row>
             <lay-col :md="18">
-              <div id="main"></div>
+              <div id="main" ref="mainRef"></div>
             </lay-col>
             <lay-col :md="6">
               <div style="padding-top:42px;padding-left: 42px;padding-right: 42px;padding-bottom: 10px;">
@@ -139,15 +139,16 @@
   </lay-container>
 </template>
 <script lang="ts">
-import { defineComponent, nextTick } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 
 import * as echarts from 'echarts';
 
 export default defineComponent({
   setup() {
 
-    nextTick(() => {
-      var chartDom = document.getElementById('main');
+    const mainRef = ref()
+    onMounted(() => {
+      var chartDom = mainRef.value;
       // @ts-ignore
       var myChart = echarts.init(chartDom);
       var option = {
@@ -214,6 +215,7 @@ export default defineComponent({
     ]
 
     return {
+      mainRef,
       columns21,
       dataSource21
     };

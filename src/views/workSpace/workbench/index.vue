@@ -158,7 +158,7 @@
               <template v-slot:title>
                 八卦新闻
               </template>
-              <div id="main"></div>
+              <div id="main" ref="mainRef"></div>
             </lay-card>
           </lay-col>
           <lay-col :md="24">
@@ -175,14 +175,15 @@
   </lay-container>
 </template>
 <script lang="ts">
-import { defineComponent, nextTick } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import * as echarts from 'echarts';
 
 export default defineComponent({
   setup() {
 
-    nextTick(() => {
-      var chartDom = document.getElementById('main');
+    const mainRef = ref()
+    onMounted(() => {
+      var chartDom = mainRef.value;
 
       // @ts-ignore
       var myChart = echarts.init(chartDom);
@@ -218,7 +219,9 @@ export default defineComponent({
       };
       myChart.setOption(option);
     })
-    return {};
+    return {
+      mainRef,
+    };
   },
 });
 </script>
