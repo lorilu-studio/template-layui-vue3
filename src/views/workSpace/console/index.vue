@@ -119,7 +119,7 @@
           <lay-col :md="24">
             <lay-card>
               <template #title> 数据概览 </template>
-              <div id="main"></div>
+              <div id="main" ref="mainRef"></div>
             </lay-card>
           </lay-col>
           <lay-col :md="24">
@@ -182,17 +182,18 @@
   </lay-container>
 </template>
 <script lang="ts">
-import { defineComponent, nextTick, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 
 import * as echarts from 'echarts';
 
 export default defineComponent({
   setup() {
 
+    const mainRef = ref()
     const currentIndex = ref("1")
 
-    nextTick(() => {
-      var chartDom = document.getElementById('main');
+    onMounted(() => {
+      var chartDom = mainRef.value;
       // @ts-ignore
       var myChart = echarts.init(chartDom);
       var option;
@@ -445,6 +446,7 @@ export default defineComponent({
     ]
 
     return {
+      mainRef,
       currentIndex,
       columns21,
       dataSource21,
