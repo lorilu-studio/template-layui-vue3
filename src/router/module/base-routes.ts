@@ -2,7 +2,7 @@ import BaseLayout from '../../layouts/BaseLayout.vue';
 import Login from '../../views/login/index.vue';
 
 
-export default [    
+export default [
   {
     path: '/',
     redirect: '/workSpace'
@@ -21,7 +21,7 @@ export default [
       {
         path: '/workspace/workbench',
         component: () => import('../../views/workSpace/workbench/index.vue'),
-        meta: { title: '工作台', requireAuth: true },
+        meta: { title: '工作台', requireAuth: true, affix: true, closable: false },
       },
       {
         path: '/workspace/console',
@@ -122,7 +122,7 @@ export default [
         path: '/form/base',
         component: () => import('../../views/form/base.vue'),
         meta: { title: '基础表单', requireAuth: true },
-      },      
+      },
       {
         path: '/form/step',
         component: () => import('../../views/form/step.vue'),
