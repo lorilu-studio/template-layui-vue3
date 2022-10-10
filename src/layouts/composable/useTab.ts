@@ -9,8 +9,7 @@ export function useTab() {
 
   const tabs: Ref<any> = ref([]);
   const tabsCache: string[] = []
-  
-  // 从路由筛出自定义tab
+
   if (routes) {
     routes.forEach(route => {
       if (route.meta && route.meta.affix) {
@@ -23,7 +22,6 @@ export function useTab() {
     })
   }
 
-  // 刷新后tabs保留最后一个页面
   if (route.path && !tabsCache.includes(route.path)) {
     const path = routes.find(item => item.path === route.path)
     path && tabs.value.push({
