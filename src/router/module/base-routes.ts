@@ -145,5 +145,16 @@ export default [
         meta: { title: '权限指令', requireAuth: true },
       },
     ]
+  },{
+    path: '/component',
+    component: BaseLayout,
+    meta: { title: '常用组件' },
+    children: [
+      {
+        path: '/component/upload',
+        component: () => import('../../views/Component/upload.vue'),
+        meta: { title: '上传组件', requireAuth: true },
+      },
+    ]
   }
 ]

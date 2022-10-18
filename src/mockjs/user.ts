@@ -167,6 +167,17 @@ const menus = [
         title: "权限指令"
       }
     ]
+  },{
+    id: "/component",
+    icon: "layui-icon-home",
+    title: "常用组件",
+    children: [
+      {
+        id: "/component/upload",
+        icon: "layui-icon-home",
+        title: "上传组件"
+      }
+    ]
   }
 ]
 
@@ -242,6 +253,14 @@ const getLogin = (req: any, res: any)=> {
   }
 }
 
+const getUpload = (req: any, res: any)=> {
+  return {
+    'code': 200,
+    'msg':'上传成功',
+    'success': true
+  }
+}
+
 export default{
-  getInfo, getMenu, getLogin, getPermission
+  getInfo, getMenu, getLogin, getPermission, getUpload
 }

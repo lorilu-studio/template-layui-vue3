@@ -18,4 +18,8 @@ Mock.mock(/\/user\/permission/,'get',(req: any,res: any) =>{
     return user.getPermission(req,res)
 });
 
+Mock.mock(/\/file\/upload/,'post',(req: any,res: any) =>{
+    return user.getUpload(req,res)
+}); 
+
 export default Mock;
