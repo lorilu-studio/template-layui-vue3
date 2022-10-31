@@ -20,6 +20,7 @@ export default [
     children: [
       {
         path: '/workspace/workbench',
+        name: 'Workbench',
         component: () => import('../../views/workSpace/workbench/index.vue'),
         meta: { title: '工作台', requireAuth: true, affix: true, closable: false },
       },
@@ -130,6 +131,7 @@ export default [
       },
       {
         path: '/form/intricate',
+        name: 'Intricate',
         component: () => import('../../views/form/intricate.vue'),
         meta: { title: '复杂表单', requireAuth: true },
       },

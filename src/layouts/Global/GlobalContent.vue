@@ -1,8 +1,12 @@
 <template>
     <div class="global-content">
-      <lay-transition type="fade">
-        <router-view v-if="appStore.routerAlive"></router-view>
-      </lay-transition>
+			<router-view  v-slot="{ Component }" v-if="appStore.routerAlive">
+      	<lay-transition type="fade">
+					<keep-alive :include="appStore.keepAliveList">
+						<component :is="Component" />
+					</keep-alive>
+      	</lay-transition>
+			</router-view>
     </div>
 </template>
 
