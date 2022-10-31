@@ -144,6 +144,7 @@ import { defineComponent, ref, onMounted } from "vue";
 import * as echarts from 'echarts';
 
 export default defineComponent({
+	name: 'Analysis',
   setup() {
 
     const mainRef = ref()

@@ -1,11 +1,13 @@
 import { computed, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import {useAppStore} from "../../store/app";
 
 export function useTab() {
   const route = useRoute();
   const router = useRouter();
   const routes = router.getRoutes()
   const currentPath = computed(() => route.path);
+  const appStore = useAppStore();
 
   const tabs: Ref<any> = ref([]);
   const tabsCache: string[] = []
@@ -16,6 +18,7 @@ export function useTab() {
         tabs.value.push({
           ...route.meta,
           id: route.path,
+          name: route?.name
         })
         tabsCache.push(route.path)
       }
@@ -27,6 +30,7 @@ export function useTab() {
     path && tabs.value.push({
       ...path.meta,
       id: route.path,
+      name: route?.name,
     })
   }
 
@@ -62,8 +66,11 @@ export function useTab() {
       }
     });
     if (!bool) {
-      tabs.value.push({ id: route.fullPath, title: route.meta.title });
+      tabs.value.push({ id: route.fullPath, title: route.meta.title, name: route?.name });
     }
+    appStore.$patch((state)=> {
+      state.keepAliveList = tabs.value.map((item: any) => item?.name).filter((item: any)=> item)
+    })
   });
 
   return {

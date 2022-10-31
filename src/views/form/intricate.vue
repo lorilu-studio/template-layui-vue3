@@ -262,6 +262,7 @@ import { ref, watch, reactive } from 'vue';
 import { layer } from '@layui/layer-vue';
 
 export default {
+	name: 'Intricate',
     setup() {
         // 表格列
         const columns = [
