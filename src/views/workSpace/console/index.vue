@@ -6,22 +6,22 @@
           <template #title> 快捷方式 </template>
           <lay-row :space="10">
             <lay-col :md="6">
-              <a lay-href="home/homepage1" class="shortcut">
+              <router-link to="/workspace/workbench" class="shortcut">
                 <i class="layui-icon layui-icon-console"></i>
                 <cite>主页一</cite>
-              </a>
+              </router-link>
             </lay-col>
             <lay-col :md="6">
-              <a lay-href="home/homepage1" class="shortcut">
+              <router-link to="/workspace/console" class="shortcut">
                 <i class="layui-icon layui-icon-chart"></i>
                 <cite>主页二</cite>
-              </a>
+              </router-link>
             </lay-col>
             <lay-col :md="6">
-              <a lay-href="home/homepage1" class="shortcut">
+              <router-link to="/workspace/analysis" class="shortcut">
                 <i class="layui-icon layui-icon-template-one"></i>
                 <cite>主页三</cite>
-              </a>
+              </router-link>
             </lay-col>
             <lay-col :md="6">
               <a lay-href="home/homepage1" class="shortcut">
