@@ -118,6 +118,7 @@ import GlobalBreadcrumb from "./global/GlobalBreadcrumb.vue";
 import GlobalTab from "./global/GlobalTab.vue";
 import GlobalMenu from "./global/GlobalMenu.vue";
 import { useRouter } from "vue-router";
+import { layer } from "@layui/layer-vue";
 
 export default {
   components: {
@@ -143,6 +144,12 @@ export default {
       }
       userInfoStore.loadMenus();
       userInfoStore.loadPermissions();
+
+      layer.notifiy({
+        icon: 1,
+        title:"欢迎访问",
+        content:"已升级到 layui-vue 1.7.3 版本。"
+      })
     })
 
     const changeVisible = function () {
