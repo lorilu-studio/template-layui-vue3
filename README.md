@@ -67,12 +67,12 @@ npm run build
 
 ## 预览截图
 
-| 预览                 |                界面 |
-|---------------------|---------------------|
-| ![](README_files/1.jpg) | ![](README_files/2.jpg) |
-| ![](README_files/3.jpg) | ![](README_files/4.jpg) |
-| ![](README_files/5.jpg) | ![](README_files/6.jpg) |
-| ![](README_files/7.jpg) | ![](README_files/8.jpg) |
-| ![](README_files/9.jpg) | ![](README_files/10.jpg) |
-| ![](README_files/11.jpg) | ![](README_files/12.jpg) |
-|![](README_files/13.jpg) | ![](README_files/14.jpg) |
+| 预览                  |                界面   |
+|-----------------------|-----------------------|
+| ![](resources/1.jpg)  | ![](resources/2.jpg)  |
+| ![](resources/3.jpg)  | ![](resources/4.jpg)  |
+| ![](resources/5.jpg)  | ![](resources/6.jpg)  |
+| ![](resources/7.jpg)  | ![](resources/8.jpg)  |
+| ![](resources/9.jpg)  | ![](resources/10.jpg) |
+| ![](resources/11.jpg) | ![](resources/12.jpg) |
+| ![](resources/13.jpg) | ![](resources/14.jpg) |

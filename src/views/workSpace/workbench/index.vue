@@ -189,9 +189,6 @@ export default defineComponent({
       var myChart = echarts.init(chartDom);
 
       var option = {
-        legend: {
-          data: ['Allocated Budget', 'Actual Spending']
-        },
         radar: {
           indicator: [
             { name: '进攻', max: 6500 },
