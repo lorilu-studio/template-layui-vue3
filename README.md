@@ -29,7 +29,7 @@
 </p>
 
 <div align="center">
-  <img  width="92%" style="border-radius:2px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="README_files/1.jpg" />
+  <img  width="92%" style="border-radius:2px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="resources/1.jpg" />
 </div>
 
 
