@@ -38,7 +38,7 @@ export function useMenu() {
     function changeSelectedKey(key: string) {
         var node = getNode(menus.value, key);
 
-        if(node.type && node.type == "layer") {
+        if(node.type && node.type == "modal") {
             layer.open({
                 type: "iframe",
                 content: node.id,

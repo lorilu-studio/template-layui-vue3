@@ -10,6 +10,7 @@
             </lay-sub-menu>
         </template>
         <template v-else>
+            
             <lay-menu-item :id="menu.id">
                 <template #icon>
                     <lay-icon :type="menu.icon"></lay-icon>

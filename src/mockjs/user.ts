@@ -187,7 +187,7 @@ const menus = [
         id: "http://www.bing.com",
         icon: "layui-icon-home",
         title: "弹层外链",
-        type: "layer"
+        type: "modal"
       },
       {
         id: "http://www.baidu.com",
