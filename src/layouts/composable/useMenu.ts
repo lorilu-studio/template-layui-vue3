@@ -32,23 +32,27 @@ export function useMenu() {
     }, { immediate: true })
 
     watch(selectedKey, () => {
+        router.push(selectedKey.value);
+    })
 
-        var node = getNode(menus.value, selectedKey.value);
+    function changeSelectedKey(key: string) {
+        var node = getNode(menus.value, key);
 
         if(node.type && node.type == "layer") {
             layer.open({
                 type: "iframe",
-                content: selectedKey.value,
-                area: ['80%', '80%']
-            })
-        } else if (node.type && node.type == "blank") {
-            window.open(selectedKey.value, "_blank"); 
-        } else {
-            router.push(selectedKey.value);
+                content: node.id,
+                area: ['80%', '80%'],
+                minmax: true
+            });
+            return;
         }
-    })
+        
+        if (node.type && node.type == "blank") {
+            window.open(node.id, "_blank"); 
+            return;
+        } 
 
-    function changeSelectedKey(key: string) {
         selectedKey.value = key;
     }
 
