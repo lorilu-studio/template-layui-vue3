@@ -178,6 +178,24 @@ const menus = [
         title: "上传组件"
       }
     ]
+  },{
+    id: "/page",
+    icon: "layui-icon-home",
+    title: "外链页面",
+    children: [
+      {
+        id: "http://www.bing.com",
+        icon: "layui-icon-home",
+        title: "弹层外链",
+        type: "layer"
+      },
+      {
+        id: "http://www.baidu.com",
+        icon: "layui-icon-home",
+        title: "原生跳转",
+        type: "blank"
+      }
+    ]
   }
 ]
 

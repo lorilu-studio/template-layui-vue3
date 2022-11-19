@@ -1,7 +1,9 @@
+import { layer } from "@layui/layui-vue";
 import { computed, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { menu } from "../../api/module/user";
 import { diff } from "../../library/arrayUtil";
-import { getParents } from "../../library/treeUtil";
+import { getParents, getNode } from "../../library/treeUtil";
 import { useAppStore } from "../../store/app";
 import { useUserStore } from "../../store/user";
 
@@ -30,7 +32,20 @@ export function useMenu() {
     }, { immediate: true })
 
     watch(selectedKey, () => {
-        router.push(selectedKey.value);
+
+        var node = getNode(menus.value, selectedKey.value);
+
+        if(node.type && node.type == "layer") {
+            layer.open({
+                type: "iframe",
+                content: selectedKey.value,
+                area: ['80%', '80%']
+            })
+        } else if (node.type && node.type == "blank") {
+            window.open(selectedKey.value, "_blank"); 
+        } else {
+            router.push(selectedKey.value);
+        }
     })
 
     function changeSelectedKey(key: string) {
