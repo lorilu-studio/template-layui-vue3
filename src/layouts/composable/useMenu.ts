@@ -43,7 +43,7 @@ export function useMenu() {
                 type: "iframe",
                 content: node.id,
                 area: ['80%', '80%'],
-                minmax: true
+                maxmin: true
             });
             return;
         }

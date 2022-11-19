@@ -31,7 +31,7 @@
             <lay-menu-item @click="refresh">
               <lay-icon type="layui-icon-refresh-one"></lay-icon>
             </lay-menu-item>
-            <lay-menu-item v-if="appStore.breadcrumb">
+            <lay-menu-item v-if="appStore.breadcrumb" style="padding: 0px 15px;">
               <GlobalBreadcrumb></GlobalBreadcrumb>
             </lay-menu-item>
           </lay-menu>
@@ -148,7 +148,7 @@ export default {
       layer.notifiy({
         icon: 1,
         title:"欢迎访问",
-        content:"已升级到 layui-vue 1.7.3 版本。"
+        content:"已升级到 layui-vue 1.7.8 版本。"
       })
     })
 
@@ -193,14 +193,31 @@ export default {
 </script>
 
 <style>
-.layui-header .layui-nav-item:hover {
-  background: whitesmoke;
-}
-
+/*覆盖 menu-item 默认的白色前景色 */
 .layui-header .layui-nav-item * {
   color: #666 !important;
 }
-
+/*鼠标经过背景色，增加了improtant，否则设置无效*/
+.layui-header .layui-nav-item .layui-icon:hover {
+  background: whitesmoke !important;
+}
+/*图标默认颜色修复，指定 .layui-icon 去掉improtant，否则无法设置图标其他颜色*/
+.layui-header .layui-nav-item .layui-icon {
+  color: #666;
+}
+/*取消默认a标签的padding:0 20px，否则扩大图标后容器变形*/
+.layui-header .layui-nav-item > a{
+  padding: 0 !important;
+}
+/*扩大图标尺寸与所在容器大小一致，默认大小导致鼠标必须点击图标才能触发事件效果*/
+.layui-header .layui-nav-item .layui-icon{
+  height:50px;
+  padding: 20px;
+}
+/*增加鼠标经过图标时改变图标颜色，颜色为当前系统主题色*/
+.layui-header .layui-nav-item .layui-icon:hover {
+  color: var(--global-primary-color) !important;
+}
 .grey-mode {
   filter: grayscale(1);
 }
