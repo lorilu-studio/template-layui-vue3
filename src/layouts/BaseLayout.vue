@@ -193,13 +193,16 @@ export default {
 </script>
 
 <style>
-/*覆盖 menu-item 默认的白色前景色 */
-.layui-header .layui-nav-item * {
-  color: #666 !important;
-}
 /*鼠标经过背景色，增加了improtant，否则设置无效*/
 .layui-header .layui-nav-item .layui-icon:hover {
   background: whitesmoke !important;
+}
+/*面包屑颜色兼容*/
+.layui-header .layui-nav-item .layui-breadcrumb a {
+  color: #999 !important;
+}
+.layui-header .layui-nav-item .layui-breadcrumb a:nth-last-child(2) {
+  color: #666 !important;
 }
 /*图标默认颜色修复，指定 .layui-icon 去掉improtant，否则无法设置图标其他颜色*/
 .layui-header .layui-nav-item .layui-icon {
