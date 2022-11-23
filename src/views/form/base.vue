@@ -30,6 +30,9 @@
                             <lay-form-item label="描述" prop="desc">
                                 <lay-textarea placeholder="请输入描述" v-model="model.desc"></lay-textarea>
                             </lay-form-item>
+                            <lay-form-item label="详情">
+                                {{ model }}
+                            </lay-form-item> 
                             <lay-form-item>
                                 <lay-row :space="20">
                                     <lay-col :md="12">
