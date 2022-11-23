@@ -9,8 +9,10 @@
     :selectedKey="selectedKey"
     @changeOpenKeys="changeOpenKeys"
     @changeSelectedKey="changeSelectedKey"
+    :class="{'layui-nav-subfield':appStore.subfield}"
   >
-    <GlobalMenuItem :menus="menus"></GlobalMenuItem>
+    <GlobalMixSider v-if="appStore.subfield" :menus="menus"></GlobalMixSider>
+    <GlobalMenuItem :menus="menus" v-else></GlobalMenuItem>
   </lay-menu>
 </template>
 
@@ -24,6 +26,7 @@ export default {
 import { useAppStore } from "../../store/app";
 import { useUserStore } from "../../store/user";
 import GlobalMenuItem from "./GlobalMenuItem.vue";
+import GlobalMixSider from "./GlobalMixSider.vue";
 import { useMenu } from "../composable/useMenu";
 import { onMounted } from 'vue';
 
@@ -62,5 +65,12 @@ const { selectedKey, openKeys, changeOpenKeys, changeSelectedKey, isAccordion, m
 .layui-nav-tree .layui-nav-item > a .layui-nav-more {
   font-size: 12px!important;
   padding: 3px 0px;
+}
+.layui-nav-subfield{
+  width: 60px !important;
+  height: 100%;
+}
+.layui-nav-subfield span{
+  display: inline-block !important;
 }
 </style>
