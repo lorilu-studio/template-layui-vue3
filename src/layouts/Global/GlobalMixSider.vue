@@ -1,8 +1,9 @@
 <template>
-	<li class="layui-nav-item" v-for="(menu, index) in menus" :key="index" :class="{ 'layui-this': activeIndex === index }" @click="handleClickParentMenu(index)">
+	<li class="layui-nav-mix-item" v-for="(menu, index) in menus" :key="index" :class="{ 'layui-this': activeIndex === index }" @click="handleClickParentMenu(index)">
 		<div class="menu-content">
-			<lay-icon :type="menu.icon" style="height: unset; line-height: initial"></lay-icon>
-			<span class="menu-title">{{ menu.title }}</span>
+			<lay-tooltip :content="menu.title" position="right">
+				<lay-icon :type="menu.icon" style="height: unset; line-height: initial"></lay-icon>
+			</lay-tooltip>
 		</div>
 	</li>
 	<div class="layui-nav-tree mix-sub-menu-area" :style="{ width: subSideWidth }">
@@ -50,8 +51,8 @@ const handleClickParentMenu = (index: number) => {
 };
 </script>
 <style scoped>
-.layui-nav-item {
-	height: 60px;
+.layui-nav-mix-item {
+	height: 46px;
 	cursor: pointer;
 }
 .menu-content {
@@ -61,19 +62,13 @@ const handleClickParentMenu = (index: number) => {
 	align-items: center;
 	height: 100%;
 }
-.menu-title {
-	height: unset;
-	line-height: initial;
-	margin-left: 0px !important;
-	font-size: 12px;
-}
 .mix-sub-menu-area {
 	height: 100%;
 	overflow-y: scroll;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	box-sizing: border-box;
-	border-left: 1px solid #ffffff14;
+	border-left: 1px solid rgba(0, 0, 0, 0.12);
 	position: absolute;
 	left: 60px;
 	top: 0;
