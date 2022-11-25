@@ -160,7 +160,6 @@ export default {
       if (dom) {
         if (!dom.contains(event.target) && !event.target.classList.contains("layui-icon-spread-left")) {
           // 不在侧边栏内点击，隐藏即可
-          console.log("jsjdj:", appStore.collapse)
           if (!appStore.collapse) {
             appStore.collapse = true;
           }
