@@ -87,8 +87,15 @@
 .layui-layout.collapse .layui-logo {
   width: 60px;
 }
-.layui-layout.collapse .layui-side {
-  width: 60px !important;
+@media screen and (max-width: 767px) {
+  .layui-layout.collapse .layui-side {
+    width: 0 !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .layui-layout.collapse .layui-side {
+    width: 60px !important;
+  }
 }
 .layui-layout.collapse .layui-body {
   left: 60px;

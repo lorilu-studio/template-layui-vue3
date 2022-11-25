@@ -212,10 +212,6 @@ export default {
   .layui-side {
     position: absolute;
     height: 100vh;
-  } 
-
-  .layui-header, .layui-body, .layui-footer {
-    margin-left: 60px;
   }
 }
 
