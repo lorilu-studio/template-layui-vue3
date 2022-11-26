@@ -11,7 +11,7 @@
       ]"
     >
       <!-- side -->
-      <div v-if="!appStore.collapse" class="layui-layer-shade hidden-sm-and-up" style="opacity: 0.1; z-index: 9999;"></div>
+      <div v-if="!appStore.collapse" class="layui-layer-shade hidden-sm-and-up" @click="collapse"></div>
       <lay-side id="lay-side" :width="sideWidth" :class="appStore.sideTheme == 'dark' ? 'dark':'light'">
         <lay-logo v-if="appStore.logo"></lay-logo>
         <lay-scroll style="height: calc(100% - 62px)">
@@ -142,7 +142,6 @@ export default {
       // mobile
       if(document.body.clientWidth < 768) {
         appStore.collapse = true;
-        document.addEventListener('click', checkClick);
       }
       userInfoStore.loadMenus();
       userInfoStore.loadPermissions();
@@ -153,19 +152,6 @@ export default {
         content:"已升级到 layui-vue 1.7.8 版本。"
       })
     })
-
-    const checkClick = (event: any) => {
-      let dom = document.getElementById("lay-side"); // 这里是侧边栏元素
-
-      if (dom) {
-        if (!dom.contains(event.target) && !event.target.classList.contains("layui-icon-spread-left")) {
-          // 不在侧边栏内点击，隐藏即可
-          if (!appStore.collapse) {
-            appStore.collapse = true;
-          }
-        }
-      }
-    }
 
     const changeVisible = function () {
       visible.value = !visible.value;

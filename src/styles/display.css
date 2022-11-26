@@ -16,6 +16,11 @@
   }
 }
 
+.hidden-sm-and-up {
+  opacity: 0.1; 
+  z-index: 9999;
+}
+
 @media screen and (min-width: 768px) {
   .hidden-sm-and-up {
     display: none !important;
