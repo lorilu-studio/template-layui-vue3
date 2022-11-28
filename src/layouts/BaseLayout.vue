@@ -10,16 +10,43 @@
         appStore.greyMode ? 'grey-mode' : '',
       ]"
     >
-      <!-- side -->
-      <div v-if="!appStore.collapse" class="layui-layer-shade hidden-sm-and-up" @click="collapse"></div>
-      <lay-side id="lay-side" :width="sideWidth" :class="appStore.sideTheme == 'dark' ? 'dark':'light'">
+      <!-- 遮盖层 -->
+      <div
+        v-if="!appStore.collapse"
+        class="layui-layer-shade hidden-sm-and-up"
+        @click="collapse"
+      ></div>
+      <!-- 核心菜单  -->
+      <lay-side
+        :width="sideWidth"
+        :class="appStore.sideTheme == 'dark' ? 'dark' : 'light'"
+      >
         <lay-logo v-if="appStore.logo"></lay-logo>
-        <lay-scroll style="height: calc(100% - 62px)">
-          <global-menu :collapse="appStore.collapse"></global-menu>
+        <lay-scroll style="height: calc(100% - 52px)">
+          <div class="side-menu-wrapper">
+            <div class="side-menu1" v-if="appStore.subfield">
+              <global-main-menu
+                :collapse="true"
+                :menus="mainMenus"
+                :selectedKey="mainSelectedKey"
+                @changeSelectedKey="changeMainSelectedKey"
+              ></global-main-menu>
+            </div>
+            <div class="side-menu2">
+              <global-menu
+                :collapse="appStore.collapse"
+                :menus="menus"
+                :openKeys="openKeys"
+                :selectedKey="selectedKey"
+                @changeOpenKeys="changeOpenKeys"
+                @changeSelectedKey="changeSelectedKey"
+              ></global-menu>
+            </div>
+          </div>
         </lay-scroll>
       </lay-side>
       <lay-layout style="width: 0px">
-        <!-- header -->
+        <!-- 布局头部 -->
         <lay-header>
           <lay-menu class="layui-layout-left">
             <lay-menu-item @click="collapse">
@@ -32,7 +59,11 @@
             <lay-menu-item class="hidden-xs-only" @click="refresh">
               <lay-icon type="layui-icon-refresh-one"></lay-icon>
             </lay-menu-item>
-            <lay-menu-item class="hidden-xs-only" v-if="appStore.breadcrumb" style="padding: 0px 15px;">
+            <lay-menu-item
+              class="hidden-xs-only"
+              v-if="appStore.breadcrumb"
+              style="padding: 0px 15px"
+            >
               <GlobalBreadcrumb></GlobalBreadcrumb>
             </lay-menu-item>
           </lay-menu>
@@ -99,7 +130,9 @@
           </lay-menu>
         </lay-header>
         <lay-body>
+          <!-- 多选项卡 -->
           <global-tab></global-tab>
+          <!-- 内容区域 -->
           <global-content></global-content>
         </lay-body>
         <lay-footer></lay-footer>
@@ -118,8 +151,9 @@ import GlobalContent from "./Global/GlobalContent.vue";
 import GlobalBreadcrumb from "./Global/GlobalBreadcrumb.vue";
 import GlobalTab from "./Global/GlobalTab.vue";
 import GlobalMenu from "./Global/GlobalMenu.vue";
+import GlobalMainMenu from "./global/GlobalMainMenu.vue";
 import { useRouter } from "vue-router";
-import { layer } from "@layui/layer-vue";
+import { useMenu } from "./composable/useMenu";
 
 export default {
   components: {
@@ -127,31 +161,37 @@ export default {
     GlobalContent,
     GlobalTab,
     GlobalMenu,
-    GlobalBreadcrumb
+    GlobalBreadcrumb,
+    GlobalMainMenu,
   },
   setup() {
-
-    const fullscreenRef = ref(null);
     const appStore = useAppStore();
     const userInfoStore = useUserStore();
+    const fullscreenRef = ref();
     const visible = ref(false);
+    const sideWidth = computed(() =>
+      appStore.collapse ? "60px" :  appStore.subfield ? "280px" : "220px"
+    );
     const router = useRouter();
-    const sideWidth = computed(() => appStore.collapse ? "60px" : "220px")
+
+    const {
+      selectedKey,
+      openKeys,
+      changeOpenKeys,
+      changeSelectedKey,
+      menus,
+      mainMenus,
+      mainSelectedKey,
+      changeMainSelectedKey,
+    } = useMenu();
 
     onMounted(() => {
-      // mobile
-      if(document.body.clientWidth < 768) {
+      if (document.body.clientWidth < 768) {
         appStore.collapse = true;
       }
       userInfoStore.loadMenus();
       userInfoStore.loadPermissions();
-
-      layer.notifiy({
-        icon: 1,
-        title:"欢迎访问",
-        content:"已升级到 layui-vue 1.7.8 版本。"
-      })
-    })
+    });
 
     const changeVisible = function () {
       visible.value = !visible.value;
@@ -176,7 +216,7 @@ export default {
       userInfoStore.userInfo = {};
       router.push("/login");
     };
-    
+
     return {
       sideWidth,
       changeVisible,
@@ -188,6 +228,14 @@ export default {
       logOut,
       userInfoStore,
       currentIndex,
+      selectedKey,
+      openKeys,
+      changeOpenKeys,
+      changeSelectedKey,
+      menus,
+      mainMenus,
+      mainSelectedKey,
+      changeMainSelectedKey,
     };
   },
 };
@@ -217,12 +265,12 @@ export default {
   color: #666;
 }
 /*取消默认a标签的padding:0 20px，否则扩大图标后容器变形*/
-.layui-header .layui-nav-item > a{
+.layui-header .layui-nav-item > a {
   padding: 0 !important;
 }
 /*扩大图标尺寸与所在容器大小一致，默认大小导致鼠标必须点击图标才能触发事件效果*/
-.layui-header .layui-nav-item .layui-icon{
-  height:50px;
+.layui-header .layui-nav-item .layui-icon {
+  height: 50px;
   padding: 20px;
 }
 /*增加鼠标经过图标时改变图标颜色，颜色为当前系统主题色*/
@@ -231,5 +279,21 @@ export default {
 }
 .grey-mode {
   filter: grayscale(1);
+}
+.side-menu-wrapper {
+  width: 100%;
+  display: flex;
+  height: 100%;
+}
+.side-menu1 {
+  width: 60px;
+  flex: 0 0 60px;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+.light .side-menu1 {
+  border-right: 1px solid whitesmoke;
+}
+.side-menu2 {
+  flex: 1;
 }
 </style>

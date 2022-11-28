@@ -9,10 +9,11 @@ export const useAppStore = defineStore({
       level: true,
       inverted: false,
       routerAlive: true,
-      collapse: document.body.clientWidth < 768, // 移动端默认收起，PC端默认展开
+      collapse: false, 
       subfield: false,
       theme: 'light',
       breadcrumb: true,
+      sideWidth: "220px",
       sideTheme: 'dark',
       greyMode: false,
       accordion: true,

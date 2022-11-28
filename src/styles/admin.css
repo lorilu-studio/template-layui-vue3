@@ -70,7 +70,6 @@
 }
 .layui-side {
   z-index: 10000;
-  width: 230px !important;
   background: rgb(34, 36, 37, 98%);
   box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
 }
@@ -78,7 +77,7 @@
   background-color: white!important;
 }
 .layui-side.light .layui-logo {
-  border-bottom: none;
+  border-bottom: 1px solid whitesmoke;
 }
 .layui-side .layui-nav {
   width: 100%;
@@ -87,16 +86,19 @@
 .layui-layout.collapse .layui-logo {
   width: 60px;
 }
+
 @media screen and (max-width: 767px) {
   .layui-layout.collapse .layui-side {
     width: 0 !important;
   }
 }
+
 @media screen and (min-width: 768px) {
   .layui-layout.collapse .layui-side {
     width: 60px !important;
   }
 }
+
 .layui-layout.collapse .layui-body {
   left: 60px;
 }
