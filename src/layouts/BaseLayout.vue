@@ -193,7 +193,7 @@ export default {
     const fullscreenRef = ref();
     const visible = ref(false);
     const sideWidth = computed(() =>
-      appStore.collapse ? "60px" : appStore.subfield ? "280px" : "220px"
+      appStore.collapse ? "60px" : appStore.subfield && appStore.subfield == 'side' ? "280px" : "220px"
     );
     const router = useRouter();
 
