@@ -24,7 +24,7 @@
         <lay-logo v-if="appStore.logo"></lay-logo>
         <lay-scroll style="height: calc(100% - 52px)">
           <div class="side-menu-wrapper">
-            <div class="side-menu1" v-if="appStore.subfield">
+            <div class="side-menu1" v-if="(appStore.subfield && appStore.subfieldPosition == 'side')">
               <global-main-menu
                 :collapse="true"
                 :menus="mainMenus"
@@ -67,8 +67,9 @@
               <GlobalBreadcrumb></GlobalBreadcrumb>
             </lay-menu-item>
           </lay-menu>
+          <!-- 菜单分组 -->
           <lay-menu
-            v-if="appStore.subfield"
+            v-if="(appStore.subfield && appStore.subfieldPosition == 'head')"
             class="layui-nav-center"
             :selectedKey="mainSelectedKey"
             @changeSelectedKey="changeMainSelectedKey"
@@ -79,7 +80,7 @@
               </lay-menu-item>
             </template>
           </lay-menu>
-          <lay-dropdown v-if="appStore.subfield" trigger="hover" placement="bottom">
+          <lay-dropdown v-if="(appStore.subfield && appStore.subfieldPosition == 'head')" trigger="hover" placement="bottom">
             <lay-icon type="layui-icon-more" style="padding: 0px 15px"></lay-icon>
             <template #content>
               <lay-dropdown-menu>
