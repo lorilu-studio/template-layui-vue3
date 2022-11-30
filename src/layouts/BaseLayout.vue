@@ -47,7 +47,7 @@
       </lay-side>
       <lay-layout style="width: 0px">
         <!-- 布局头部 -->
-        <lay-header>
+        <lay-header style="display: flex">
           <lay-menu class="layui-layout-left">
             <lay-menu-item @click="collapse">
               <lay-icon
@@ -67,6 +67,28 @@
               <GlobalBreadcrumb></GlobalBreadcrumb>
             </lay-menu-item>
           </lay-menu>
+          <lay-menu
+            v-if="appStore.subfield"
+            class="layui-nav-center"
+            :selectedKey="mainSelectedKey"
+            @changeSelectedKey="changeMainSelectedKey"
+          >
+            <template v-for="(menu, index) in mainMenus" :key="index">
+              <lay-menu-item :id="menu.id" v-if="index < 4">
+                <template #title>{{ menu.title }}</template>
+              </lay-menu-item>
+            </template>
+          </lay-menu>
+          <lay-dropdown v-if="appStore.subfield" trigger="hover" placement="bottom">
+            <lay-icon type="layui-icon-more" style="padding: 0px 15px"></lay-icon>
+            <template #content>
+              <lay-dropdown-menu>
+                <template v-for="(menu, index) in mainMenus">
+                  <lay-dropdown-menu-item v-if="index >= 4" @click="changeMainSelectedKey(menu.id)">{{ menu.title }}</lay-dropdown-menu-item>
+                </template>
+              </lay-dropdown-menu>
+            </template>
+          </lay-dropdown>
           <lay-menu class="layui-layout-right">
             <lay-menu-item>
               <lay-fullscreen v-slot="{ toggle, isFullscreen }">
@@ -170,7 +192,7 @@ export default {
     const fullscreenRef = ref();
     const visible = ref(false);
     const sideWidth = computed(() =>
-      appStore.collapse ? "60px" :  appStore.subfield ? "280px" : "220px"
+      appStore.collapse ? "60px" : appStore.subfield ? "280px" : "220px"
     );
     const router = useRouter();
 

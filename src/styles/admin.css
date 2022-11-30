@@ -42,6 +42,26 @@
   box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
 }
 
+.layui-header .layui-nav.layui-nav-center {
+  padding: 0px;
+}
+
+.layui-header .layui-nav.layui-nav-center .layui-this {
+  background-color: whitesmoke;
+}
+
+.layui-header .layui-nav.layui-nav-center .layui-this:after {
+  display: none;
+}
+
+.layui-header .layui-nav.layui-nav-center .layui-nav-item a{
+  margin: 0px 15px;
+}
+
+.layui-header .layui-nav.layui-nav-center .layui-nav-item a *{
+  color: #666;
+}
+
 .layui-layout.has-tab .layui-header {
   box-shadow: none;
 }

@@ -1,5 +1,5 @@
 import { layer } from "@layui/layui-vue";
-import { computed, ref, watch } from "vue";
+import { computed, ComputedRef, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { diff } from "../../library/arrayUtil";
 import { getParents, getNode } from "../../library/treeUtil";
@@ -19,7 +19,6 @@ export function useMenu() {
   const mainSelectedKey = ref("/workspace");
 
   const menus = computed(() => {
-    console.log("触发")
     if(isSubfield.value) {
         const node = getNode(userStore.menus, mainSelectedKey.value);
         if(node) {
@@ -32,7 +31,7 @@ export function useMenu() {
     }
   });
 
-  const mainMenus = computed(() => {
+  const mainMenus: ComputedRef<any[]> = computed(() => {
     if(isSubfield.value) {
         return userStore.menus;
     } else {
@@ -62,7 +61,7 @@ export function useMenu() {
   });
 
   function changeSelectedKey(key: string) {
-    var node = getNode(menus.value, key);
+    var node = getNode(userStore.menus, key);
 
     if (node.type && node.type == "modal") {
       layer.open({
@@ -95,6 +94,24 @@ export function useMenu() {
   }
 
   function changeMainSelectedKey(key: string) {
+
+    var node = getNode(userStore.menus, key);
+
+    if (node.type && node.type == "modal") {
+      layer.open({
+        type: "iframe",
+        content: node.id,
+        area: ["80%", "80%"],
+        maxmin: true,
+      });
+      return;
+    }
+
+    if (node.type && node.type == "blank") {
+      window.open(node.id, "_blank");
+      return;
+    }
+
     mainSelectedKey.value = key;
   }
 
