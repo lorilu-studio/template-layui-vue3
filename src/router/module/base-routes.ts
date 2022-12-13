@@ -147,16 +147,5 @@ export default [
         meta: { title: '权限指令', requireAuth: true },
       },
     ]
-  },{
-    path: '/component',
-    component: BaseLayout,
-    meta: { title: '扩展组件' },
-    children: [
-      {
-        path: '/component/calendar',
-        component: () => import('../../views/Component/calendar.vue'),
-        meta: { title: '日历组件', requireAuth: true },
-      },
-    ]
   }
 ]

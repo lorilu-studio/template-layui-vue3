@@ -152,17 +152,6 @@ const menus = [
       }
     ]
   },{
-    id: "/component",
-    icon: "layui-icon-home",
-    title: "扩展组件",
-    children: [
-      {
-        id: "/component/calendar",
-        icon: "layui-icon-home",
-        title: "日历组件"
-      }
-    ]
-  },{
     id: "/page",
     icon: "layui-icon-home",
     title: "外链页面",
