@@ -7,12 +7,14 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Calendar: typeof import('./src/components/Calendar.vue')['default']
     LayBadge: typeof import('@layui/layui-vue')['LayBadge']
     LayBody: typeof import('@layui/layui-vue')['LayBody']
     LayBreadcrumb: typeof import('@layui/layui-vue')['LayBreadcrumb']
     LayBreadcrumbItem: typeof import('@layui/layui-vue')['LayBreadcrumbItem']
     LayButton: typeof import('@layui/layui-vue')['LayButton']
     LayButtonContainer: typeof import('@layui/layui-vue')['LayButtonContainer']
+    LayButtonGroup: typeof import('@layui/layui-vue')['LayButtonGroup']
     LayCard: typeof import('@layui/layui-vue')['LayCard']
     LayCheckbox: typeof import('@layui/layui-vue')['LayCheckbox']
     LayCol: typeof import('@layui/layui-vue')['LayCol']
@@ -60,5 +62,6 @@ declare module '@vue/runtime-core' {
     LayUpload: typeof import('@layui/layui-vue')['LayUpload']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Scroll: typeof import('./src/components/Scroll.vue')['default']
   }
 }

@@ -141,22 +141,6 @@ const menus = [
       }
     ]
   },{
-    id: "/extends",
-    icon: "layui-icon-home",
-    title: "扩展组件",
-    children: [
-      {
-        id: "/result/success",
-        icon: "layui-icon-home",
-        title: "成功页面"
-      },
-      {
-        id: "/result/failure",
-        icon: "layui-icon-home",
-        title: "失败页面"
-      }
-    ]
-  },{
     id: "/directive",
     icon: "layui-icon-home",
     title: "内置指令",
@@ -170,12 +154,12 @@ const menus = [
   },{
     id: "/component",
     icon: "layui-icon-home",
-    title: "常用组件",
+    title: "扩展组件",
     children: [
       {
-        id: "/component/upload",
+        id: "/component/calendar",
         icon: "layui-icon-home",
-        title: "上传组件"
+        title: "日历组件"
       }
     ]
   },{

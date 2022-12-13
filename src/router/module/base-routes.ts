@@ -150,12 +150,12 @@ export default [
   },{
     path: '/component',
     component: BaseLayout,
-    meta: { title: '常用组件' },
+    meta: { title: '扩展组件' },
     children: [
       {
-        path: '/component/upload',
-        component: () => import('../../views/Component/upload.vue'),
-        meta: { title: '上传组件', requireAuth: true },
+        path: '/component/calendar',
+        component: () => import('../../views/Component/calendar.vue'),
+        meta: { title: '日历组件', requireAuth: true },
       },
     ]
   }
