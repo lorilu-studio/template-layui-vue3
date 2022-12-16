@@ -1,5 +1,5 @@
 {
-  "name": "layui-vue-admin",
+  "name": "pear-admin-next",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
@@ -8,7 +8,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@layui/layui-vue": "1.7.11",
+    "@layui/layui-vue": "1.7.12",
     "axios": "^1.2.1",
     "echarts": "^5.4.1",
     "js-base64": "^3.7.2",
