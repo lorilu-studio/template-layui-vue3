@@ -7,14 +7,13 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Calendar: typeof import('./src/components/Calendar.vue')['default']
     LayBadge: typeof import('@layui/layui-vue')['LayBadge']
+    LayBarcode: typeof import('@layui/layui-vue')['LayBarcode']
     LayBody: typeof import('@layui/layui-vue')['LayBody']
     LayBreadcrumb: typeof import('@layui/layui-vue')['LayBreadcrumb']
     LayBreadcrumbItem: typeof import('@layui/layui-vue')['LayBreadcrumbItem']
     LayButton: typeof import('@layui/layui-vue')['LayButton']
     LayButtonContainer: typeof import('@layui/layui-vue')['LayButtonContainer']
-    LayButtonGroup: typeof import('@layui/layui-vue')['LayButtonGroup']
     LayCard: typeof import('@layui/layui-vue')['LayCard']
     LayCheckbox: typeof import('@layui/layui-vue')['LayCheckbox']
     LayCol: typeof import('@layui/layui-vue')['LayCol']
@@ -41,6 +40,7 @@ declare module '@vue/runtime-core' {
     LayMenuItem: typeof import('@layui/layui-vue')['LayMenuItem']
     LayPage: typeof import('@layui/layui-vue')['LayPage']
     LayProgress: typeof import('@layui/layui-vue')['LayProgress']
+    LayQrcode: typeof import('@layui/layui-vue')['LayQrcode']
     LayRadio: typeof import('@layui/layui-vue')['LayRadio']
     LayResult: typeof import('@layui/layui-vue')['LayResult']
     LayRow: typeof import('@layui/layui-vue')['LayRow']
@@ -48,7 +48,6 @@ declare module '@vue/runtime-core' {
     LaySelect: typeof import('@layui/layui-vue')['LaySelect']
     LaySelectOption: typeof import('@layui/layui-vue')['LaySelectOption']
     LaySide: typeof import('@layui/layui-vue')['LaySide']
-    LaySlider: typeof import('@layui/layui-vue')['LaySlider']
     LaySubMenu: typeof import('@layui/layui-vue')['LaySubMenu']
     LaySwitch: typeof import('@layui/layui-vue')['LaySwitch']
     LayTab: typeof import('@layui/layui-vue')['LayTab']
@@ -57,11 +56,9 @@ declare module '@vue/runtime-core' {
     LayTextarea: typeof import('@layui/layui-vue')['LayTextarea']
     LayTimeline: typeof import('@layui/layui-vue')['LayTimeline']
     LayTimelineItem: typeof import('@layui/layui-vue')['LayTimelineItem']
-    LayTooltip: typeof import('@layui/layui-vue')['LayTooltip']
     LayTransition: typeof import('@layui/layui-vue')['LayTransition']
-    LayUpload: typeof import('@layui/layui-vue')['LayUpload']
+    LayTreeSelect: typeof import('@layui/layui-vue')['LayTreeSelect']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Scroll: typeof import('./src/components/Scroll.vue')['default']
   }
 }

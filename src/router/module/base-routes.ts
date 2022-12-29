@@ -107,11 +107,6 @@ export default [
         path: '/table/card',
         component: () => import('../../views/table/card.vue'),
         meta: { title: '卡片列表', requireAuth: true },
-      },
-      {
-        path: '/table/text',
-        component: () => import('../../views/table/text.vue'),
-        meta: { title: '图文列表', requireAuth: true },
       }
     ]
   },{
@@ -145,6 +140,27 @@ export default [
         path: '/directive/permission',
         component: () => import('../../views/directive/permission.vue'),
         meta: { title: '权限指令', requireAuth: true },
+      },
+    ]
+  },{
+    path: '/component',
+    component: BaseLayout,
+    meta: { title: '常用组件' },
+    children: [
+      {
+        path: '/component/qrcode',
+        component: () => import('../../views/component/qrcode.vue'),
+        meta: { title: '二维码', requireAuth: true },
+      },
+      {
+        path: '/component/barcode',
+        component: () => import('../../views/component/barcode.vue'),
+        meta: { title: '条形码', requireAuth: true },
+      },
+      {
+        path: '/component/treeSelect',
+        component: () => import('../../views/component/treeSelect.vue'),
+        meta: { title: '下拉树', requireAuth: true },
       },
     ]
   }
